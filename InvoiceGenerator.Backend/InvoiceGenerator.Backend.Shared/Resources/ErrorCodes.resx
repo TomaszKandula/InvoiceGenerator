@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ERROR_UNEXPECTED" xml:space="preserve">
+        <value>Unexpected error</value>
+    </data>
+    <data name="VAT_NUM_INCORRECT_LENGTH" xml:space="preserve">
+        <value>VAT number have incorrect length</value>
+    </data>
+    <data name="VAT_NUM_ALL_DIGITS_ARE_SAME" xml:space="preserve">
+        <value>VAT number carry the same digits</value>
+    </data>
+    <data name="VAT_NUM_INCORRECT_SIGN" xml:space="preserve">
+        <value>VAT number have incorrect sign</value>
+    </data>
+    <data name="VAT_NUM_INCORRECT_FORMAT" xml:space="preserve">
+        <value>VAT number have incorrect format</value>
+    </data>
+    <data name="VAT_NUM_ZERO_AT_FIRST_OR_THIRD_POSSITION" xml:space="preserve">
+        <value>VAT number have zero at first position and zero at third position</value>
+    </data>
+    <data name="VAT_NUM_INCORRECT_CHECK_SUM" xml:space="preserve">
+        <value>VAT number have incorrect check sum</value>
+    </data>
+    <data name="VAT_NUM_LENGTH_NINE" xml:space="preserve">
+        <value>VAT number have incorrect length of nine digits</value>
+    </data>
+</root>
