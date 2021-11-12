@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.WebApi", "InvoiceGenerator.WebApi\InvoiceGenerator.WebApi.csproj", "{435EA792-637C-4528-B5C5-9867F3047B58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3EEFC16D-C302-419C-95F7-F19376F567F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{3463B254-3132-4EAC-8205-E1B56D2E8537}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{BDC7C31C-9689-4622-9468-3E29647E2D77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0611065F-444A-4844-816C-508A32ABD479}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Domain", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.Domain\InvoiceGenerator.Backend.Domain.csproj", "{36867587-9AF1-48A0-899C-0B5B9BFB3041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Database", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.Database\InvoiceGenerator.Backend.Database.csproj", "{B5CA6DDD-7ACB-4BDE-B508-6BB33939A439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.VatService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.VatService\InvoiceGenerator.Backend.VatService.csproj", "{5AA8E950-5998-4120-B79B-D78E62F7B0AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.InvoiceService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.InvoiceService\InvoiceGenerator.Backend.InvoiceService.csproj", "{8784DABC-F602-4593-9F1F-371F35B6DC5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.UnitTests", "InvoiceGenerator.UnitTests\InvoiceGenerator.UnitTests.csproj", "{468E53D7-7697-4CA4-AA69-C894D3BFC06E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.IntegrationTests", "InvoiceGenerator.IntegrationTests\InvoiceGenerator.IntegrationTests.csproj", "{B68DE45A-3BA7-49A5-B638-630428F49E9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{435EA792-637C-4528-B5C5-9867F3047B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{435EA792-637C-4528-B5C5-9867F3047B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{435EA792-637C-4528-B5C5-9867F3047B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{435EA792-637C-4528-B5C5-9867F3047B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36867587-9AF1-48A0-899C-0B5B9BFB3041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36867587-9AF1-48A0-899C-0B5B9BFB3041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36867587-9AF1-48A0-899C-0B5B9BFB3041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36867587-9AF1-48A0-899C-0B5B9BFB3041}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5CA6DDD-7ACB-4BDE-B508-6BB33939A439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5CA6DDD-7ACB-4BDE-B508-6BB33939A439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5CA6DDD-7ACB-4BDE-B508-6BB33939A439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5CA6DDD-7ACB-4BDE-B508-6BB33939A439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AA8E950-5998-4120-B79B-D78E62F7B0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA8E950-5998-4120-B79B-D78E62F7B0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AA8E950-5998-4120-B79B-D78E62F7B0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AA8E950-5998-4120-B79B-D78E62F7B0AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8784DABC-F602-4593-9F1F-371F35B6DC5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8784DABC-F602-4593-9F1F-371F35B6DC5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8784DABC-F602-4593-9F1F-371F35B6DC5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8784DABC-F602-4593-9F1F-371F35B6DC5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{468E53D7-7697-4CA4-AA69-C894D3BFC06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{468E53D7-7697-4CA4-AA69-C894D3BFC06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{468E53D7-7697-4CA4-AA69-C894D3BFC06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{468E53D7-7697-4CA4-AA69-C894D3BFC06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B68DE45A-3BA7-49A5-B638-630428F49E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B68DE45A-3BA7-49A5-B638-630428F49E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B68DE45A-3BA7-49A5-B638-630428F49E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B68DE45A-3BA7-49A5-B638-630428F49E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{435EA792-637C-4528-B5C5-9867F3047B58} = {BDC7C31C-9689-4622-9468-3E29647E2D77}
+		{36867587-9AF1-48A0-899C-0B5B9BFB3041} = {3463B254-3132-4EAC-8205-E1B56D2E8537}
+		{B5CA6DDD-7ACB-4BDE-B508-6BB33939A439} = {3463B254-3132-4EAC-8205-E1B56D2E8537}
+		{5AA8E950-5998-4120-B79B-D78E62F7B0AF} = {0611065F-444A-4844-816C-508A32ABD479}
+		{8784DABC-F602-4593-9F1F-371F35B6DC5F} = {0611065F-444A-4844-816C-508A32ABD479}
+		{468E53D7-7697-4CA4-AA69-C894D3BFC06E} = {3EEFC16D-C302-419C-95F7-F19376F567F3}
+		{B68DE45A-3BA7-49A5-B638-630428F49E9D} = {3EEFC16D-C302-419C-95F7-F19376F567F3}
+	EndGlobalSection
+EndGlobal
