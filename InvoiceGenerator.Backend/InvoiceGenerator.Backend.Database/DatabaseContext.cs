@@ -1,0 +1,24 @@
+﻿namespace InvoiceGenerator.Backend.Database
+{
+    using System.Reflection;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.EntityFrameworkCore;
+    using Domain.Entities;
+
+    [ExcludeFromCodeCoverage]
+    public class DatabaseContext : DbContext
+    {
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
+
+        //entities...
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            ApplyConfiguration(modelBuilder);
+        }
+
+        private static void ApplyConfiguration(ModelBuilder modelBuilder) 
+            => modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
+}
