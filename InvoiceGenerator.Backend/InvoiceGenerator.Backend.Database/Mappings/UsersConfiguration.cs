@@ -6,7 +6,7 @@ namespace InvoiceGenerator.Backend.Database.Mappings
     using Domain.Entities;
 
     [ExcludeFromCodeCoverage]
-    public class UserConfiguration : IEntityTypeConfiguration<Users>
+    public class UsersConfiguration : IEntityTypeConfiguration<Users>
     {
         public void Configure(EntityTypeBuilder<Users> builder) 
             => builder.Property(user => user.Id).ValueGeneratedOnAdd();

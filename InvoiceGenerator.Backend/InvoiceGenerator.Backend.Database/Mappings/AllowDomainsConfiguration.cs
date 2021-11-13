@@ -6,7 +6,7 @@ namespace InvoiceGenerator.Backend.Database.Mappings
     using Domain.Entities;
 
     [ExcludeFromCodeCoverage]
-    public class AllowDomainConfiguration : IEntityTypeConfiguration<AllowDomains>
+    public class AllowDomainsConfiguration : IEntityTypeConfiguration<AllowDomains>
     {
         public void Configure(EntityTypeBuilder<AllowDomains> builder)
         {
