@@ -18,6 +18,8 @@
 
         public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
 
+        public virtual DbSet<IssuedInvoices> IssuedInvoices { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
