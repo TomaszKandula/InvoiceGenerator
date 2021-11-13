@@ -20,6 +20,8 @@
 
         public virtual DbSet<IssuedInvoices> IssuedInvoices { get; set; }
 
+        public virtual DbSet<BatchInvoices> BatchInvoices { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
