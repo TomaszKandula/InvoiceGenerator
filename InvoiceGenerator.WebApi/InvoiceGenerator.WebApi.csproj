@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>15437a9c-5f68-4c3a-8aed-7a78229f2272</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,6 +17,7 @@
       <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Cqrs\InvoiceGenerator.Backend.Cqrs.csproj" />
       <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Database\InvoiceGenerator.Backend.Database.csproj" />
       <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.InvoiceService\InvoiceGenerator.Backend.InvoiceService.csproj" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.UserService\InvoiceGenerator.Backend.UserService.csproj" />
       <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.VatService\InvoiceGenerator.Backend.VatService.csproj" />
     </ItemGroup>
 
