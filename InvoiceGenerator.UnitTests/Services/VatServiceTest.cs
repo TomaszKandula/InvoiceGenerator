@@ -278,9 +278,9 @@ namespace InvoiceGenerator.UnitTests.Services
             result.Errors[0].ErrorCode.Should().Be(nameof(ErrorCodes.VAT_NUM_LENGTH_NINE));
         }
 	    
-		private static IEnumerable<VatNumberPattern> GetPatternList()
+		private static IEnumerable<VatNumberPatterns> GetPatternList()
 		{
-			return new List<VatNumberPattern>
+			return new List<VatNumberPatterns>
 			{
 				new() { CountryCode = "PL", Pattern = @"^PL[ ]?\d{10}$|^\d{3}-\d{3}-\d{2}-\d{2}$|^\d{3}-\d{2}-\d{2}-\d{3}$" },
 				new() { CountryCode = "AT", Pattern = @"^AT[ ]?U\d{8}$" },
