@@ -1,6 +1,7 @@
 namespace InvoiceGenerator.Backend.Domain.Entities
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -111,5 +112,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public Guid? ModifiedBy { get; set; }
 
         public DateTime? ModifiedAt { get; set; }
+
+        public ICollection<BatchInvoicesProcessing> BatchInvoicesProcessing { get; set; } = new HashSet<BatchInvoicesProcessing>();
     }
 }
