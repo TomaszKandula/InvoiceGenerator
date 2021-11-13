@@ -10,7 +10,11 @@
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-        //entities...
+        public virtual DbSet<Users> Users { get; set; }
+
+        public virtual DbSet<UserDetails> UserDetails { get; set; }
+
+        public virtual DbSet<AllowDomains> AllowDomains { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
