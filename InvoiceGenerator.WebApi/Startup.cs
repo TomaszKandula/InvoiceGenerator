@@ -32,7 +32,7 @@ namespace InvoiceGenerator.WebApi
         {
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
-            Dependencies.Register(services, _configuration, _environment);
+            Dependencies.Register(services, _configuration);
 
             if (_environment.IsDevelopment() || _environment.IsStaging())
                 Swagger.SetupSwaggerOptions(services);
