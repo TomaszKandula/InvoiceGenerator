@@ -22,6 +22,8 @@
 
         public virtual DbSet<BatchInvoices> BatchInvoices { get; set; }
 
+        public virtual DbSet<BatchInvoicesProcessing> BatchInvoicesProcessing { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
