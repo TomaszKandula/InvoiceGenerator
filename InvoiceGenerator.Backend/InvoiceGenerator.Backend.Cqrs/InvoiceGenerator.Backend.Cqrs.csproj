@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Entities" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Core\InvoiceGenerator.Backend.Core.csproj" />
     </ItemGroup>
 
 </Project>
