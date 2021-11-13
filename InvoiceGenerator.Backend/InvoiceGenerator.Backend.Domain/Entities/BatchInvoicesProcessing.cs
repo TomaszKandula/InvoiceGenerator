@@ -11,7 +11,6 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         [Required]
         public Guid ProcessBatchKey { get; set; }
 
-        [Required]
         public TimeSpan? BatchProcessingTime { get; set; }
 
         [Required]
