@@ -4,4 +4,10 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Core\InvoiceGenerator.Backend.Core.csproj" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Domain\InvoiceGenerator.Backend.Domain.csproj" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Shared\InvoiceGenerator.Backend.Shared.csproj" />
+    </ItemGroup>
+
 </Project>
