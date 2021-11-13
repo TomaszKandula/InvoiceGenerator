@@ -14,7 +14,7 @@ namespace InvoiceGenerator.Backend.Database.Mappings
 
             builder
                 .HasOne(allowDomain => allowDomain.User)
-                .WithMany(user => user.AllowDomain)
+                .WithMany(user => user.AllowDomains)
                 .HasForeignKey(allowDomain => allowDomain.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_AllowDomains_User");
