@@ -16,6 +16,8 @@
 
         public virtual DbSet<AllowDomains> AllowDomains { get; set; }
 
+        public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
