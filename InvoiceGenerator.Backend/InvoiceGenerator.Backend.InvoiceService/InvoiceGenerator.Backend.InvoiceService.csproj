@@ -5,7 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Models" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Core\InvoiceGenerator.Backend.Core.csproj" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Database\InvoiceGenerator.Backend.Database.csproj" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Domain\InvoiceGenerator.Backend.Domain.csproj" />
     </ItemGroup>
 
 </Project>
