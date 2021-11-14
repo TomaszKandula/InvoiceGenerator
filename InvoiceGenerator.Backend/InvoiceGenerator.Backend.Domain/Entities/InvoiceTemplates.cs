@@ -4,16 +4,17 @@ namespace InvoiceGenerator.Backend.Domain.Entities
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Contracts;
 
     [ExcludeFromCodeCoverage]
-    public class InvoiceTemplates : Entity<Guid>
+    public class InvoiceTemplates : Entity<Guid>, ISoftDelete
     {
         [Required]
-        public string TemplateName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Column(TypeName = "varbinary(max)")]
-        public byte[] TemplateData { get; set; }
+        public byte[] Data { get; set; }
 
         [Required]
         public string ContentType { get; set; }
@@ -24,5 +25,8 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         [Required]
         public DateTime GeneratedAt { get; set; }
+
+        [Required]
+        public bool IsDeleted { get; set; }
     }
 }
