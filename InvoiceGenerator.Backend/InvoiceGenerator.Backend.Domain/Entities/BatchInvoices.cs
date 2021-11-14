@@ -80,6 +80,9 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         public DateTime? ModifiedAt { get; set; }
 
+        [Required]
+        public string InvoiceTemplateName { get; set; }
+
         public ICollection<BatchInvoiceItems> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItems>();
 
         public ICollection<BatchInvoicesProcessing> BatchInvoicesProcessing { get; set; } = new HashSet<BatchInvoicesProcessing>();

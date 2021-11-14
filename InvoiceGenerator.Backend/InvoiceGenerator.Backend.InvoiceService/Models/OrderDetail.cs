@@ -2,8 +2,10 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Domain.Enums;
 
+    [ExcludeFromCodeCoverage]
     public class OrderDetail
     {
         public Guid CustomerNumber { get; set; }
@@ -37,7 +39,9 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
         public string PostalCode { get; set; }
 
         public string PostalArea { get; set; }
-        
+
+        public string InvoiceTemplateName { get; set; }
+
         public IEnumerable<InvoiceItem> InvoiceItems { get; set; }
     }
 }
