@@ -4,14 +4,16 @@ using InvoiceGenerator.Backend.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InvoiceGenerator.Backend.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211113193852_AddIssuedInvoicesTable")]
+    partial class AddIssuedInvoicesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,168 +40,6 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AllowDomains");
-                });
-
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoiceItems", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BatchInvoiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("CurrencyCode")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("GrossAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ItemAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("ItemDiscountRate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ItemQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ItemQuantityUnit")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("ItemText")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<decimal>("ValueAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("VatRate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BatchInvoiceId");
-
-                    b.ToTable("BatchInvoiceItems");
-                });
-
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoices", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AddressLine2")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AddressLine3")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("CompanyVatNumber")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<int>("CountryCode")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CustomerNumber")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InvoiceNumber")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("PaymentTerms")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("PaymentType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PostalArea")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<Guid>("ProcessBatchKey")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ValueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("VoucherDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BatchInvoices");
-                });
-
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoicesProcessing", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<TimeSpan?>("BatchProcessingTime")
-                        .HasColumnType("time");
-
-                    b.Property<Guid>("ProcessBatchKey")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProcessBatchKey");
-
-                    b.ToTable("BatchInvoicesProcessing");
                 });
 
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.IssuedInvoices", b =>
@@ -343,34 +183,12 @@ namespace InvoiceGenerator.Backend.Database.Migrations
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.AllowDomains", b =>
                 {
                     b.HasOne("InvoiceGenerator.Backend.Domain.Entities.Users", "User")
-                        .WithMany("AllowDomains")
+                        .WithMany("AllowDomain")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_AllowDomains_User")
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoiceItems", b =>
-                {
-                    b.HasOne("InvoiceGenerator.Backend.Domain.Entities.BatchInvoices", "BatchInvoices")
-                        .WithMany("BatchInvoiceItems")
-                        .HasForeignKey("BatchInvoiceId")
-                        .HasConstraintName("FK_BatchInvoiceItems_BatchInvoices")
-                        .IsRequired();
-
-                    b.Navigation("BatchInvoices");
-                });
-
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoicesProcessing", b =>
-                {
-                    b.HasOne("InvoiceGenerator.Backend.Domain.Entities.BatchInvoices", "BatchInvoices")
-                        .WithMany("BatchInvoicesProcessing")
-                        .HasForeignKey("ProcessBatchKey")
-                        .HasConstraintName("FK_BatchInvoicesProcessing_BatchInvoices")
-                        .IsRequired();
-
-                    b.Navigation("BatchInvoices");
                 });
 
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.IssuedInvoices", b =>
@@ -395,16 +213,9 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoices", b =>
-                {
-                    b.Navigation("BatchInvoiceItems");
-
-                    b.Navigation("BatchInvoicesProcessing");
-                });
-
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.Users", b =>
                 {
-                    b.Navigation("AllowDomains");
+                    b.Navigation("AllowDomain");
 
                     b.Navigation("IssuedInvoices");
 
