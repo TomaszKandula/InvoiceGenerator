@@ -98,5 +98,17 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_PROCESSING_BATCH_KEY", resourceCulture);
             }
         }
+        
+        public static string INVALID_TEMPLATE_ID {
+            get {
+                return ResourceManager.GetString("INVALID_TEMPLATE_ID", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_TEMPLATE_NAME {
+            get {
+                return ResourceManager.GetString("INVALID_TEMPLATE_NAME", resourceCulture);
+            }
+        }
     }
 }
