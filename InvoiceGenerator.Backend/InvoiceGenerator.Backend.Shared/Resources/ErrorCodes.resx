@@ -42,4 +42,7 @@
     <data name="VAT_NUM_LENGTH_NINE" xml:space="preserve">
         <value>VAT number have incorrect length of nine digits</value>
     </data>
+    <data name="INVALID_PROCESSING_BATCH_KEY" xml:space="preserve">
+        <value>Cannot find given processing batch key</value>
+    </data>
 </root>
