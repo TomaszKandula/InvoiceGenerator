@@ -92,5 +92,11 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("VAT_NUM_LENGTH_NINE", resourceCulture);
             }
         }
+        
+        public static string INVALID_PROCESSING_BATCH_KEY {
+            get {
+                return ResourceManager.GetString("INVALID_PROCESSING_BATCH_KEY", resourceCulture);
+            }
+        }
     }
 }
