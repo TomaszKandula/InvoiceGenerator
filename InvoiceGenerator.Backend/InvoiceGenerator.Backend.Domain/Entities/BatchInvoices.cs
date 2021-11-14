@@ -4,7 +4,6 @@ namespace InvoiceGenerator.Backend.Domain.Entities
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using Enums;
     using Contracts;
 
@@ -12,34 +11,11 @@ namespace InvoiceGenerator.Backend.Domain.Entities
     public class BatchInvoices : Entity<Guid>, IAuditable
     {
         [Required]
-        [MaxLength(255)]
-        public string Name { get; set; }
-
-        [Required]
         public Guid CustomerNumber { get; set; }
 
         [Required]
         [MaxLength(255)]
         public string InvoiceNumber { get; set; }
-
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal OpenCurrencyAmount { get; set; }
-
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal OpenAmount { get; set; }
-
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal CurrencyAmount { get; set; }
-
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Amount { get; set; }
-
-        [Required]
-        public CurrencyCodes CurrencyCode { get; set; }
 
         [Required]
         public DateTime VoucherDate { get; set; }
@@ -55,7 +31,14 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public string PaymentTerms { get; set; }
 
         [Required]
-        public PaymentStatuses PaymentStatus { get; set; }
+        public PaymentTypes PaymentType { get; set; }
+
+        [Required]
+        [MaxLength(255)]
+        public string CompanyName { get; set; }
+
+        [MaxLength(25)]
+        public string CompanyVatNumber { get; set; }
 
         [Required]
         public CountryCodes CountryCode { get; set; }
@@ -83,22 +66,6 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         [Required]
         [MaxLength(150)]
         public string PostalArea { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        public string Text { get; set; }
-
-        [MaxLength(255)]
-        public string AdditionalText { get; set; }
-
-        [MaxLength(255)]
-        public string PersonResponsible { get; set; }
-
-        [MaxLength(255)]
-        public string SalesResponsible { get; set; }
-
-        [MaxLength(255)]
-        public string CustomerGroup { get; set; }
 
         [Required]
         public Guid ProcessBatchKey { get; set; }
