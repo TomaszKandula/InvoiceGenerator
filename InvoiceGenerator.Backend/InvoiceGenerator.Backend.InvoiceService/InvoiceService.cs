@@ -30,6 +30,12 @@ namespace InvoiceGenerator.Backend.InvoiceService
             _loggerService = loggerService;
         }
 
+        /// <summary>
+        /// Place an order for invoice processing. 
+        /// </summary>
+        /// <param name="orderDetails">Desired invoice data.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Process Batch Key.</returns>
         public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails, CancellationToken cancellationToken = default)
         {
             var invoices = new List<BatchInvoices>();
@@ -58,6 +64,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
                     AddressLine3 = order.AddressLine3,
                     PostalCode = order.PostalCode,
                     PostalArea = order.PostalArea,
+                    InvoiceTemplateName = order.InvoiceTemplateName,
                     ProcessBatchKey = processBatchKey
                 });
 
@@ -94,11 +101,18 @@ namespace InvoiceGenerator.Backend.InvoiceService
 
             var messageText1 = $"Invoice batch processing has been ordered (ProcessBatchKey: {processing.ProcessBatchKey}).";
             var messageText2 = $"Total invoices: {invoices.Count}.";
-            
+
             _loggerService.LogInformation($"{messageText1} {messageText2}.");
             return processing.ProcessBatchKey;
         }
 
+        /// <summary>
+        /// Returns processing status of invoices to be generated.
+        /// </summary>
+        /// <param name="processBatchKey">Unique ID of batch process.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Processing Status object.</returns>
+        /// <exception cref="BusinessException">Throws an error code INVALID_PROCESSING_BATCH_KEY.</exception>
         public async Task<ProcessingStatus> GetBatchInvoiceProcessingStatus(Guid processBatchKey, CancellationToken cancellationToken = default)
         {
             var processing = await _databaseContext.BatchInvoicesProcessing
@@ -114,6 +128,156 @@ namespace InvoiceGenerator.Backend.InvoiceService
                 Status = processing.Status,
                 BatchProcessingTime = processing.BatchProcessingTime
             };
+        }
+
+        /// <summary>
+        /// Returns registered invoice template by name.
+        /// </summary>
+        /// <param name="templateName">Invoice template name.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Template file data.</returns>
+        /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_NAME.</exception>
+        public async Task<byte[]> GetInvoiceTemplate(string templateName, CancellationToken cancellationToken = default)
+        {
+            var template = await _databaseContext.InvoiceTemplates
+                .AsNoTracking()
+                .Where(templates => templates.Name == templateName)
+                .Where(templates => templates.IsDeleted == false)
+                .Select(templates => templates.Data)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (template == null)
+                throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_NAME), ErrorCodes.INVALID_TEMPLATE_NAME);
+
+            return template;
+        }
+
+        /// <summary>
+        /// Returns registered invoice template by ID.
+        /// </summary>
+        /// <param name="templateId">Invoice template ID.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Template file data.</returns>
+        /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
+        public async Task<byte[]> GetInvoiceTemplate(Guid templateId, CancellationToken cancellationToken = default)
+        {
+            var template = await _databaseContext.InvoiceTemplates
+                .AsNoTracking()
+                .Where(templates => templates.Id == templateId)
+                .Where(templates => templates.IsDeleted == false)
+                .Select(templates => templates.Data)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (template == null)
+                throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_ID), ErrorCodes.INVALID_TEMPLATE_ID);
+
+            return template;
+        }
+
+        /// <summary>
+        /// Remove (soft delete) existing invoice template.
+        /// </summary>
+        /// <param name="templateName">Invoice template name.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_NAME.</exception>
+        public async Task RemoveInvoiceTemplate(string templateName, CancellationToken cancellationToken = default)
+        {
+            var template = await _databaseContext.InvoiceTemplates
+                .Where(templates => templates.Name == templateName)
+                .Where(templates => templates.IsDeleted == false)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (template == null)
+                throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_NAME), ErrorCodes.INVALID_TEMPLATE_NAME);
+
+            template.IsDeleted = true;
+            await _databaseContext.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Remove (soft delete) existing invoice template.
+        /// </summary>
+        /// <param name="templateId">Invoice template ID.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
+        public async Task RemoveInvoiceTemplate(Guid templateId, CancellationToken cancellationToken = default)
+        {
+            var template = await _databaseContext.InvoiceTemplates
+                .Where(templates => templates.Id == templateId)
+                .Where(templates => templates.IsDeleted == false)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (template == null)
+                throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_ID), ErrorCodes.INVALID_TEMPLATE_ID);
+
+            template.IsDeleted = true;
+            await _databaseContext.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Updates current invoice template.
+        /// </summary>
+        /// <param name="templateName">Invoice template name.</param>
+        /// <param name="newTemplate">Binary representation of a new invoice template.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_NAME.</exception>
+        public async Task ReplaceInvoiceTemplate(string templateName, byte[] newTemplate, CancellationToken cancellationToken = default)
+        {
+            var template = await _databaseContext.InvoiceTemplates
+                .Where(templates => templates.Name == templateName)
+                .Where(templates => templates.IsDeleted == false)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (template == null)
+                throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_NAME), ErrorCodes.INVALID_TEMPLATE_NAME);
+
+            template.Data = newTemplate;
+            await _databaseContext.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Updates current invoice template.
+        /// </summary>
+        /// <param name="templateId">Invoice template ID.</param>
+        /// <param name="newTemplate">Binary representation of a new invoice template.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
+        public async Task ReplaceInvoiceTemplate(Guid templateId, byte[] newTemplate, CancellationToken cancellationToken = default)
+        {
+            var template = await _databaseContext.InvoiceTemplates
+                .Where(templates => templates.Id == templateId)
+                .Where(templates => templates.IsDeleted == false)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (template == null)
+                throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_ID), ErrorCodes.INVALID_TEMPLATE_ID);
+
+            template.Data = newTemplate;
+            await _databaseContext.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Adds new invoice template to the database.
+        /// </summary>
+        /// <param name="invoiceTemplate">Invoice template data.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Invoice template ID.</returns>
+        public async Task<Guid> AddInvoiceTemplate(InvoiceTemplate invoiceTemplate, CancellationToken cancellationToken = default)
+        {
+            var template = new InvoiceTemplates
+            {
+                Name = invoiceTemplate.TemplateName,
+                Data = invoiceTemplate.TemplateData,
+                ContentType = invoiceTemplate.ContentType,
+                ShortDescription = invoiceTemplate.ShortDescription,
+                GeneratedAt = _dateTimeService.Now,
+                IsDeleted = false
+            };
+
+            await _databaseContext.AddAsync(template, cancellationToken);
+            await _databaseContext.SaveChangesAsync(cancellationToken);
+
+            return template.Id;
         }
     }
 }
