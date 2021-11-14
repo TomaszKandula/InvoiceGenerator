@@ -13,16 +13,20 @@ namespace InvoiceGenerator.Backend.InvoiceService
     using Core.Exceptions;
     using Shared.Resources;
     using Core.Services.LoggerService;
+    using Core.Services.DateTimeService;
 
     public class InvoiceService : IInvoiceService
     {
         private readonly DatabaseContext _databaseContext;
 
+        private readonly IDateTimeService _dateTimeService;
+        
         private readonly ILoggerService _loggerService;
 
-        public InvoiceService(DatabaseContext databaseContext, ILoggerService loggerService)
+        public InvoiceService(DatabaseContext databaseContext, IDateTimeService dateTimeService, ILoggerService loggerService)
         {
             _databaseContext = databaseContext;
+            _dateTimeService = dateTimeService;
             _loggerService = loggerService;
         }
 
@@ -79,7 +83,8 @@ namespace InvoiceGenerator.Backend.InvoiceService
             {
                 ProcessBatchKey = processBatchKey,
                 BatchProcessingTime = null,
-                Status = InvoiceProcessingStatuses.New
+                Status = InvoiceProcessingStatuses.New,
+                CreatedAt = _dateTimeService.Now
             };
 
             await _databaseContext.AddRangeAsync(invoices, cancellationToken);
