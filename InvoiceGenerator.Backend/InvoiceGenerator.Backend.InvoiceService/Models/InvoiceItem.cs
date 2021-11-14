@@ -1,7 +1,9 @@
 namespace InvoiceGenerator.Backend.InvoiceService.Models
 {
+    using System.Diagnostics.CodeAnalysis;
     using Domain.Enums;
 
+    [ExcludeFromCodeCoverage]
     public class InvoiceItem
     {
         public string ItemText { get; set; }
