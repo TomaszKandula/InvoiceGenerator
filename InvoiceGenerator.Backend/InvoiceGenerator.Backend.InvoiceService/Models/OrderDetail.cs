@@ -4,7 +4,7 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
     using System.Collections.Generic;
     using Domain.Enums;
 
-    public class OrderDetails
+    public class OrderDetail
     {
         public Guid CustomerNumber { get; set; }
 
