@@ -4,14 +4,16 @@ using InvoiceGenerator.Backend.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InvoiceGenerator.Backend.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211114105753_AddBatchInvoiceItemsTable")]
+    partial class AddBatchInvoiceItemsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,6 +95,10 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AdditionalText")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<string>("AddressLine1")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -108,19 +114,13 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("CompanyVatNumber")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("CountryCode")
                         .HasColumnType("int");
@@ -130,6 +130,16 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("CurrencyAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CurrencyCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerGroup")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<Guid>("CustomerNumber")
                         .HasColumnType("uniqueidentifier");
@@ -148,13 +158,28 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Property<Guid?>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal>("OpenAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("OpenCurrencyAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("PaymentStatus")
+                        .HasColumnType("int");
+
                     b.Property<string>("PaymentTerms")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("PaymentType")
-                        .HasColumnType("int");
+                    b.Property<string>("PersonResponsible")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("PostalArea")
                         .IsRequired()
@@ -168,6 +193,15 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.Property<Guid>("ProcessBatchKey")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SalesResponsible")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime>("ValueDate")
                         .HasColumnType("datetime2");
