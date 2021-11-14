@@ -14,7 +14,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public TimeSpan? BatchProcessingTime { get; set; }
 
         [Required]
-        public InvoiceProcessingStatus Status { get; set; }
+        public InvoiceProcessingStatuses Status { get; set; }
         
         public BatchInvoices BatchInvoices { get; set; }
     }
