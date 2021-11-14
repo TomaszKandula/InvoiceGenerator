@@ -16,6 +16,9 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         [Required]
         public InvoiceProcessingStatuses Status { get; set; }
         
+        [Required]
+        public DateTime CreatedAt { get; set; }
+        
         public BatchInvoices BatchInvoices { get; set; }
     }
 }
