@@ -10,6 +10,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
     public class InvoiceTemplates : Entity<Guid>, ISoftDelete
     {
         [Required]
+        [MaxLength(255)]
         public string Name { get; set; }
 
         [Required]
@@ -17,6 +18,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public byte[] Data { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string ContentType { get; set; }
 
         [Required]

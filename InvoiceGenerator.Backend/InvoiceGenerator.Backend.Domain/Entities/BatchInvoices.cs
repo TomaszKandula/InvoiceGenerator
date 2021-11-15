@@ -81,6 +81,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public DateTime? ModifiedAt { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string InvoiceTemplateName { get; set; }
 
         public ICollection<BatchInvoiceItems> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItems>();

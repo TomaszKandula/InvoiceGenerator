@@ -12,6 +12,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public Guid UserId { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string InvoiceName { get; set; }
 
         [Required]
@@ -19,6 +20,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public byte[] InvoiceData { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string ContentType { get; set; }
 
         [Required]
