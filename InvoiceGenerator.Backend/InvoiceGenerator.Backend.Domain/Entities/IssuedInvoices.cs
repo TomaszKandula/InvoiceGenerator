@@ -16,7 +16,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public string InvoiceName { get; set; }
 
         [Required]
-        [Column(TypeName = "varbinary(max)")]
+        [Column(TypeName = "varbinary(8000)")]
         public byte[] InvoiceData { get; set; }
 
         [Required]
