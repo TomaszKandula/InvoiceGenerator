@@ -40,7 +40,14 @@ namespace InvoiceGenerator.Backend.InvoiceService
         {
             var invoices = new List<BatchInvoices>();
             var invoiceItems = new List<BatchInvoiceItems>();
-            var processBatchKey = Guid.NewGuid();
+
+            var processing = new BatchInvoicesProcessing
+            {
+                Id = Guid.NewGuid(),
+                BatchProcessingTime = null,
+                Status = InvoiceProcessingStatuses.New,
+                CreatedAt = _dateTimeService.Now
+            };
 
             foreach (var order in orderDetails)
             {
@@ -65,7 +72,11 @@ namespace InvoiceGenerator.Backend.InvoiceService
                     PostalCode = order.PostalCode,
                     PostalArea = order.PostalArea,
                     InvoiceTemplateName = order.InvoiceTemplateName,
-                    ProcessBatchKey = processBatchKey
+                    CreatedAt = _dateTimeService.Now,
+                    CreatedBy = order.UserId,
+                    ModifiedAt = null,
+                    ModifiedBy = null,
+                    ProcessBatchKey = processing.Id
                 });
 
                 foreach (var item in order.InvoiceItems)
@@ -81,29 +92,22 @@ namespace InvoiceGenerator.Backend.InvoiceService
                         ItemDiscountRate = item.ItemDiscountRate,
                         ValueAmount = item.ValueAmount,
                         VatRate = item.VatRate,
-                        GrossAmount = item.GrossAmount
+                        GrossAmount = item.GrossAmount,
+                        CurrencyCode = item.CurrencyCode
                     });
                 }
             }
 
-            var processing = new BatchInvoicesProcessing
-            {
-                ProcessBatchKey = processBatchKey,
-                BatchProcessingTime = null,
-                Status = InvoiceProcessingStatuses.New,
-                CreatedAt = _dateTimeService.Now
-            };
-
+            await _databaseContext.AddAsync(processing, cancellationToken);
             await _databaseContext.AddRangeAsync(invoices, cancellationToken);
             await _databaseContext.AddRangeAsync(invoiceItems, cancellationToken);
-            await _databaseContext.AddAsync(processing, cancellationToken);
             await _databaseContext.SaveChangesAsync(cancellationToken);
 
-            var messageText1 = $"Invoice batch processing has been ordered (ProcessBatchKey: {processing.ProcessBatchKey}).";
+            var messageText1 = $"Invoice batch processing has been ordered (ProcessBatchKey: {processing.Id}).";
             var messageText2 = $"Total invoices: {invoices.Count}.";
 
             _loggerService.LogInformation($"{messageText1} {messageText2}.");
-            return processing.ProcessBatchKey;
+            return processing.Id;
         }
 
         /// <summary>
@@ -117,7 +121,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
         {
             var processing = await _databaseContext.BatchInvoicesProcessing
                 .AsNoTracking()
-                .Where(processing => processing.ProcessBatchKey == processBatchKey)
+                .Where(processing => processing.Id == processBatchKey)
                 .FirstOrDefaultAsync(cancellationToken);
 
             if (processing == null)
