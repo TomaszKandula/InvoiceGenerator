@@ -84,8 +84,8 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         [MaxLength(255)]
         public string InvoiceTemplateName { get; set; }
 
-        public ICollection<BatchInvoiceItems> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItems>();
+        public BatchInvoicesProcessing BatchInvoicesProcessing { get; set; }
 
-        public ICollection<BatchInvoicesProcessing> BatchInvoicesProcessing { get; set; } = new HashSet<BatchInvoicesProcessing>();
+        public ICollection<BatchInvoiceItems> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItems>();
     }
 }

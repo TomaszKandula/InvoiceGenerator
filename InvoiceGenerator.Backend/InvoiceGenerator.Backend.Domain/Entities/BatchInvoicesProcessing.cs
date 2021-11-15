@@ -1,6 +1,7 @@
 namespace InvoiceGenerator.Backend.Domain.Entities
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
     using Enums;
@@ -8,9 +9,6 @@ namespace InvoiceGenerator.Backend.Domain.Entities
     [ExcludeFromCodeCoverage]
     public class BatchInvoicesProcessing : Entity<Guid>
     {
-        [Required]
-        public Guid ProcessBatchKey { get; set; }
-
         public TimeSpan? BatchProcessingTime { get; set; }
 
         [Required]
@@ -18,7 +16,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         
         [Required]
         public DateTime CreatedAt { get; set; }
-        
-        public BatchInvoices BatchInvoices { get; set; }
+
+        public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
     }
 }
