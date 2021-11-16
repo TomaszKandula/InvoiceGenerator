@@ -8,6 +8,8 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
     [ExcludeFromCodeCoverage]
     public class OrderDetail
     {
+        public Guid UserId { get; set; }
+
         public Guid CustomerNumber { get; set; }
 
         public string InvoiceNumber { get; set; }

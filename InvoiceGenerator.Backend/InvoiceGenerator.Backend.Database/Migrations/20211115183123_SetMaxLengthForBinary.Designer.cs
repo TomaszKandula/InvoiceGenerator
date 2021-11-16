@@ -4,14 +4,16 @@ using InvoiceGenerator.Backend.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InvoiceGenerator.Backend.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211115183123_SetMaxLengthForBinary")]
+    partial class SetMaxLengthForBinary
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,8 +184,6 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProcessBatchKey");
-
                     b.ToTable("BatchInvoices");
                 });
 
@@ -199,10 +199,15 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("ProcessBatchKey")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProcessBatchKey");
 
                     b.ToTable("BatchInvoicesProcessing");
                 });
@@ -220,7 +225,7 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.Property<byte[]>("Data")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("varbinary(8000)");
 
                     b.Property<DateTime>("GeneratedAt")
                         .HasColumnType("datetime2");
@@ -259,9 +264,9 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.Property<byte[]>("InvoiceData")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("varbinary(8000)");
 
-                    b.Property<string>("InvoiceNumber")
+                    b.Property<string>("InvoiceName")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
@@ -405,15 +410,15 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Navigation("BatchInvoices");
                 });
 
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoices", b =>
+            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoicesProcessing", b =>
                 {
-                    b.HasOne("InvoiceGenerator.Backend.Domain.Entities.BatchInvoicesProcessing", "BatchInvoicesProcessing")
-                        .WithMany("BatchInvoices")
+                    b.HasOne("InvoiceGenerator.Backend.Domain.Entities.BatchInvoices", "BatchInvoices")
+                        .WithMany("BatchInvoicesProcessing")
                         .HasForeignKey("ProcessBatchKey")
-                        .HasConstraintName("FK_BatchInvoices_BatchInvoicesProcessing")
+                        .HasConstraintName("FK_BatchInvoicesProcessing_BatchInvoices")
                         .IsRequired();
 
-                    b.Navigation("BatchInvoicesProcessing");
+                    b.Navigation("BatchInvoices");
                 });
 
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.IssuedInvoices", b =>
@@ -441,11 +446,8 @@ namespace InvoiceGenerator.Backend.Database.Migrations
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoices", b =>
                 {
                     b.Navigation("BatchInvoiceItems");
-                });
 
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.BatchInvoicesProcessing", b =>
-                {
-                    b.Navigation("BatchInvoices");
+                    b.Navigation("BatchInvoicesProcessing");
                 });
 
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.Users", b =>

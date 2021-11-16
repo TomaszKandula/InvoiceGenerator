@@ -8,7 +8,16 @@ namespace InvoiceGenerator.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class BatchInvoicesConfiguration : IEntityTypeConfiguration<BatchInvoices>
     {
-        public void Configure(EntityTypeBuilder<BatchInvoices> builder) 
-            => builder.Property(user => user.Id).ValueGeneratedOnAdd();
+        public void Configure(EntityTypeBuilder<BatchInvoices> builder)
+        {
+            builder.Property(invoices => invoices.Id).ValueGeneratedOnAdd();
+
+            builder
+                .HasOne(invoices => invoices.BatchInvoicesProcessing)
+                .WithMany(processing => processing.BatchInvoices)
+                .HasForeignKey(invoices => invoices.ProcessBatchKey)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_BatchInvoices_BatchInvoicesProcessing");
+        }
     }
 }

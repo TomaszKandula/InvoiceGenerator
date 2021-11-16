@@ -4,14 +4,16 @@ using InvoiceGenerator.Backend.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InvoiceGenerator.Backend.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211116214005_ChangeColumnNameInTable")]
+    partial class ChangeColumnNameInTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,7 +222,7 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.Property<byte[]>("Data")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("varbinary(8000)");
 
                     b.Property<DateTime>("GeneratedAt")
                         .HasColumnType("datetime2");
@@ -259,7 +261,7 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.Property<byte[]>("InvoiceData")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("varbinary(8000)");
 
                     b.Property<string>("InvoiceNumber")
                         .IsRequired()
