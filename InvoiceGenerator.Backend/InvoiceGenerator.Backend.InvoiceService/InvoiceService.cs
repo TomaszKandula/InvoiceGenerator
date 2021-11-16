@@ -31,6 +31,32 @@ namespace InvoiceGenerator.Backend.InvoiceService
         }
 
         /// <summary>
+        /// Returns generated invoice data of given type.
+        /// </summary>
+        /// <param name="invoiceNumber">Binary representation of generated invoice.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Invoice (binary content).</returns>
+        /// <exception cref="BusinessException"></exception>
+        public async Task<InvoiceData> GetIssuedInvoice(string invoiceNumber, CancellationToken cancellationToken = default)
+        {
+            var invoice = await _databaseContext.IssuedInvoices
+                .AsNoTracking()
+                .Where(invoices => invoices.InvoiceNumber == invoiceNumber)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (invoice == null)
+                throw new BusinessException(nameof(ErrorCodes.INVALID_INVOICE_NUMBER), ErrorCodes.INVALID_INVOICE_NUMBER);
+
+            return new InvoiceData
+            {
+                Number = invoice.InvoiceNumber,
+                ContentData = invoice.InvoiceData,
+                ContentType = invoice.ContentType,
+                GeneratedAt = invoice.GeneratedAt
+            };
+        }
+
+        /// <summary>
         /// Place an order for invoice processing. 
         /// </summary>
         /// <param name="orderDetails">Desired invoice data.</param>
@@ -40,7 +66,14 @@ namespace InvoiceGenerator.Backend.InvoiceService
         {
             var invoices = new List<BatchInvoices>();
             var invoiceItems = new List<BatchInvoiceItems>();
-            var processBatchKey = Guid.NewGuid();
+
+            var processing = new BatchInvoicesProcessing
+            {
+                Id = Guid.NewGuid(),
+                BatchProcessingTime = null,
+                Status = InvoiceProcessingStatuses.New,
+                CreatedAt = _dateTimeService.Now
+            };
 
             foreach (var order in orderDetails)
             {
@@ -65,7 +98,11 @@ namespace InvoiceGenerator.Backend.InvoiceService
                     PostalCode = order.PostalCode,
                     PostalArea = order.PostalArea,
                     InvoiceTemplateName = order.InvoiceTemplateName,
-                    ProcessBatchKey = processBatchKey
+                    CreatedAt = _dateTimeService.Now,
+                    CreatedBy = order.UserId,
+                    ModifiedAt = null,
+                    ModifiedBy = null,
+                    ProcessBatchKey = processing.Id
                 });
 
                 foreach (var item in order.InvoiceItems)
@@ -81,29 +118,22 @@ namespace InvoiceGenerator.Backend.InvoiceService
                         ItemDiscountRate = item.ItemDiscountRate,
                         ValueAmount = item.ValueAmount,
                         VatRate = item.VatRate,
-                        GrossAmount = item.GrossAmount
+                        GrossAmount = item.GrossAmount,
+                        CurrencyCode = item.CurrencyCode
                     });
                 }
             }
 
-            var processing = new BatchInvoicesProcessing
-            {
-                ProcessBatchKey = processBatchKey,
-                BatchProcessingTime = null,
-                Status = InvoiceProcessingStatuses.New,
-                CreatedAt = _dateTimeService.Now
-            };
-
+            await _databaseContext.AddAsync(processing, cancellationToken);
             await _databaseContext.AddRangeAsync(invoices, cancellationToken);
             await _databaseContext.AddRangeAsync(invoiceItems, cancellationToken);
-            await _databaseContext.AddAsync(processing, cancellationToken);
             await _databaseContext.SaveChangesAsync(cancellationToken);
 
-            var messageText1 = $"Invoice batch processing has been ordered (ProcessBatchKey: {processing.ProcessBatchKey}).";
+            var messageText1 = $"Invoice batch processing has been ordered (ProcessBatchKey: {processing.Id}).";
             var messageText2 = $"Total invoices: {invoices.Count}.";
 
             _loggerService.LogInformation($"{messageText1} {messageText2}.");
-            return processing.ProcessBatchKey;
+            return processing.Id;
         }
 
         /// <summary>
@@ -117,7 +147,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
         {
             var processing = await _databaseContext.BatchInvoicesProcessing
                 .AsNoTracking()
-                .Where(processing => processing.ProcessBatchKey == processBatchKey)
+                .Where(processing => processing.Id == processBatchKey)
                 .FirstOrDefaultAsync(cancellationToken);
 
             if (processing == null)
@@ -218,11 +248,14 @@ namespace InvoiceGenerator.Backend.InvoiceService
         /// Updates current invoice template.
         /// </summary>
         /// <param name="templateName">Invoice template name.</param>
-        /// <param name="newTemplate">Binary representation of a new invoice template.</param>
+        /// <param name="templateData">Holds Binary representation of a new invoice template and its content type.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_NAME.</exception>
-        public async Task ReplaceInvoiceTemplate(string templateName, byte[] newTemplate, CancellationToken cancellationToken = default)
+        public async Task ReplaceInvoiceTemplate(string templateName, TemplateData templateData, CancellationToken cancellationToken = default)
         {
+            if (string.IsNullOrEmpty(templateData.ContentType))
+                throw new BusinessException(nameof(ErrorCodes.INVALID_CONTENT_TYPE), ErrorCodes.INVALID_CONTENT_TYPE);
+
             var template = await _databaseContext.InvoiceTemplates
                 .Where(templates => templates.Name == templateName)
                 .Where(templates => templates.IsDeleted == false)
@@ -231,7 +264,8 @@ namespace InvoiceGenerator.Backend.InvoiceService
             if (template == null)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_NAME), ErrorCodes.INVALID_TEMPLATE_NAME);
 
-            template.Data = newTemplate;
+            template.Data = templateData.ContentData;
+            template.ContentType = templateData.ContentType;
             await _databaseContext.SaveChangesAsync(cancellationToken);
         }
 
@@ -239,11 +273,14 @@ namespace InvoiceGenerator.Backend.InvoiceService
         /// Updates current invoice template.
         /// </summary>
         /// <param name="templateId">Invoice template ID.</param>
-        /// <param name="newTemplate">Binary representation of a new invoice template.</param>
+        /// <param name="templateData">Holds Binary representation of a new invoice template and its content type.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
-        public async Task ReplaceInvoiceTemplate(Guid templateId, byte[] newTemplate, CancellationToken cancellationToken = default)
+        public async Task ReplaceInvoiceTemplate(Guid templateId, TemplateData templateData, CancellationToken cancellationToken = default)
         {
+            if (string.IsNullOrEmpty(templateData.ContentType))
+                throw new BusinessException(nameof(ErrorCodes.INVALID_CONTENT_TYPE), ErrorCodes.INVALID_CONTENT_TYPE);
+
             var template = await _databaseContext.InvoiceTemplates
                 .Where(templates => templates.Id == templateId)
                 .Where(templates => templates.IsDeleted == false)
@@ -252,7 +289,8 @@ namespace InvoiceGenerator.Backend.InvoiceService
             if (template == null)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_ID), ErrorCodes.INVALID_TEMPLATE_ID);
 
-            template.Data = newTemplate;
+            template.Data = templateData.ContentData;
+            template.ContentType = templateData.ContentType;
             await _databaseContext.SaveChangesAsync(cancellationToken);
         }
 
@@ -264,11 +302,14 @@ namespace InvoiceGenerator.Backend.InvoiceService
         /// <returns>Invoice template ID.</returns>
         public async Task<Guid> AddInvoiceTemplate(InvoiceTemplate invoiceTemplate, CancellationToken cancellationToken = default)
         {
+            if (string.IsNullOrEmpty(invoiceTemplate.TemplateData.ContentType))
+                throw new BusinessException(nameof(ErrorCodes.INVALID_CONTENT_TYPE), ErrorCodes.INVALID_CONTENT_TYPE);
+
             var template = new InvoiceTemplates
             {
                 Name = invoiceTemplate.TemplateName,
-                Data = invoiceTemplate.TemplateData,
-                ContentType = invoiceTemplate.ContentType,
+                Data = invoiceTemplate.TemplateData.ContentData,
+                ContentType = invoiceTemplate.TemplateData.ContentType,
                 ShortDescription = invoiceTemplate.ShortDescription,
                 GeneratedAt = _dateTimeService.Now,
                 IsDeleted = false
