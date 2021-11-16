@@ -54,4 +54,7 @@
     <data name="INVALID_CONTENT_TYPE" xml:space="preserve">
         <value>Content type cannot be empty or null</value>
     </data>
+    <data name="INVALID_INVOICE_NUMBER" xml:space="preserve">
+        <value>Cannot find data for given invoice number</value>
+    </data>
 </root>

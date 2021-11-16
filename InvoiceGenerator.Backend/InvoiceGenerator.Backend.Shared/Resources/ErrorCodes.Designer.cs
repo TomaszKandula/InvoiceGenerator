@@ -116,5 +116,11 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_CONTENT_TYPE", resourceCulture);
             }
         }
+        
+        public static string INVALID_INVOICE_NUMBER {
+            get {
+                return ResourceManager.GetString("INVALID_INVOICE_NUMBER", resourceCulture);
+            }
+        }
     }
 }
