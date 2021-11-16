@@ -13,7 +13,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         [Required]
         [MaxLength(255)]
-        public string InvoiceName { get; set; }
+        public string InvoiceNumber { get; set; }
 
         [Required]
         [Column(TypeName = "varbinary(8000)")]

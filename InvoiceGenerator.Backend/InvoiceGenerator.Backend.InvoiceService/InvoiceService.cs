@@ -41,7 +41,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
         {
             var invoice = await _databaseContext.IssuedInvoices
                 .AsNoTracking()
-                .Where(invoices => invoices.InvoiceName == invoiceNumber)
+                .Where(invoices => invoices.InvoiceNumber == invoiceNumber)
                 .FirstOrDefaultAsync(cancellationToken);
 
             if (invoice == null)
@@ -49,7 +49,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
 
             return new InvoiceData
             {
-                Number = invoice.InvoiceName,
+                Number = invoice.InvoiceNumber,
                 ContentData = invoice.InvoiceData,
                 ContentType = invoice.ContentType,
                 GeneratedAt = invoice.GeneratedAt

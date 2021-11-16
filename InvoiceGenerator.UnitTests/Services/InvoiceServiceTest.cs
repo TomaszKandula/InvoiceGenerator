@@ -39,7 +39,7 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     UserId = user.Id,
-                    InvoiceName = DataUtilityService.GetRandomString(),
+                    InvoiceNumber = DataUtilityService.GetRandomString(),
                     InvoiceData = new byte[4096],
                     ContentType = DataUtilityService.GetRandomString(),
                     GeneratedAt = DateTimeService.Now.AddDays(-12)
@@ -47,7 +47,7 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     UserId = user.Id,
-                    InvoiceName = DataUtilityService.GetRandomString(),
+                    InvoiceNumber = DataUtilityService.GetRandomString(),
                     InvoiceData = new byte[2048],
                     ContentType = DataUtilityService.GetRandomString(),
                     GeneratedAt = DateTimeService.Now.AddDays(-6)
@@ -68,10 +68,10 @@ namespace InvoiceGenerator.UnitTests.Services
                 mockedLoggerService.Object);
 
             // Act
-            var result = await service.GetIssuedInvoice(invoices[0].InvoiceName);
+            var result = await service.GetIssuedInvoice(invoices[0].InvoiceNumber);
 
             // Assert
-            result.Number.Should().Be(invoices[0].InvoiceName);
+            result.Number.Should().Be(invoices[0].InvoiceNumber);
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     UserId = user.Id,
-                    InvoiceName = DataUtilityService.GetRandomString(),
+                    InvoiceNumber = DataUtilityService.GetRandomString(),
                     InvoiceData = new byte[4096],
                     ContentType = DataUtilityService.GetRandomString(),
                     GeneratedAt = DateTimeService.Now.AddDays(-12)
@@ -103,7 +103,7 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     UserId = user.Id,
-                    InvoiceName = DataUtilityService.GetRandomString(),
+                    InvoiceNumber = DataUtilityService.GetRandomString(),
                     InvoiceData = new byte[2048],
                     ContentType = DataUtilityService.GetRandomString(),
                     GeneratedAt = DateTimeService.Now.AddDays(-6)
