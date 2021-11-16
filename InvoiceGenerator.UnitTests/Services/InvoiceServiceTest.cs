@@ -899,8 +899,11 @@ namespace InvoiceGenerator.UnitTests.Services
             var template = new InvoiceTemplate
             {
                 TemplateName = DataUtilityService.GetRandomString(),
-                TemplateData = new byte[2048],
-                ContentType = DataUtilityService.GetRandomString(),
+                TemplateData = new TemplateData
+                {
+                    ContentData = new byte[2048],
+                    ContentType = DataUtilityService.GetRandomString()
+                },
                 ShortDescription = DataUtilityService.GetRandomString()
             };
 
@@ -925,7 +928,12 @@ namespace InvoiceGenerator.UnitTests.Services
         {
             // Arrange
             const int templateDataLength = 1024;
-            var newTemplateData = new byte[514];
+            var newTemplateData = new TemplateData
+            {
+                ContentData = new byte[514],
+                ContentType = DataUtilityService.GetRandomString()
+            };
+
             var templates = new List<InvoiceTemplates>
             {
                 new()
@@ -968,7 +976,7 @@ namespace InvoiceGenerator.UnitTests.Services
                 .FirstOrDefault(invoiceTemplates => invoiceTemplates.Name == templates[0].Name);
 
             result.Should().NotBeNull();
-            result?.Data.Should().HaveCount(newTemplateData.Length);
+            result?.Data.Should().HaveCount(newTemplateData.ContentData.Length);
         }
 
         [Fact]
@@ -976,7 +984,12 @@ namespace InvoiceGenerator.UnitTests.Services
         {
             // Arrange
             const int templateDataLength = 1024;
-            var newTemplateData = new byte[514];
+            var newTemplateData = new TemplateData
+            {
+                ContentData = new byte[514],
+                ContentType = DataUtilityService.GetRandomString()
+            };
+
             var templates = new List<InvoiceTemplates>
             {
                 new()
@@ -1019,7 +1032,7 @@ namespace InvoiceGenerator.UnitTests.Services
                 .FirstOrDefault(invoiceTemplates => invoiceTemplates.Id == templates[0].Id);
 
             result.Should().NotBeNull();
-            result?.Data.Should().HaveCount(newTemplateData.Length);
+            result?.Data.Should().HaveCount(newTemplateData.ContentData.Length);
         }
 
         [Fact]
@@ -1027,7 +1040,12 @@ namespace InvoiceGenerator.UnitTests.Services
         {
             // Arrange
             const int templateDataLength = 1024;
-            var newTemplateData = new byte[514];
+            var newTemplateData = new TemplateData
+            {
+                ContentData = new byte[514],
+                ContentType = DataUtilityService.GetRandomString()
+            };
+
             var templates = new List<InvoiceTemplates>
             {
                 new()
@@ -1074,7 +1092,12 @@ namespace InvoiceGenerator.UnitTests.Services
         {
             // Arrange
             const int templateDataLength = 1024;
-            var newTemplateData = new byte[514];
+            var newTemplateData = new TemplateData
+            {
+                ContentData = new byte[514],
+                ContentType = DataUtilityService.GetRandomString()
+            };
+
             var templates = new List<InvoiceTemplates>
             {
                 new()

@@ -20,9 +20,9 @@ namespace InvoiceGenerator.Backend.InvoiceService
 
         Task RemoveInvoiceTemplate(Guid templateId, CancellationToken cancellationToken = default);
 
-        Task ReplaceInvoiceTemplate(string templateName, byte[] newTemplate, CancellationToken cancellationToken = default);
+        Task ReplaceInvoiceTemplate(string templateName, TemplateData templateData, CancellationToken cancellationToken = default);
 
-        Task ReplaceInvoiceTemplate(Guid templateId, byte[] newTemplate, CancellationToken cancellationToken = default);
+        Task ReplaceInvoiceTemplate(Guid templateId, TemplateData templateData, CancellationToken cancellationToken = default);
 
         Task<Guid> AddInvoiceTemplate(InvoiceTemplate invoiceTemplate, CancellationToken cancellationToken = default);
     }
