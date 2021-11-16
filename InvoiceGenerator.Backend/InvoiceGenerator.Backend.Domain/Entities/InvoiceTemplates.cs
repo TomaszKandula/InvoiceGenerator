@@ -3,7 +3,6 @@ namespace InvoiceGenerator.Backend.Domain.Entities
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using Contracts;
 
     [ExcludeFromCodeCoverage]
@@ -14,7 +13,6 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public string Name { get; set; }
 
         [Required]
-        [Column(TypeName = "varbinary(8000)")]
         public byte[] Data { get; set; }
 
         [Required]
