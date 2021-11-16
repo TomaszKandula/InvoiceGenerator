@@ -51,4 +51,7 @@
     <data name="INVALID_TEMPLATE_NAME" xml:space="preserve">
         <value>Cannot find data for given template name</value>
     </data>
+    <data name="INVALID_CONTENT_TYPE" xml:space="preserve">
+        <value>Content type cannot be empty or null</value>
+    </data>
 </root>
