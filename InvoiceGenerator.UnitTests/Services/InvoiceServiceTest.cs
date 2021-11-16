@@ -19,6 +19,119 @@ namespace InvoiceGenerator.UnitTests.Services
     public class InvoiceServiceTest : TestBase
     {
         [Fact]
+        public async Task GivenValidInvoiceNUmber_WhenGetIssuedInvoice_ShouldSucceed()
+        {
+            // Arrange
+            var user = new Users
+            {
+                Id = Guid.NewGuid(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserAlias = DataUtilityService.GetRandomString(5),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                Registered = DateTimeService.Now.AddDays(-120),
+                IsActivated = true,
+                PrivateKey = DataUtilityService.GetRandomString()
+            };
+
+            var invoices = new List<IssuedInvoices>
+            {
+                new()
+                {
+                    UserId = user.Id,
+                    InvoiceName = DataUtilityService.GetRandomString(),
+                    InvoiceData = new byte[4096],
+                    ContentType = DataUtilityService.GetRandomString(),
+                    GeneratedAt = DateTimeService.Now.AddDays(-12)
+                },
+                new()
+                {
+                    UserId = user.Id,
+                    InvoiceName = DataUtilityService.GetRandomString(),
+                    InvoiceData = new byte[2048],
+                    ContentType = DataUtilityService.GetRandomString(),
+                    GeneratedAt = DateTimeService.Now.AddDays(-6)
+                }
+            };
+
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.AddAsync(user);
+            await databaseContext.AddRangeAsync(invoices);
+            await databaseContext.SaveChangesAsync();
+
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedLoggerService = new Mock<ILoggerService>();
+
+            var service = new InvoiceService(
+                databaseContext, 
+                mockedDateTimeService.Object, 
+                mockedLoggerService.Object);
+
+            // Act
+            var result = await service.GetIssuedInvoice(invoices[0].InvoiceName);
+
+            // Assert
+            result.Number.Should().Be(invoices[0].InvoiceName);
+        }
+
+        [Fact]
+        public async Task GivenInvalidInvoiceNUmber_WhenGetIssuedInvoice_ShouldThrowError()
+        {
+            // Arrange
+            var user = new Users
+            {
+                Id = Guid.NewGuid(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserAlias = DataUtilityService.GetRandomString(5),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                Registered = DateTimeService.Now.AddDays(-120),
+                IsActivated = true,
+                PrivateKey = DataUtilityService.GetRandomString()
+            };
+
+            var invoices = new List<IssuedInvoices>
+            {
+                new()
+                {
+                    UserId = user.Id,
+                    InvoiceName = DataUtilityService.GetRandomString(),
+                    InvoiceData = new byte[4096],
+                    ContentType = DataUtilityService.GetRandomString(),
+                    GeneratedAt = DateTimeService.Now.AddDays(-12)
+                },
+                new()
+                {
+                    UserId = user.Id,
+                    InvoiceName = DataUtilityService.GetRandomString(),
+                    InvoiceData = new byte[2048],
+                    ContentType = DataUtilityService.GetRandomString(),
+                    GeneratedAt = DateTimeService.Now.AddDays(-6)
+                }
+            };
+
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.AddAsync(user);
+            await databaseContext.AddRangeAsync(invoices);
+            await databaseContext.SaveChangesAsync();
+
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedLoggerService = new Mock<ILoggerService>();
+
+            var service = new InvoiceService(
+                databaseContext, 
+                mockedDateTimeService.Object, 
+                mockedLoggerService.Object);
+
+            // Act
+            // Assert
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => service.GetIssuedInvoice(DataUtilityService.GetRandomString()));
+
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_INVOICE_NUMBER));
+        }
+
+        [Fact]
         public async Task GivenOrderList_WhenOrderInvoiceBatchProcessing_ShouldSucceed()
         {
             // Arrange
