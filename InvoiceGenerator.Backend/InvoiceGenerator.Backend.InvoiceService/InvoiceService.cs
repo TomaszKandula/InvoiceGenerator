@@ -81,7 +81,6 @@ namespace InvoiceGenerator.Backend.InvoiceService
                 invoices.Add(new BatchInvoices
                 {
                     Id = batchInvoiceId,
-                    CustomerNumber = order.CustomerNumber,
                     InvoiceNumber = order.InvoiceNumber,
                     VoucherDate = order.VoucherDate,
                     ValueDate = order.ValueDate,
