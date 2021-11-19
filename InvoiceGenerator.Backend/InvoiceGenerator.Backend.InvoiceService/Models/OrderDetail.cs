@@ -10,8 +10,6 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
     {
         public Guid UserId { get; set; }
 
-        public Guid CustomerNumber { get; set; }
-
         public string InvoiceNumber { get; set; }
 
         public DateTime VoucherDate { get; set; }
@@ -20,7 +18,7 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
 
         public DateTime DueDate { get; set; }
 
-        public string PaymentTerms { get; set; }
+        public int PaymentTerms { get; set; }
 
         public PaymentTypes PaymentType { get; set; }
 
