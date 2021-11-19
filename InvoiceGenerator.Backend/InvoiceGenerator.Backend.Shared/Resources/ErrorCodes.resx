@@ -63,4 +63,7 @@
     <data name="INVALID_ASSOCIATED_USER" xml:space="preserve">
         <value>Cannot find user for given private key</value>
     </data>
+    <data name="DATE_TYPE_MISMATCH" xml:space="preserve">
+        <value>Voucher Date and Value Date must be similar types</value>
+    </data>
 </root>
