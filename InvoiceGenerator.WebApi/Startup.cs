@@ -35,7 +35,7 @@ namespace InvoiceGenerator.WebApi
             Dependencies.Register(services, _configuration);
 
             if (_environment.IsDevelopment() || _environment.IsStaging())
-                Swagger.SetupSwaggerOptions(services);
+                services.SetupSwaggerOptions();
 
             if (!_environment.IsProduction() && !_environment.IsStaging()) 
                 return;
@@ -62,15 +62,17 @@ namespace InvoiceGenerator.WebApi
         {
             builder.UseSerilogRequestLogging();
 
-            builder.UseMiddleware<CustomCors>();
-            builder.UseMiddleware<CustomException>();
-            builder.UseMiddleware<CustomCacheControl>();
-            
-            builder.UseHttpsRedirection();
             builder.UseForwardedHeaders();
-            builder.UseResponseCompression();
+            builder.UseHttpsRedirection();
+            builder.ApplyCorsPolicy();
 
+            builder.UseMiddleware<DomainControl>();
+            builder.UseMiddleware<Exceptions>();
+            builder.UseMiddleware<CacheControl>();
+
+            builder.UseResponseCompression();
             builder.UseRouting();
+
             builder.UseAuthentication();
             builder.UseAuthorization();
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
@@ -79,7 +81,7 @@ namespace InvoiceGenerator.WebApi
                 return;
 
             builder.UseSwagger();
-            Swagger.SetupSwaggerUi(builder, _configuration);
+            builder.SetupSwaggerUi();
         }
     }
 }
