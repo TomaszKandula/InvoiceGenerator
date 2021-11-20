@@ -140,5 +140,11 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("DATE_TYPE_MISMATCH", resourceCulture);
             }
         }
+        
+        public static string USER_UNAUTHORIZED {
+            get {
+                return ResourceManager.GetString("USER_UNAUTHORIZED", resourceCulture);
+            }
+        }
     }
 }

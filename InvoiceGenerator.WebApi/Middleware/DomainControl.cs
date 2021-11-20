@@ -4,16 +4,23 @@
     using System.Threading.Tasks;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
-    using Configuration;
     using Backend.UserService;
+    using Backend.Core.Models;
+    using Backend.Shared.Resources;
+    using Newtonsoft.Json;
 
     [ExcludeFromCodeCoverage]
-    public class CustomCors
+    public class DomainControl
     {
         private readonly RequestDelegate _requestDelegate;
 
-        public CustomCors(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
+        public DomainControl(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
 
+        /// <summary>
+        /// Checks if requests from given origin can be processed.
+        /// </summary>
+        /// <param name="httpContext">Current HTTP context.</param>
+        /// <param name="userService">Service exposing methods related to a user.</param>
         public async Task Invoke(HttpContext httpContext, IUserService userService)
         {
             var origin = httpContext.Request.Host.ToString();
@@ -22,11 +29,11 @@
             if (!allowDomains)
             {
                 httpContext.Response.StatusCode = 403;
-                await httpContext.Response.WriteAsync("Forbidden");
+                var applicationError = new ApplicationError(nameof(ErrorCodes.USER_UNAUTHORIZED), ErrorCodes.USER_UNAUTHORIZED);
+                await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(applicationError));
                 return;
             }
 
-            CorsHeaders.Apply(httpContext);
             await _requestDelegate(httpContext);
         }
     }
