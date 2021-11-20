@@ -1,12 +1,13 @@
 namespace InvoiceGenerator.Backend.Shared.Dto
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Models;
+    using Shared.Models;
 
-    public class OrderInvoiceBatchDto
+    [ExcludeFromCodeCoverage]
+    public class OrderInvoiceBatchDto : RequestProperties
     {
-        public string PrivateKey { get; set; }
-        
         public IEnumerable<OrderDetailBase> OrderDetails { get; set; }
     }
 }

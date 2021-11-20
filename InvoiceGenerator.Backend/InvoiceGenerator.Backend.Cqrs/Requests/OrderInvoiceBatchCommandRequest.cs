@@ -4,13 +4,12 @@ namespace InvoiceGenerator.Backend.Cqrs.Requests
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Responses;
+    using Shared.Models;
     using Shared.Dto.Models;
 
     [ExcludeFromCodeCoverage]
-    public class OrderInvoiceBatchCommandRequest : IRequest<OrderInvoiceBatchCommandResponse>
+    public class OrderInvoiceBatchCommandRequest : RequestProperties, IRequest<OrderInvoiceBatchCommandResponse>
     {
-        public string PrivateKey { get; set; }
-        
         public IEnumerable<OrderDetailBase> OrderDetails { get; set; }
     }
 }
