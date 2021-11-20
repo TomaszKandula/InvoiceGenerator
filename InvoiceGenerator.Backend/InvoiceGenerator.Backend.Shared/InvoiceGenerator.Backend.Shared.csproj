@@ -28,4 +28,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Domain\InvoiceGenerator.Backend.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
