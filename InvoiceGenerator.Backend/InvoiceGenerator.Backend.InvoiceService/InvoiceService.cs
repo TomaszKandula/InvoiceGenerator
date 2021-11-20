@@ -31,32 +31,6 @@ namespace InvoiceGenerator.Backend.InvoiceService
         }
 
         /// <summary>
-        /// Returns generated invoice data of given type.
-        /// </summary>
-        /// <param name="invoiceNumber">Binary representation of generated invoice.</param>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Invoice (binary content).</returns>
-        /// <exception cref="BusinessException"></exception>
-        public async Task<InvoiceData> GetIssuedInvoice(string invoiceNumber, CancellationToken cancellationToken = default)
-        {
-            var invoice = await _databaseContext.IssuedInvoices
-                .AsNoTracking()
-                .Where(invoices => invoices.InvoiceNumber == invoiceNumber)
-                .FirstOrDefaultAsync(cancellationToken);
-
-            if (invoice == null)
-                throw new BusinessException(nameof(ErrorCodes.INVALID_INVOICE_NUMBER), ErrorCodes.INVALID_INVOICE_NUMBER);
-
-            return new InvoiceData
-            {
-                Number = invoice.InvoiceNumber,
-                ContentData = invoice.InvoiceData,
-                ContentType = invoice.ContentType,
-                GeneratedAt = invoice.GeneratedAt
-            };
-        }
-
-        /// <summary>
         /// Place an order for invoice processing. 
         /// </summary>
         /// <param name="orderDetails">Desired invoice data.</param>
@@ -157,6 +131,32 @@ namespace InvoiceGenerator.Backend.InvoiceService
                 Status = processing.Status,
                 CreatedAt = processing.CreatedAt,
                 BatchProcessingTime = processing.BatchProcessingTime
+            };
+        }
+
+        /// <summary>
+        /// Returns generated invoice data of given type.
+        /// </summary>
+        /// <param name="invoiceNumber">Binary representation of generated invoice.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Invoice (binary content).</returns>
+        /// <exception cref="BusinessException"></exception>
+        public async Task<InvoiceData> GetIssuedInvoice(string invoiceNumber, CancellationToken cancellationToken = default)
+        {
+            var invoice = await _databaseContext.IssuedInvoices
+                .AsNoTracking()
+                .Where(invoices => invoices.InvoiceNumber == invoiceNumber)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (invoice == null)
+                throw new BusinessException(nameof(ErrorCodes.INVALID_INVOICE_NUMBER), ErrorCodes.INVALID_INVOICE_NUMBER);
+
+            return new InvoiceData
+            {
+                Number = invoice.InvoiceNumber,
+                ContentData = invoice.InvoiceData,
+                ContentType = invoice.ContentType,
+                GeneratedAt = invoice.GeneratedAt
             };
         }
 
