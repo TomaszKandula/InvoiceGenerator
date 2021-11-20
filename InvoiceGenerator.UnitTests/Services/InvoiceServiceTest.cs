@@ -288,7 +288,7 @@ namespace InvoiceGenerator.UnitTests.Services
             {
                 Id = Guid.NewGuid(),
                 BatchProcessingTime = null,
-                Status = InvoiceProcessingStatuses.New,
+                Status = ProcessingStatuses.New,
                 CreatedAt = DateTimeService.Now
             };
 
@@ -395,7 +395,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var result = await service.GetBatchInvoiceProcessingStatus(processing.Id);
 
             // Assert
-            result.Status.Should().Be(InvoiceProcessingStatuses.New);
+            result.Status.Should().Be(ProcessingStatuses.New);
             result.BatchProcessingTime.Should().BeNull();
         }
 
@@ -419,7 +419,7 @@ namespace InvoiceGenerator.UnitTests.Services
             {
                 Id = Guid.NewGuid(),
                 BatchProcessingTime = null,
-                Status = InvoiceProcessingStatuses.New,
+                Status = ProcessingStatuses.New,
                 CreatedAt = DateTimeService.Now
             };
 

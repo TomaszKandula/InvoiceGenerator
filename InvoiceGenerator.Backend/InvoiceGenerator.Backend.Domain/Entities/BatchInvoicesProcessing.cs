@@ -12,7 +12,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public TimeSpan? BatchProcessingTime { get; set; }
 
         [Required]
-        public InvoiceProcessingStatuses Status { get; set; }
+        public ProcessingStatuses Status { get; set; }
         
         [Required]
         public DateTime CreatedAt { get; set; }

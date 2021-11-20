@@ -71,7 +71,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
             {
                 Id = Guid.NewGuid(),
                 BatchProcessingTime = null,
-                Status = InvoiceProcessingStatuses.New,
+                Status = ProcessingStatuses.New,
                 CreatedAt = _dateTimeService.Now
             };
 
