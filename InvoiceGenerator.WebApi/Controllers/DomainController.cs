@@ -18,5 +18,17 @@ namespace InvoiceGenerator.WebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<GetCurrencyCodesQueryResponse>> GetCurrencyCodes([FromQuery] string privateKey, string currency) =>
             await Mediator.Send(new GetCurrencyCodesQueryRequest { PrivateKey = privateKey, FilteredBy = currency });
+
+        [HttpGet]
+        public async Task<IEnumerable<GetPaymentTypesQueryResponse>> GetPaymentTypes([FromQuery] string privateKey, string currency) =>
+            await Mediator.Send(new GetPaymentTypesQueryRequest { PrivateKey = privateKey, FilteredBy = currency });
+
+        [HttpGet]
+        public async Task<IEnumerable<GetPaymentStatusesQueryResponse>> GetPaymentStatuses([FromQuery] string privateKey, string currency) =>
+            await Mediator.Send(new GetPaymentStatusesQueryRequest { PrivateKey = privateKey, FilteredBy = currency });
+
+        [HttpGet]
+        public async Task<IEnumerable<GetProcessingStatusesQueryResponse>> GetProcessingStatuses([FromQuery] string privateKey, string currency) =>
+            await Mediator.Send(new GetProcessingStatusesQueryRequest { PrivateKey = privateKey, FilteredBy = currency });
     }
 }
