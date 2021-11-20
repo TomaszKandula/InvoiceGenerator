@@ -66,4 +66,7 @@
     <data name="DATE_TYPE_MISMATCH" xml:space="preserve">
         <value>Voucher Date and Value Date must be similar types</value>
     </data>
+    <data name="USER_UNAUTHORIZED" xml:space="preserve">
+        <value>User is not authorized to perform the operation</value>
+    </data>
 </root>
