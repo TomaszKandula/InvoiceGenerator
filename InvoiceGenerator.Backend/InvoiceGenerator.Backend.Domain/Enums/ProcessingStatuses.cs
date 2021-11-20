@@ -1,6 +1,6 @@
 namespace InvoiceGenerator.Backend.Domain.Enums
 {
-    public enum InvoiceProcessingStatuses
+    public enum ProcessingStatuses
     {
         New,
         InvoiceGeneratingStarted,

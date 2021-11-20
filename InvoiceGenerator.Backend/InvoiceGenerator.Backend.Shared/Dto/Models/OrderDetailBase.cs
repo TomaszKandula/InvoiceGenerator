@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.Backend.InvoiceService.Models
+namespace InvoiceGenerator.Backend.Shared.Dto.Models
 {
     using System;
     using System.Collections.Generic;
@@ -6,17 +6,11 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
     using Domain.Enums;
 
     [ExcludeFromCodeCoverage]
-    public class OrderDetail
+    public class OrderDetailBase
     {
-        public Guid UserId { get; set; }
+        public DateTime? VoucherDate { get; set; }
 
-        public string InvoiceNumber { get; set; }
-
-        public DateTime VoucherDate { get; set; }
-
-        public DateTime ValueDate { get; set; }
-
-        public DateTime DueDate { get; set; }
+        public DateTime? ValueDate { get; set; }
 
         public int PaymentTerms { get; set; }
 
@@ -42,6 +36,6 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
 
         public string InvoiceTemplateName { get; set; }
 
-        public IEnumerable<InvoiceItem> InvoiceItems { get; set; }
+        public IEnumerable<OrderDetailsInvoiceItem> InvoiceItems { get; set; }
     }
 }

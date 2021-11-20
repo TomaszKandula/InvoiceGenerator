@@ -6,6 +6,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\InvoiceGenerator.Backend.Core\InvoiceGenerator.Backend.Core.csproj" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.InvoiceService\InvoiceGenerator.Backend.InvoiceService.csproj" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Shared\InvoiceGenerator.Backend.Shared.csproj" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.UserService\InvoiceGenerator.Backend.UserService.csproj" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.VatService\InvoiceGenerator.Backend.VatService.csproj" />
     </ItemGroup>
 
 </Project>
