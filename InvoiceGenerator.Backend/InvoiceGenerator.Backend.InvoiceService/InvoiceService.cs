@@ -155,6 +155,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
             return new ProcessingStatus
             {
                 Status = processing.Status,
+                CreatedAt = processing.CreatedAt,
                 BatchProcessingTime = processing.BatchProcessingTime
             };
         }
