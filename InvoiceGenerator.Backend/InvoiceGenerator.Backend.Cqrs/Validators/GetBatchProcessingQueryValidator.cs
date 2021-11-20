@@ -4,9 +4,9 @@ namespace InvoiceGenerator.Backend.Cqrs.Validators
     using Shared.Resources;
     using Requests;
 
-    public class GetBatchProcessingStatusQueryValidator : AbstractValidator<GetBatchProcessingStatusQueryRequest>
+    public class GetBatchProcessingQueryValidator : AbstractValidator<GetBatchProcessingQueryRequest>
     {
-        public GetBatchProcessingStatusQueryValidator()
+        public GetBatchProcessingQueryValidator()
         {
             RuleFor(request => request.PrivateKey)
                 .NotEmpty()

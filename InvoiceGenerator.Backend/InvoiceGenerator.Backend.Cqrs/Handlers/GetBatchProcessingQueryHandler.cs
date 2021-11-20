@@ -10,19 +10,19 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using Core.Exceptions;
     using Shared.Resources;
 
-    public class GetBatchProcessingStatusQueryHandler : TemplateHandler<GetBatchProcessingStatusQueryRequest, GetBatchProcessingStatusQueryResponse>
+    public class GetBatchProcessingQueryHandler : TemplateHandler<GetBatchProcessingQueryRequest, GetBatchProcessingQueryResponse>
     {
         private readonly IInvoiceService _invoiceService;
 
         private readonly IUserService _userService;
 
-        public GetBatchProcessingStatusQueryHandler(IInvoiceService invoiceService, IUserService userService)
+        public GetBatchProcessingQueryHandler(IInvoiceService invoiceService, IUserService userService)
         {
             _invoiceService = invoiceService;
             _userService = userService;
         }
         
-        public override async Task<GetBatchProcessingStatusQueryResponse> Handle(GetBatchProcessingStatusQueryRequest request, CancellationToken cancellationToken)
+        public override async Task<GetBatchProcessingQueryResponse> Handle(GetBatchProcessingQueryRequest request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
@@ -30,7 +30,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
             VerifyArguments(isKeyValid, userId);
 
             var result = await _invoiceService.GetBatchInvoiceProcessingStatus(request.ProcessBatchKey, cancellationToken);
-            return new GetBatchProcessingStatusQueryResponse
+            return new GetBatchProcessingQueryResponse
             {
                 ProcessingStatus = result.Status,
                 BatchProcessingTime = result.BatchProcessingTime,

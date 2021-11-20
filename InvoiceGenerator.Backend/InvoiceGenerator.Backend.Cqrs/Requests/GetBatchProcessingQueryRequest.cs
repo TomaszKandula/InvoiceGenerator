@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Requests
     using Responses;
     using Shared.Models;
 
-    public class GetBatchProcessingStatusQueryRequest : RequestProperties, IRequest<GetBatchProcessingStatusQueryResponse>
+    public class GetBatchProcessingQueryRequest : RequestProperties, IRequest<GetBatchProcessingQueryResponse>
     {
         public Guid ProcessBatchKey { get; set; }        
     }

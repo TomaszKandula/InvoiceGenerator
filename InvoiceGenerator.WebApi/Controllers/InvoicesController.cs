@@ -18,7 +18,7 @@ namespace InvoiceGenerator.WebApi.Controllers
             => await Mediator.Send(InvoicesMapper.MapToOrderBatchInvoicesCommand(payload));
         
         [HttpGet]
-        public async Task<GetBatchProcessingStatusQueryResponse> GetBatchProcessingStatus([FromQuery] string privateKey, Guid processBatchKey) =>
-            await Mediator.Send(new GetBatchProcessingStatusQueryRequest { PrivateKey = privateKey, ProcessBatchKey = processBatchKey });
+        public async Task<GetBatchProcessingQueryResponse> GetBatchProcessingStatus([FromQuery] string privateKey, Guid processBatchKey) =>
+            await Mediator.Send(new GetBatchProcessingQueryRequest { PrivateKey = privateKey, ProcessBatchKey = processBatchKey });
     }
 }
