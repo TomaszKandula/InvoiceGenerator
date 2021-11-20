@@ -122,5 +122,23 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_INVOICE_NUMBER", resourceCulture);
             }
         }
+        
+        public static string INVALID_PRIVATE_KEY {
+            get {
+                return ResourceManager.GetString("INVALID_PRIVATE_KEY", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_ASSOCIATED_USER {
+            get {
+                return ResourceManager.GetString("INVALID_ASSOCIATED_USER", resourceCulture);
+            }
+        }
+        
+        public static string DATE_TYPE_MISMATCH {
+            get {
+                return ResourceManager.GetString("DATE_TYPE_MISMATCH", resourceCulture);
+            }
+        }
     }
 }

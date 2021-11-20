@@ -10,6 +10,7 @@
     using Backend.Cqrs;
     using Backend.Database;
     using Backend.VatService;
+    using Backend.UserService;
     using Backend.InvoiceService;
     using Backend.Core.Behaviours;
     using Backend.Database.Initializer;
@@ -57,8 +58,9 @@
 
             services.AddScoped<HttpClient>();
             services.AddScoped<IDateTimeService, DateTimeService>();
-            services.AddScoped<IInvoiceService, InvoiceService>();
             services.AddScoped<IVatService, VatService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IInvoiceService, InvoiceService>();
             services.AddScoped<IDbInitializer, DbInitializer>();
         }
 

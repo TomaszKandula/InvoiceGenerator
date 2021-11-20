@@ -152,12 +152,11 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     UserId = user.Id,
-                    CustomerNumber = Guid.NewGuid(),
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
                     DueDate = DataUtilityService.GetRandomDateTime(),
-                    PaymentTerms = DataUtilityService.GetRandomString(),
+                    PaymentTerms = DataUtilityService.GetRandomInteger(),
                     PaymentType = PaymentTypes.CreditCard,
                     CompanyName = DataUtilityService.GetRandomString(),
                     CompanyVatNumber = DataUtilityService.GetRandomString(),
@@ -200,12 +199,11 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     UserId = user.Id,
-                    CustomerNumber = Guid.NewGuid(),
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
                     DueDate = DataUtilityService.GetRandomDateTime(),
-                    PaymentTerms = DataUtilityService.GetRandomString(),
+                    PaymentTerms = DataUtilityService.GetRandomInteger(),
                     PaymentType = PaymentTypes.CreditCard,
                     CompanyName = DataUtilityService.GetRandomString(),
                     CompanyVatNumber = DataUtilityService.GetRandomString(),
@@ -290,7 +288,7 @@ namespace InvoiceGenerator.UnitTests.Services
             {
                 Id = Guid.NewGuid(),
                 BatchProcessingTime = null,
-                Status = InvoiceProcessingStatuses.New,
+                Status = ProcessingStatuses.New,
                 CreatedAt = DateTimeService.Now
             };
 
@@ -299,12 +297,11 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     Id = Guid.NewGuid(),
-                    CustomerNumber = Guid.NewGuid(),
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
                     DueDate = DataUtilityService.GetRandomDateTime(),
-                    PaymentTerms = DataUtilityService.GetRandomString(),
+                    PaymentTerms = DataUtilityService.GetRandomInteger(),
                     PaymentType = PaymentTypes.CreditCard,
                     CompanyName = DataUtilityService.GetRandomString(),
                     CompanyVatNumber = DataUtilityService.GetRandomString(),
@@ -325,12 +322,11 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     Id = Guid.NewGuid(),
-                    CustomerNumber = Guid.NewGuid(),
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
                     DueDate = DataUtilityService.GetRandomDateTime(),
-                    PaymentTerms = DataUtilityService.GetRandomString(),
+                    PaymentTerms = DataUtilityService.GetRandomInteger(),
                     PaymentType = PaymentTypes.CreditCard,
                     CompanyName = DataUtilityService.GetRandomString(),
                     CompanyVatNumber = DataUtilityService.GetRandomString(),
@@ -399,7 +395,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var result = await service.GetBatchInvoiceProcessingStatus(processing.Id);
 
             // Assert
-            result.Status.Should().Be(InvoiceProcessingStatuses.New);
+            result.Status.Should().Be(ProcessingStatuses.New);
             result.BatchProcessingTime.Should().BeNull();
         }
 
@@ -423,7 +419,7 @@ namespace InvoiceGenerator.UnitTests.Services
             {
                 Id = Guid.NewGuid(),
                 BatchProcessingTime = null,
-                Status = InvoiceProcessingStatuses.New,
+                Status = ProcessingStatuses.New,
                 CreatedAt = DateTimeService.Now
             };
 
@@ -432,12 +428,11 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     Id = Guid.NewGuid(),
-                    CustomerNumber = Guid.NewGuid(),
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
                     DueDate = DataUtilityService.GetRandomDateTime(),
-                    PaymentTerms = DataUtilityService.GetRandomString(),
+                    PaymentTerms = DataUtilityService.GetRandomInteger(),
                     PaymentType = PaymentTypes.CreditCard,
                     CompanyName = DataUtilityService.GetRandomString(),
                     CompanyVatNumber = DataUtilityService.GetRandomString(),
@@ -458,12 +453,11 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     Id = Guid.NewGuid(),
-                    CustomerNumber = Guid.NewGuid(),
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
                     DueDate = DataUtilityService.GetRandomDateTime(),
-                    PaymentTerms = DataUtilityService.GetRandomString(),
+                    PaymentTerms = DataUtilityService.GetRandomInteger(),
                     PaymentType = PaymentTypes.CreditCard,
                     CompanyName = DataUtilityService.GetRandomString(),
                     CompanyVatNumber = DataUtilityService.GetRandomString(),

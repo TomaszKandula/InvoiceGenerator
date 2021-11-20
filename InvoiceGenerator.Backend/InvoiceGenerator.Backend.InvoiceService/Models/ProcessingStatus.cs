@@ -9,6 +9,8 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
     {
         public TimeSpan? BatchProcessingTime { get; set; }
 
-        public InvoiceProcessingStatuses Status { get; set; }
+        public ProcessingStatuses Status { get; set; }
+
+        public DateTime CreatedAt { get; set; }
     }
 }

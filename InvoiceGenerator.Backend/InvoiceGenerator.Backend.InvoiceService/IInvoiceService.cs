@@ -8,12 +8,12 @@ namespace InvoiceGenerator.Backend.InvoiceService
 
     public interface IInvoiceService
     {
-        Task<InvoiceData> GetIssuedInvoice(string invoiceNumber, CancellationToken cancellationToken = default);
-
         Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails, CancellationToken cancellationToken = default);
 
         Task<ProcessingStatus> GetBatchInvoiceProcessingStatus(Guid processBatchKey, CancellationToken cancellationToken = default);
  
+        Task<InvoiceData> GetIssuedInvoice(string invoiceNumber, CancellationToken cancellationToken = default);
+
         Task<byte[]> GetInvoiceTemplate(string templateName, CancellationToken cancellationToken = default);
 
         Task<byte[]> GetInvoiceTemplate(Guid templateId, CancellationToken cancellationToken = default);

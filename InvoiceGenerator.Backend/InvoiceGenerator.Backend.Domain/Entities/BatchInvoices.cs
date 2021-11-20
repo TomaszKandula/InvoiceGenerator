@@ -11,9 +11,6 @@ namespace InvoiceGenerator.Backend.Domain.Entities
     public class BatchInvoices : Entity<Guid>, IAuditable
     {
         [Required]
-        public Guid CustomerNumber { get; set; }
-
-        [Required]
         [MaxLength(255)]
         public string InvoiceNumber { get; set; }
 
@@ -26,9 +23,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         [Required]
         public DateTime DueDate { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string PaymentTerms { get; set; }
+        public int PaymentTerms { get; set; }
 
         [Required]
         public PaymentTypes PaymentType { get; set; }
