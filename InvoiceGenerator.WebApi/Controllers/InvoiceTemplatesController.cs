@@ -11,9 +11,9 @@ namespace InvoiceGenerator.WebApi.Controllers
     using Backend.InvoiceService.Models;
     using MediatR;
 
-    public class TemplatesController : BaseController
+    public class InvoiceTemplatesController : BaseController
     {
-        public TemplatesController(IMediator mediator) : base(mediator) { }
+        public InvoiceTemplatesController(IMediator mediator) : base(mediator) { }
 
         [HttpGet]
         public async Task<IEnumerable<TemplateInfo>> GetInvoiceTemplates([FromQuery] string privateKey) 

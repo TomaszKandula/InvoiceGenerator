@@ -9,9 +9,9 @@ namespace InvoiceGenerator.WebApi.Controllers
     using Backend.Cqrs.Responses;
     using MediatR;
 
-    public class InvoicesController : BaseController
+    public class BatchProcessingController : BaseController
     {
-        public InvoicesController(IMediator mediator) :base(mediator) { }
+        public BatchProcessingController(IMediator mediator) :base(mediator) { }
 
         [HttpPost]
         public async Task<OrderInvoiceBatchCommandResponse> OrderInvoiceBatchProcessing([FromBody] OrderInvoiceBatchDto payload) 
