@@ -13,22 +13,22 @@ namespace InvoiceGenerator.WebApi.Controllers
 
         [HttpGet]
         public async Task<IEnumerable<GetCountryCodesQueryResponse>> GetCountryCodes([FromQuery] string privateKey, string country) =>
-            await Mediator.Send(new GetCountryCodesQueryRequest { PrivateKey = privateKey, FilteredBy = country });
+            await Mediator.Send(new GetCountryCodesQueryRequest { PrivateKey = privateKey, FilterBy = country });
 
         [HttpGet]
         public async Task<IEnumerable<GetCurrencyCodesQueryResponse>> GetCurrencyCodes([FromQuery] string privateKey, string currency) =>
-            await Mediator.Send(new GetCurrencyCodesQueryRequest { PrivateKey = privateKey, FilteredBy = currency });
+            await Mediator.Send(new GetCurrencyCodesQueryRequest { PrivateKey = privateKey, FilterBy = currency });
 
         [HttpGet]
         public async Task<IEnumerable<GetPaymentTypesQueryResponse>> GetPaymentTypes([FromQuery] string privateKey, string currency) =>
-            await Mediator.Send(new GetPaymentTypesQueryRequest { PrivateKey = privateKey, FilteredBy = currency });
+            await Mediator.Send(new GetPaymentTypesQueryRequest { PrivateKey = privateKey, FilterBy = currency });
 
         [HttpGet]
         public async Task<IEnumerable<GetPaymentStatusesQueryResponse>> GetPaymentStatuses([FromQuery] string privateKey, string currency) =>
-            await Mediator.Send(new GetPaymentStatusesQueryRequest { PrivateKey = privateKey, FilteredBy = currency });
+            await Mediator.Send(new GetPaymentStatusesQueryRequest { PrivateKey = privateKey, FilterBy = currency });
 
         [HttpGet]
         public async Task<IEnumerable<GetProcessingStatusesQueryResponse>> GetProcessingStatuses([FromQuery] string privateKey, string currency) =>
-            await Mediator.Send(new GetProcessingStatusesQueryRequest { PrivateKey = privateKey, FilteredBy = currency });
+            await Mediator.Send(new GetProcessingStatusesQueryRequest { PrivateKey = privateKey, FilterBy = currency });
     }
 }

@@ -11,7 +11,7 @@
     using Backend.Database;
     using Backend.VatService;
     using Backend.UserService;
-    using Backend.InvoiceService;
+    using Backend.BatchService;
     using Backend.Core.Behaviours;
     using Backend.Database.Initializer;
     using Backend.Core.Services.LoggerService;
@@ -60,7 +60,7 @@
             services.AddScoped<IDateTimeService, DateTimeService>();
             services.AddScoped<IVatService, VatService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IInvoiceService, InvoiceService>();
+            services.AddScoped<IBatchService, BatchService>();
             services.AddScoped<IDbInitializer, DbInitializer>();
         }
 

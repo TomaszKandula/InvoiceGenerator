@@ -5,9 +5,10 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
     using Shared.Dto;
 
     [ExcludeFromCodeCoverage]
-    public static class InvoicesMapper
+    public static class BatchProcessingMapper
     {
-        public static OrderInvoiceBatchCommandRequest MapToOrderBatchInvoicesCommand(OrderInvoiceBatchDto model) => new()
+        public static OrderInvoiceBatchCommandRequest MapToOrderInvoiceBatchCommandRequest(
+            OrderInvoiceBatchDto model) => new()
         {
             PrivateKey = model.PrivateKey,
             OrderDetails = model.OrderDetails

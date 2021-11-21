@@ -9,6 +9,6 @@ namespace InvoiceGenerator.Backend.Cqrs.Requests
     [ExcludeFromCodeCoverage]
     public class GetProcessingStatusesQueryRequest : RequestProperties, IRequest<IEnumerable<GetProcessingStatusesQueryResponse>>
     {
-        public string FilteredBy { get; set; }        
+        public string FilterBy { get; set; }        
     }
 }
