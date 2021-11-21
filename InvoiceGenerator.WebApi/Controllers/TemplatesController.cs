@@ -28,7 +28,7 @@ namespace InvoiceGenerator.WebApi.Controllers
             => await Mediator.Send(InvoiceTemplatesMapper.MapToAddInvoiceTemplateCommandRequest(payload));
 
         [HttpPut]
-        public async Task<Unit> ReplaceInvoiceTemplate([FromBody] ReplaceInvoiceTemplateDto payload) 
+        public async Task<Unit> ReplaceInvoiceTemplate([FromForm] ReplaceInvoiceTemplateDto payload) 
             => await Mediator.Send(InvoiceTemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
 
         [HttpDelete]
