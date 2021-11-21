@@ -21,7 +21,7 @@ namespace InvoiceGenerator.WebApi.Controllers
 
         [HttpGet]
         public async Task<FileContentResult> GetInvoiceTemplate([FromQuery] string privateKey, Guid templateId) 
-            => await Mediator.Send(new GetInvoiceTemplateQueryRequest { PrivateKey = privateKey, TemplateId = templateId});
+            => await Mediator.Send(new GetInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = templateId});
 
         [HttpPost]
         public async Task<AddInvoiceTemplateCommandResponse> AddInvoiceTemplate([FromForm] AddInvoiceTemplateDto payload)
@@ -33,6 +33,6 @@ namespace InvoiceGenerator.WebApi.Controllers
 
         [HttpDelete]
         public async Task<Unit> RemoveInvoiceTemplate([FromQuery] string privateKey, Guid templateId) 
-            => await Mediator.Send(new RemoveInvoiceTemplateQueryRequest { PrivateKey = privateKey, TemplateId = templateId });
+            => await Mediator.Send(new RemoveInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = templateId });
     }
 }

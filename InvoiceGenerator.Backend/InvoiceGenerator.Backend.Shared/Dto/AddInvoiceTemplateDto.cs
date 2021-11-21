@@ -4,12 +4,12 @@ namespace InvoiceGenerator.Backend.Shared.Dto
 
     public class AddInvoiceTemplateDto : RequestProperties
     {
-        public string TemplateName { get; set; }
+        public string Name { get; set; }
 
-        public byte[] TemplateData { get; set; }
+        public byte[] Data { get; set; }
 
-        public string TemplateDataType { get; set; }
+        public string DataType { get; set; }
 
-        public string TemplateDescription { get; set; }
+        public string Description { get; set; }
     }
 }

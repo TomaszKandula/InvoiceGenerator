@@ -6,6 +6,6 @@ namespace InvoiceGenerator.Backend.Cqrs.Requests
 
     public class RemoveInvoiceTemplateQueryRequest : RequestProperties, IRequest<Unit>
     {
-        public Guid TemplateId { get; set; }
+        public Guid Id { get; set; }
     }
 }

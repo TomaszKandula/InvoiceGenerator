@@ -11,19 +11,19 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
             ReplaceInvoiceTemplateDto model) => new()
         {
             PrivateKey = model.PrivateKey,
-            TemplateId = model.TemplateId,
-            TemplateData = model.TemplateData,
-            TemplateDataType = model.TemplateDataType
+            Id = model.Id,
+            Data = model.Data,
+            DataType = model.DataType
         };
 
         public static AddInvoiceTemplateCommandRequest MapToAddInvoiceTemplateCommandRequest(
             AddInvoiceTemplateDto model) => new()
         {
             PrivateKey = model.PrivateKey,
-            TemplateName = model.TemplateName,
-            TemplateData = model.TemplateData,
-            TemplateDataType = model.TemplateDataType,
-            TemplateDescription = model.TemplateDescription
+            Name = model.Name,
+            Data = model.Data,
+            DataType = model.DataType,
+            Description = model.Description
         };
     }
 }

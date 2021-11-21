@@ -7,6 +7,6 @@ namespace InvoiceGenerator.Backend.Cqrs.Requests
 
     public class GetInvoiceTemplateQueryRequest : RequestProperties, IRequest<FileContentResult>
     {
-        public Guid TemplateId { get; set; }        
+        public Guid Id { get; set; }        
     }
 }

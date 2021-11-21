@@ -29,7 +29,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
 
             VerifyArguments(isKeyValid, userId);
 
-            await _invoiceService.RemoveInvoiceTemplate(request.TemplateId, cancellationToken);
+            await _invoiceService.RemoveInvoiceTemplate(request.Id, cancellationToken);
             return Unit.Value;
         }
 

@@ -5,10 +5,10 @@ namespace InvoiceGenerator.Backend.Shared.Dto
 
     public class ReplaceInvoiceTemplateDto : RequestProperties
     {
-        public Guid TemplateId { get; set; }
+        public Guid Id { get; set; }
 
-        public byte[] TemplateData { get; set; }
+        public byte[] Data { get; set; }
 
-        public string TemplateDataType { get; set; }
+        public string DataType { get; set; }
     }
 }

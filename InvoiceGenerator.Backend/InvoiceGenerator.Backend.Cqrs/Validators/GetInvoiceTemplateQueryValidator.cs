@@ -13,7 +13,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Validators
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(request => request.TemplateId)
+            RuleFor(request => request.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

@@ -29,7 +29,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
 
             VerifyArguments(isKeyValid, userId);
 
-            var result = await _invoiceService.GetInvoiceTemplate(request.TemplateId, cancellationToken);
+            var result = await _invoiceService.GetInvoiceTemplate(request.Id, cancellationToken);
             return new FileContentResult(result.ContentData, result.ContentType);
         }
 
