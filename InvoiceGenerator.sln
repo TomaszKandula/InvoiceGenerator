@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.VatService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.VatService\InvoiceGenerator.Backend.VatService.csproj", "{5AA8E950-5998-4120-B79B-D78E62F7B0AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.InvoiceService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.InvoiceService\InvoiceGenerator.Backend.InvoiceService.csproj", "{8784DABC-F602-4593-9F1F-371F35B6DC5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.BatchService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.BatchService\InvoiceGenerator.Backend.BatchService.csproj", "{8784DABC-F602-4593-9F1F-371F35B6DC5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.UnitTests", "InvoiceGenerator.UnitTests\InvoiceGenerator.UnitTests.csproj", "{468E53D7-7697-4CA4-AA69-C894D3BFC06E}"
 EndProject

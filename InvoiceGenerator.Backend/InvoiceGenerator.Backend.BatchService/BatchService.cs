@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.Backend.InvoiceService
+namespace InvoiceGenerator.Backend.BatchService
 {
     using System;
     using System.Linq;
@@ -15,7 +15,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
     using Core.Services.LoggerService;
     using Core.Services.DateTimeService;
 
-    public class InvoiceService : IInvoiceService
+    public class BatchService : IBatchService
     {
         private readonly DatabaseContext _databaseContext;
 
@@ -23,7 +23,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
         
         private readonly ILoggerService _loggerService;
 
-        public InvoiceService(DatabaseContext databaseContext, IDateTimeService dateTimeService, ILoggerService loggerService)
+        public BatchService(DatabaseContext databaseContext, IDateTimeService dateTimeService, ILoggerService loggerService)
         {
             _databaseContext = databaseContext;
             _dateTimeService = dateTimeService;

@@ -6,20 +6,20 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using Requests;
     using Responses;
     using UserService;
-    using InvoiceService;
+    using BatchService;
     using Core.Exceptions;
     using Shared.Resources;
-    using InvoiceService.Models;
+    using BatchService.Models;
 
     public class AddInvoiceTemplateCommandHandler : TemplateHandler<AddInvoiceTemplateCommandRequest, AddInvoiceTemplateCommandResponse>
     {
-        private readonly IInvoiceService _invoiceService;
+        private readonly IBatchService _batchService;
 
         private readonly IUserService _userService;
 
-        public AddInvoiceTemplateCommandHandler(IInvoiceService invoiceService, IUserService userService)
+        public AddInvoiceTemplateCommandHandler(IBatchService batchService, IUserService userService)
         {
-            _invoiceService = invoiceService;
+            _batchService = batchService;
             _userService = userService;
         }
 
@@ -41,7 +41,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
                 InvoiceTemplateDescription = request.Description
             };
 
-            var result = await _invoiceService.AddInvoiceTemplate(newInvoiceTemplate, cancellationToken);
+            var result = await _batchService.AddInvoiceTemplate(newInvoiceTemplate, cancellationToken);
             return new AddInvoiceTemplateCommandResponse { TemplateId = result };
         }
 

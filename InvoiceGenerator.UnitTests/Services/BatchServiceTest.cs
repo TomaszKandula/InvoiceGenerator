@@ -8,15 +8,15 @@ namespace InvoiceGenerator.UnitTests.Services
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Backend.Domain.Enums;
-    using Backend.InvoiceService;
+    using Backend.BatchService;
     using Backend.Domain.Entities;
     using Backend.Core.Exceptions;
     using Backend.Shared.Resources;
-    using Backend.InvoiceService.Models;
+    using Backend.BatchService.Models;
     using Backend.Core.Services.LoggerService;
     using Backend.Core.Services.DateTimeService;
 
-    public class InvoiceServiceTest : TestBase
+    public class BatchServiceTest : TestBase
     {
         [Fact]
         public async Task GivenValidInvoiceNUmber_WhenGetIssuedInvoice_ShouldSucceed()
@@ -62,7 +62,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -118,7 +118,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -252,7 +252,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
             
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -386,7 +386,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
             
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -517,7 +517,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -563,7 +563,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -609,7 +609,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -655,7 +655,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -701,7 +701,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -752,7 +752,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -783,7 +783,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -835,7 +835,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);
@@ -891,7 +891,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedLoggerService = new Mock<ILoggerService>();
 
-            var service = new InvoiceService(
+            var service = new BatchService(
                 databaseContext, 
                 mockedDateTimeService.Object, 
                 mockedLoggerService.Object);

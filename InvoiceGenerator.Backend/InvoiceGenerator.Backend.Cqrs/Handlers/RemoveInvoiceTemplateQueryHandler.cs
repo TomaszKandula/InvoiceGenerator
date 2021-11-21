@@ -5,20 +5,20 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using System.Threading.Tasks;
     using Requests;
     using UserService;
-    using InvoiceService;
+    using BatchService;
     using Core.Exceptions;
     using Shared.Resources;
     using MediatR;
 
     public class RemoveInvoiceTemplateQueryHandler : TemplateHandler<RemoveInvoiceTemplateQueryRequest, Unit>
     {
-        private readonly IInvoiceService _invoiceService;
+        private readonly IBatchService _batchService;
         
         private readonly IUserService _userService;
 
-        public RemoveInvoiceTemplateQueryHandler(IInvoiceService invoiceService, IUserService userService)
+        public RemoveInvoiceTemplateQueryHandler(IBatchService batchService, IUserService userService)
         {
-            _invoiceService = invoiceService;
+            _batchService = batchService;
             _userService = userService;
         }
 
@@ -29,7 +29,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
 
             VerifyArguments(isKeyValid, userId);
 
-            await _invoiceService.RemoveInvoiceTemplate(request.Id, cancellationToken);
+            await _batchService.RemoveInvoiceTemplate(request.Id, cancellationToken);
             return Unit.Value;
         }
 

@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.Backend.InvoiceService
+namespace InvoiceGenerator.Backend.BatchService
 {
     using System;
     using System.Threading;
@@ -6,7 +6,7 @@ namespace InvoiceGenerator.Backend.InvoiceService
     using System.Collections.Generic;
     using Models;
 
-    public interface IInvoiceService
+    public interface IBatchService
     {
         Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails, CancellationToken cancellationToken = default);
 

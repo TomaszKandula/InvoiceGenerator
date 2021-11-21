@@ -5,21 +5,21 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using System.Threading.Tasks;
     using Requests;
     using UserService;
-    using InvoiceService;
+    using BatchService;
     using Core.Exceptions;
     using Shared.Resources;
-    using InvoiceService.Models;
+    using BatchService.Models;
     using MediatR;
 
     public class ReplaceInvoiceTemplateCommandHandler : TemplateHandler<ReplaceInvoiceTemplateCommandRequest, Unit>
     {
-        private readonly IInvoiceService _invoiceService;
+        private readonly IBatchService _batchService;
 
         private readonly IUserService _userService;
 
-        public ReplaceInvoiceTemplateCommandHandler(IInvoiceService invoiceService, IUserService userService)
+        public ReplaceInvoiceTemplateCommandHandler(IBatchService batchService, IUserService userService)
         {
-            _invoiceService = invoiceService;
+            _batchService = batchService;
             _userService = userService;
         }
 
@@ -36,7 +36,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
                 ContentType = request.DataType
             };
 
-            await _invoiceService.ReplaceInvoiceTemplate(request.Id, newTemplate, cancellationToken);
+            await _batchService.ReplaceInvoiceTemplate(request.Id, newTemplate, cancellationToken);
             return Unit.Value;
         }
 
