@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
     using Shared.Dto;
 
     [ExcludeFromCodeCoverage]
-    public static class InvoicesMapper
+    public static class BatchProcessingMapper
     {
         public static OrderInvoiceBatchCommandRequest MapToOrderInvoiceBatchCommandRequest(
             OrderInvoiceBatchDto model) => new()
