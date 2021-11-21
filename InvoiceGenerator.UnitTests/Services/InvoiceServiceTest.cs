@@ -530,52 +530,6 @@ namespace InvoiceGenerator.UnitTests.Services
         }
 
         [Fact]
-        public async Task GivenValidTemplateName_WhenGetInvoiceTemplate_ShouldSucceed()
-        {
-            // Arrange
-            const int templateDataLength = 1024;
-            var templates = new List<InvoiceTemplates>
-            {
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-150),
-                    IsDeleted = false
-                },
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-100),
-                    IsDeleted = false
-                }
-            };
-
-            var databaseContext = GetTestDatabaseContext();
-            await databaseContext.AddRangeAsync(templates);
-            await databaseContext.SaveChangesAsync();
-
-            var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLoggerService = new Mock<ILoggerService>();
-
-            var service = new InvoiceService(
-                databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLoggerService.Object);
-
-            // Act
-            var result = await service.GetInvoiceTemplate(templates[0].Name);
-
-            // Assert
-            result.Should().HaveCount(templateDataLength);
-        }
-
-        [Fact]
         public async Task GivenValidTemplateId_WhenGetInvoiceTemplate_ShouldSucceed()
         {
             // Arrange
@@ -618,53 +572,7 @@ namespace InvoiceGenerator.UnitTests.Services
             var result = await service.GetInvoiceTemplate(templates[0].Id);
 
             // Assert
-            result.Should().HaveCount(templateDataLength);
-        }
-
-        [Fact]
-        public async Task GivenInvalidTemplateName_WhenGetInvoiceTemplate_ShouldThrowError()
-        {
-            // Arrange
-            const int templateDataLength = 1024;
-            var templates = new List<InvoiceTemplates>
-            {
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-150),
-                    IsDeleted = false
-                },
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-100),
-                    IsDeleted = false
-                }
-            };
-
-            var databaseContext = GetTestDatabaseContext();
-            await databaseContext.AddRangeAsync(templates);
-            await databaseContext.SaveChangesAsync();
-
-            var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLoggerService = new Mock<ILoggerService>();
-
-            var service = new InvoiceService(
-                databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLoggerService.Object);
-
-            // Act
-            // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() 
-                => service.GetInvoiceTemplate(DataUtilityService.GetRandomString()));
-            result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_TEMPLATE_NAME));
+            result.ContentData.Should().HaveCount(templateDataLength);
         }
 
         [Fact]
@@ -714,52 +622,6 @@ namespace InvoiceGenerator.UnitTests.Services
         }
 
         [Fact]
-        public async Task GivenDeletedTemplateName_WhenGetInvoiceTemplate_ShouldThrowError()
-        {
-            // Arrange
-            const int templateDataLength = 1024;
-            var templates = new List<InvoiceTemplates>
-            {
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-150),
-                    IsDeleted = false
-                },
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-100),
-                    IsDeleted = true
-                }
-            };
-
-            var databaseContext = GetTestDatabaseContext();
-            await databaseContext.AddRangeAsync(templates);
-            await databaseContext.SaveChangesAsync();
-
-            var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLoggerService = new Mock<ILoggerService>();
-
-            var service = new InvoiceService(
-                databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLoggerService.Object);
-
-            // Act
-            // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() 
-                => service.GetInvoiceTemplate(templates[1].Name));
-            result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_TEMPLATE_NAME));
-        }
-
-        [Fact]
         public async Task GivenDeletedTemplateId_WhenGetInvoiceTemplate_ShouldThrowError()
         {
             // Arrange
@@ -803,57 +665,6 @@ namespace InvoiceGenerator.UnitTests.Services
             var result = await Assert.ThrowsAsync<BusinessException>(() 
                 => service.GetInvoiceTemplate(templates[1].Id));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_TEMPLATE_ID));
-        }
-
-        [Fact]
-        public async Task GivenExistingTemplateName_WhenRemoveInvoiceTemplate_ShouldSucceed()
-        {
-            // Arrange
-            const int templateDataLength = 1024;
-            var templates = new List<InvoiceTemplates>
-            {
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-150),
-                    IsDeleted = false
-                },
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-100),
-                    IsDeleted = false
-                }
-            };
-
-            var databaseContext = GetTestDatabaseContext();
-            await databaseContext.AddRangeAsync(templates);
-            await databaseContext.SaveChangesAsync();
-
-            var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLoggerService = new Mock<ILoggerService>();
-
-            var service = new InvoiceService(
-                databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLoggerService.Object);
-
-            // Act
-            await service.RemoveInvoiceTemplate(templates[0].Name);
-
-            // Assert
-            var result = databaseContext.InvoiceTemplates
-                .Where(invoiceTemplates => invoiceTemplates.Name == templates[0].Name)
-                .Select(invoiceTemplates => invoiceTemplates.IsDeleted)
-                .FirstOrDefault();
-
-            result.Should().BeTrue();
         }
 
         [Fact]
@@ -905,52 +716,6 @@ namespace InvoiceGenerator.UnitTests.Services
                 .FirstOrDefault();
 
             result.Should().BeTrue();
-        }
-
-        [Fact]
-        public async Task GivenNonExistingTemplateName_WhenRemoveInvoiceTemplate_ShouldThrowError()
-        {
-            // Arrange
-            const int templateDataLength = 1024;
-            var templates = new List<InvoiceTemplates>
-            {
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-150),
-                    IsDeleted = true
-                },
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-100),
-                    IsDeleted = true
-                }
-            };
-
-            var databaseContext = GetTestDatabaseContext();
-            await databaseContext.AddRangeAsync(templates);
-            await databaseContext.SaveChangesAsync();
-
-            var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLoggerService = new Mock<ILoggerService>();
-
-            var service = new InvoiceService(
-                databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLoggerService.Object);
-
-            // Act
-            // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() 
-                => service.RemoveInvoiceTemplate(DataUtilityService.GetRandomString()));
-            result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_TEMPLATE_NAME));
         }
 
         [Fact]
@@ -1031,62 +796,6 @@ namespace InvoiceGenerator.UnitTests.Services
         }
 
         [Fact]
-        public async Task GivenExistingInvoiceTemplateName_WhenReplaceInvoiceTemplate_ShouldSucceed()
-        {
-            // Arrange
-            const int templateDataLength = 1024;
-            var newTemplateData = new TemplateData
-            {
-                ContentData = new byte[514],
-                ContentType = DataUtilityService.GetRandomString()
-            };
-
-            var templates = new List<InvoiceTemplates>
-            {
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-150),
-                    IsDeleted = false
-                },
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-100),
-                    IsDeleted = false
-                }
-            };
-
-            var databaseContext = GetTestDatabaseContext();
-            await databaseContext.AddRangeAsync(templates);
-            await databaseContext.SaveChangesAsync();
-
-            var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLoggerService = new Mock<ILoggerService>();
-
-            var service = new InvoiceService(
-                databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLoggerService.Object);
-
-            // Act
-            await service.ReplaceInvoiceTemplate(templates[0].Name, newTemplateData);
-
-            // Assert
-            var result = databaseContext.InvoiceTemplates
-                .FirstOrDefault(invoiceTemplates => invoiceTemplates.Name == templates[0].Name);
-
-            result.Should().NotBeNull();
-            result?.Data.Should().HaveCount(newTemplateData.ContentData.Length);
-        }
-
-        [Fact]
         public async Task GivenExistingInvoiceTemplateId_WhenReplaceInvoiceTemplate_ShouldSucceed()
         {
             // Arrange
@@ -1140,58 +849,6 @@ namespace InvoiceGenerator.UnitTests.Services
 
             result.Should().NotBeNull();
             result?.Data.Should().HaveCount(newTemplateData.ContentData.Length);
-        }
-
-        [Fact]
-        public async Task GivenNonExistingInvoiceTemplateName_WhenReplaceInvoiceTemplate_ShouldThrowError()
-        {
-            // Arrange
-            const int templateDataLength = 1024;
-            var newTemplateData = new TemplateData
-            {
-                ContentData = new byte[514],
-                ContentType = DataUtilityService.GetRandomString()
-            };
-
-            var templates = new List<InvoiceTemplates>
-            {
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-150),
-                    IsDeleted = false
-                },
-                new()
-                {
-                    Name = DataUtilityService.GetRandomString(),
-                    Data = new byte[templateDataLength],
-                    ContentType = DataUtilityService.GetRandomString(),
-                    ShortDescription = DataUtilityService.GetRandomString(),
-                    GeneratedAt = DateTimeService.Now.AddDays(-100),
-                    IsDeleted = false
-                }
-            };
-
-            var databaseContext = GetTestDatabaseContext();
-            await databaseContext.AddRangeAsync(templates);
-            await databaseContext.SaveChangesAsync();
-
-            var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLoggerService = new Mock<ILoggerService>();
-
-            var service = new InvoiceService(
-                databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLoggerService.Object);
-
-            // Act
-            // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() 
-                => service.ReplaceInvoiceTemplate(DataUtilityService.GetRandomString(), newTemplateData));
-            result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_TEMPLATE_NAME));
         }
 
         [Fact]
