@@ -9,6 +9,6 @@ namespace InvoiceGenerator.Backend.Cqrs.Requests
     [ExcludeFromCodeCoverage]
     public class GetCountryCodesQueryRequest : RequestProperties, IRequest<IEnumerable<GetCountryCodesQueryResponse>>
     {
-        public string FilteredBy { get; set; }
+        public string FilterBy { get; set; }
     }
 }

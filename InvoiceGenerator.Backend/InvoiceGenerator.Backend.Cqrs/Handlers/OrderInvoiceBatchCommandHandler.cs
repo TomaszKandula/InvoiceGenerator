@@ -10,18 +10,18 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using Responses;
     using VatService;
     using UserService;
-    using InvoiceService;
+    using BatchService;
     using Core.Exceptions;
     using Shared.Resources;
     using VatService.Models;
-    using InvoiceService.Models;
+    using BatchService.Models;
     using Core.Services.DateTimeService;
 
     public class OrderInvoiceBatchCommandHandler : TemplateHandler<OrderInvoiceBatchCommandRequest, OrderInvoiceBatchCommandResponse>
     {
         private readonly DatabaseContext _databaseContext;
         
-        private readonly IInvoiceService _invoiceService;
+        private readonly IBatchService _batchService;
 
         private readonly IVatService _vatService;
 
@@ -29,11 +29,11 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
 
         private readonly IDateTimeService _dateTimeService;
 
-        public OrderInvoiceBatchCommandHandler(DatabaseContext databaseContext, IInvoiceService invoiceService, 
+        public OrderInvoiceBatchCommandHandler(DatabaseContext databaseContext, IBatchService batchService, 
             IVatService vatService, IUserService userService, IDateTimeService dateTimeService)
         {
             _databaseContext = databaseContext;
-            _invoiceService = invoiceService;
+            _batchService = batchService;
             _vatService = vatService;
             _userService = userService;
             _dateTimeService = dateTimeService;
@@ -107,7 +107,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
                 });
             }
 
-            var result = await _invoiceService.OrderInvoiceBatchProcessing(order, cancellationToken);
+            var result = await _batchService.OrderInvoiceBatchProcessing(order, cancellationToken);
             return new OrderInvoiceBatchCommandResponse
             {
                 ProcessBatchKey = result

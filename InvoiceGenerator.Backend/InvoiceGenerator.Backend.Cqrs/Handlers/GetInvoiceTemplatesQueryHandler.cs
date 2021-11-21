@@ -3,34 +3,34 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
     using Requests;
     using UserService;
-    using BatchService;
+    using TemplateService;
     using Core.Exceptions;
     using Shared.Resources;
+    using TemplateService.Models;
 
-    public class GetIssuedInvoiceQueryHandler : TemplateHandler<GetIssuedInvoiceQueryRequest, FileContentResult>
+    public class GetInvoiceTemplatesQueryHandler : TemplateHandler<GetInvoiceTemplatesQueryRequest, IEnumerable<InvoiceTemplateInfo>>
     {
-        private readonly IBatchService _batchService;
+        private readonly ITemplateService _templateService;
         
         private readonly IUserService _userService;
 
-        public GetIssuedInvoiceQueryHandler(IBatchService batchService, IUserService userService)
+        public GetInvoiceTemplatesQueryHandler(ITemplateService templateService, IUserService userService)
         {
-            _batchService = batchService;
+            _templateService = templateService;
             _userService = userService;
         }
-
-        public override async Task<FileContentResult> Handle(GetIssuedInvoiceQueryRequest request, CancellationToken cancellationToken)
+        
+        public override async Task<IEnumerable<InvoiceTemplateInfo>> Handle(GetInvoiceTemplatesQueryRequest request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
 
             VerifyArguments(isKeyValid, userId);
 
-            var result = await _batchService.GetIssuedInvoice(request.InvoiceNumber, cancellationToken);
-            return new FileContentResult(result.ContentData, result.ContentType);
+            return await _templateService.GetInvoiceTemplates(cancellationToken);
         }
 
         private static void VerifyArguments(bool isKeyValid, Guid? userId)

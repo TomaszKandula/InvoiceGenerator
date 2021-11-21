@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.Backend.InvoiceService.Models
+namespace InvoiceGenerator.Backend.TemplateService.Models
 {
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class TemplateData
+    public class FileResult
     {
         public byte[] ContentData { get; set; }
 

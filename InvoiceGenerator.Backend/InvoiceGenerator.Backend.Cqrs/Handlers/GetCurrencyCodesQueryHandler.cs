@@ -35,8 +35,8 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
                 })
                 .Where(response => response.SystemCode != 0)
                 .WhereIf(
-                    !string.IsNullOrEmpty(request.FilteredBy), 
-                    response => response.Currency == request.FilteredBy.ToUpper())
+                    !string.IsNullOrEmpty(request.FilterBy), 
+                    response => response.Currency == request.FilterBy.ToUpper())
                 .ToList();
 
             return await Task.FromResult(result);

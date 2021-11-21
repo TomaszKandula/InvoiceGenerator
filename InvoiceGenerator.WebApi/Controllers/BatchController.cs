@@ -9,13 +9,13 @@ namespace InvoiceGenerator.WebApi.Controllers
     using Backend.Cqrs.Responses;
     using MediatR;
 
-    public class InvoicesController : BaseController
+    public class BatchController : BaseController
     {
-        public InvoicesController(IMediator mediator) :base(mediator) { }
+        public BatchController(IMediator mediator) :base(mediator) { }
 
         [HttpPost]
         public async Task<OrderInvoiceBatchCommandResponse> OrderInvoiceBatchProcessing([FromBody] OrderInvoiceBatchDto payload) 
-            => await Mediator.Send(InvoicesMapper.MapToOrderBatchInvoicesCommand(payload));
+            => await Mediator.Send(BatchProcessingMapper.MapToOrderInvoiceBatchCommandRequest(payload));
 
         [HttpGet]
         public async Task<GetBatchProcessingQueryResponse> GetBatchProcessingStatus([FromQuery] string privateKey, Guid processBatchKey) =>
