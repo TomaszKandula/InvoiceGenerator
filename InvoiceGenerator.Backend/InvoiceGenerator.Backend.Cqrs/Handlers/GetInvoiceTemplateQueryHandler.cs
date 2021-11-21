@@ -6,30 +6,30 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using Microsoft.AspNetCore.Mvc;
     using Requests;
     using UserService;
-    using BatchService;
+    using TemplateService;
     using Core.Exceptions;
     using Shared.Resources;
 
-    public class GetIssuedInvoiceQueryHandler : TemplateHandler<GetIssuedInvoiceQueryRequest, FileContentResult>
+    public class GetInvoiceTemplateQueryHandler : TemplateHandler<GetInvoiceTemplateQueryRequest, FileContentResult>
     {
-        private readonly IBatchService _batchService;
+        private readonly ITemplateService _templateService;
         
         private readonly IUserService _userService;
 
-        public GetIssuedInvoiceQueryHandler(IBatchService batchService, IUserService userService)
+        public GetInvoiceTemplateQueryHandler(ITemplateService templateService, IUserService userService)
         {
-            _batchService = batchService;
+            _templateService = templateService;
             _userService = userService;
         }
 
-        public override async Task<FileContentResult> Handle(GetIssuedInvoiceQueryRequest request, CancellationToken cancellationToken)
+        public override async Task<FileContentResult> Handle(GetInvoiceTemplateQueryRequest request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
 
             VerifyArguments(isKeyValid, userId);
 
-            var result = await _batchService.GetIssuedInvoice(request.InvoiceNumber, cancellationToken);
+            var result = await _templateService.GetInvoiceTemplate(request.Id, cancellationToken);
             return new FileContentResult(result.ContentData, result.ContentType);
         }
 

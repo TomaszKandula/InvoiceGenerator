@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.Backend.InvoiceService.Models
+namespace InvoiceGenerator.Backend.BatchService.Models
 {
     using System.Diagnostics.CodeAnalysis;
     using Domain.Enums;
