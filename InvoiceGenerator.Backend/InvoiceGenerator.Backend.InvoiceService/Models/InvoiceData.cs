@@ -4,13 +4,9 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class InvoiceData
+    public class InvoiceData : FileResult
     {
         public string Number { get; set; }
-
-        public byte[] ContentData { get; set; }
-
-        public string ContentType { get; set; }
 
         public DateTime GeneratedAt { get; set; }
     }
