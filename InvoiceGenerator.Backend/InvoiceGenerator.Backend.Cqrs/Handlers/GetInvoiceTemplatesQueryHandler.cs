@@ -11,7 +11,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using Shared.Resources;
     using InvoiceService.Models;
 
-    public class GetInvoiceTemplatesQueryHandler : TemplateHandler<GetInvoiceTemplatesQueryRequest, IEnumerable<TemplateInfo>>
+    public class GetInvoiceTemplatesQueryHandler : TemplateHandler<GetInvoiceTemplatesQueryRequest, IEnumerable<InvoiceTemplateInfo>>
     {
         private readonly IInvoiceService _invoiceService;
         
@@ -23,7 +23,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
             _userService = userService;
         }
         
-        public override async Task<IEnumerable<TemplateInfo>> Handle(GetInvoiceTemplatesQueryRequest request, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<InvoiceTemplateInfo>> Handle(GetInvoiceTemplatesQueryRequest request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);

@@ -7,8 +7,8 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
     {
         public string TemplateName { get; set; }
 
-        public TemplateData TemplateData { get; set; }
+        public InvoiceTemplateData InvoiceTemplateData { get; set; }
 
-        public string ShortDescription { get; set; }
+        public string InvoiceTemplateDescription { get; set; }
     }
 }

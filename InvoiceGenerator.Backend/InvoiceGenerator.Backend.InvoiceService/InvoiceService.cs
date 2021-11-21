@@ -165,8 +165,8 @@ namespace InvoiceGenerator.Backend.InvoiceService
         /// </summary>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns></returns>
-        public async Task<IEnumerable<TemplateInfo>> GetInvoiceTemplates(CancellationToken cancellationToken = default)
-            => await _databaseContext.InvoiceTemplates.Select(templates => new TemplateInfo
+        public async Task<IEnumerable<InvoiceTemplateInfo>> GetInvoiceTemplates(CancellationToken cancellationToken = default)
+            => await _databaseContext.InvoiceTemplates.Select(templates => new InvoiceTemplateInfo
                 {
                     Id = templates.Id,
                     Name = templates.Name
@@ -180,13 +180,13 @@ namespace InvoiceGenerator.Backend.InvoiceService
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Template file data.</returns>
         /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
-        public async Task<TemplateData> GetInvoiceTemplate(Guid templateId, CancellationToken cancellationToken = default)
+        public async Task<InvoiceTemplateData> GetInvoiceTemplate(Guid templateId, CancellationToken cancellationToken = default)
         {
             var template = await _databaseContext.InvoiceTemplates
                 .AsNoTracking()
                 .Where(templates => templates.Id == templateId)
                 .Where(templates => templates.IsDeleted == false)
-                .Select(templates => new TemplateData
+                .Select(templates => new InvoiceTemplateData
                 {
                     ContentData = templates.Data,
                     ContentType = templates.ContentType
@@ -223,12 +223,12 @@ namespace InvoiceGenerator.Backend.InvoiceService
         /// Updates current invoice template.
         /// </summary>
         /// <param name="templateId">Invoice template ID.</param>
-        /// <param name="templateData">Holds Binary representation of a new invoice template and its content type.</param>
+        /// <param name="invoiceTemplateData">Holds Binary representation of a new invoice template and its content type.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
-        public async Task ReplaceInvoiceTemplate(Guid templateId, TemplateData templateData, CancellationToken cancellationToken = default)
+        public async Task ReplaceInvoiceTemplate(Guid templateId, InvoiceTemplateData invoiceTemplateData, CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrEmpty(templateData.ContentType))
+            if (string.IsNullOrEmpty(invoiceTemplateData.ContentType))
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CONTENT_TYPE), ErrorCodes.INVALID_CONTENT_TYPE);
 
             var template = await _databaseContext.InvoiceTemplates
@@ -239,8 +239,8 @@ namespace InvoiceGenerator.Backend.InvoiceService
             if (template == null)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_ID), ErrorCodes.INVALID_TEMPLATE_ID);
 
-            template.Data = templateData.ContentData;
-            template.ContentType = templateData.ContentType;
+            template.Data = invoiceTemplateData.ContentData;
+            template.ContentType = invoiceTemplateData.ContentType;
             await _databaseContext.SaveChangesAsync(cancellationToken);
         }
 
@@ -252,15 +252,15 @@ namespace InvoiceGenerator.Backend.InvoiceService
         /// <returns>Invoice template ID.</returns>
         public async Task<Guid> AddInvoiceTemplate(InvoiceTemplate invoiceTemplate, CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrEmpty(invoiceTemplate.TemplateData.ContentType))
+            if (string.IsNullOrEmpty(invoiceTemplate.InvoiceTemplateData.ContentType))
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CONTENT_TYPE), ErrorCodes.INVALID_CONTENT_TYPE);
 
             var template = new InvoiceTemplates
             {
                 Name = invoiceTemplate.TemplateName,
-                Data = invoiceTemplate.TemplateData.ContentData,
-                ContentType = invoiceTemplate.TemplateData.ContentType,
-                ShortDescription = invoiceTemplate.ShortDescription,
+                Data = invoiceTemplate.InvoiceTemplateData.ContentData,
+                ContentType = invoiceTemplate.InvoiceTemplateData.ContentType,
+                ShortDescription = invoiceTemplate.InvoiceTemplateDescription,
                 GeneratedAt = _dateTimeService.Now,
                 IsDeleted = false
             };

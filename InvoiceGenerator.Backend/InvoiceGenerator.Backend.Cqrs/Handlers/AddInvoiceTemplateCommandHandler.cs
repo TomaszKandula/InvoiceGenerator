@@ -33,12 +33,12 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
             var newInvoiceTemplate = new InvoiceTemplate
             {
                 TemplateName = request.TemplateName,
-                TemplateData = new TemplateData
+                InvoiceTemplateData = new InvoiceTemplateData
                 {
                     ContentData = request.TemplateData,
                     ContentType = request.TemplateDataType
                 },
-                ShortDescription = request.TemplateDescription
+                InvoiceTemplateDescription = request.TemplateDescription
             };
 
             var result = await _invoiceService.AddInvoiceTemplate(newInvoiceTemplate, cancellationToken);

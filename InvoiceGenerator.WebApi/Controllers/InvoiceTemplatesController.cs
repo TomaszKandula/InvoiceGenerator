@@ -16,7 +16,7 @@ namespace InvoiceGenerator.WebApi.Controllers
         public InvoiceTemplatesController(IMediator mediator) : base(mediator) { }
 
         [HttpGet]
-        public async Task<IEnumerable<TemplateInfo>> GetInvoiceTemplates([FromQuery] string privateKey) 
+        public async Task<IEnumerable<InvoiceTemplateInfo>> GetInvoiceTemplates([FromQuery] string privateKey) 
             => await Mediator.Send(new GetInvoiceTemplatesQueryRequest { PrivateKey = privateKey });
 
         [HttpGet]

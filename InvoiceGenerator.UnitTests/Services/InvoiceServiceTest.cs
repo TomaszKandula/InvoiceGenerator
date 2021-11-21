@@ -771,12 +771,12 @@ namespace InvoiceGenerator.UnitTests.Services
             var template = new InvoiceTemplate
             {
                 TemplateName = DataUtilityService.GetRandomString(),
-                TemplateData = new TemplateData
+                InvoiceTemplateData = new InvoiceTemplateData
                 {
                     ContentData = new byte[2048],
                     ContentType = DataUtilityService.GetRandomString()
                 },
-                ShortDescription = DataUtilityService.GetRandomString()
+                InvoiceTemplateDescription = DataUtilityService.GetRandomString()
             };
 
             var databaseContext = GetTestDatabaseContext();
@@ -800,7 +800,7 @@ namespace InvoiceGenerator.UnitTests.Services
         {
             // Arrange
             const int templateDataLength = 1024;
-            var newTemplateData = new TemplateData
+            var newTemplateData = new InvoiceTemplateData
             {
                 ContentData = new byte[514],
                 ContentType = DataUtilityService.GetRandomString()
@@ -856,7 +856,7 @@ namespace InvoiceGenerator.UnitTests.Services
         {
             // Arrange
             const int templateDataLength = 1024;
-            var newTemplateData = new TemplateData
+            var newTemplateData = new InvoiceTemplateData
             {
                 ContentData = new byte[514],
                 ContentType = DataUtilityService.GetRandomString()

@@ -4,7 +4,7 @@ namespace InvoiceGenerator.Backend.InvoiceService.Models
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class TemplateInfo
+    public class InvoiceTemplateInfo
     {
         public Guid Id { get; set; }
 

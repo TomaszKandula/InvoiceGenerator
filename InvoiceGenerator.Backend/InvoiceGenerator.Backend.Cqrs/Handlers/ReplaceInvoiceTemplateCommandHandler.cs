@@ -30,7 +30,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
 
             VerifyArguments(isKeyValid, userId);
 
-            var newTemplate = new TemplateData
+            var newTemplate = new InvoiceTemplateData
             {
                 ContentData = request.TemplateData,
                 ContentType = request.TemplateDataType
