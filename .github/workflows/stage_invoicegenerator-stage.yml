@@ -1,0 +1,51 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - invoicegenerator-stage
+
+on:
+  push:
+    branches:
+      - stage
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Log in to registry
+      uses: docker/login-action@v1
+      with:
+        registry: https://invoicegenerator.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_e05858846c1249a5a17fa509473335eb }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_048e65090cf140b89bbbf01e94ca8066 }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: invoicegenerator.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e05858846c1249a5a17fa509473335eb }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'invoicegenerator-stage'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_f8fb5d84079343f0a8fb3e9a9ea7f27a }}
+        images: 'invoicegenerator.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e05858846c1249a5a17fa509473335eb }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}'
