@@ -34,8 +34,8 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
                     ProcessingStatus = processingStatuses.ToString().ToUpper()
                 })
                 .WhereIf(
-                    !string.IsNullOrEmpty(request.FilteredBy), 
-                    response => response.ProcessingStatus == request.FilteredBy.ToUpper())
+                    !string.IsNullOrEmpty(request.FilterBy), 
+                    response => response.ProcessingStatus == request.FilterBy.ToUpper())
                 .ToList();
 
             return await Task.FromResult(result);

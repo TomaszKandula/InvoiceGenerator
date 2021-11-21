@@ -9,6 +9,6 @@ namespace InvoiceGenerator.Backend.Cqrs.Requests
     [ExcludeFromCodeCoverage]
     public class GetPaymentTypesQueryRequest : RequestProperties, IRequest<IEnumerable<GetPaymentTypesQueryResponse>>
     {
-        public string FilteredBy { get; set; }
+        public string FilterBy { get; set; }
     }
 }
