@@ -1,6 +1,7 @@
 namespace InvoiceGenerator.Backend.Cqrs.Handlers
 {
     using System;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
@@ -51,6 +52,11 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
 
+            var availableTemplates = await _databaseContext.InvoiceTemplates
+                .AsNoTracking()
+                .Where(templates => !templates.IsDeleted)
+                .ToListAsync(cancellationToken);
+            
             var order = new List<OrderDetail>();
             var items = new List<InvoiceItem>();
             foreach (var orderDetails in request.OrderDetails)
@@ -65,6 +71,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
                 {
                     var valueAmount = GetValueAmount(item.ItemQuantity, item.ItemAmount, item.ItemDiscountRate);
                     var grossAmount = GetGrossAmount(valueAmount, item.VatRate);
+
                     items.Add(new InvoiceItem
                     {
                         ItemText = item.ItemText,
@@ -83,7 +90,12 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
 
                 var voucherDate = orderDetails.VoucherDate ?? _dateTimeService.Now;
                 var valueDate = orderDetails.ValueDate ?? _dateTimeService.Now;
-                
+
+                var isTemplateExists = availableTemplates
+                    .Any(templates => templates.Name == orderDetails.InvoiceTemplateName);
+                if (!isTemplateExists)
+                    throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_NAME), ErrorCodes.INVALID_TEMPLATE_NAME);
+
                 order.Add(new OrderDetail
                 {
                     UserId = userId,
