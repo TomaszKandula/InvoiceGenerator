@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Cq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.UserService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.UserService\InvoiceGenerator.Backend.UserService.csproj", "{D2E41C09-6762-475B-B392-DEA4B0F7B0F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.TemplateService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.TemplateService\InvoiceGenerator.Backend.TemplateService.csproj", "{F2836F32-924A-4A89-91D7-84292C7C591D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{D2E41C09-6762-475B-B392-DEA4B0F7B0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2E41C09-6762-475B-B392-DEA4B0F7B0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2E41C09-6762-475B-B392-DEA4B0F7B0F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2836F32-924A-4A89-91D7-84292C7C591D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2836F32-924A-4A89-91D7-84292C7C591D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2836F32-924A-4A89-91D7-84292C7C591D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2836F32-924A-4A89-91D7-84292C7C591D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{435EA792-637C-4528-B5C5-9867F3047B58} = {BDC7C31C-9689-4622-9468-3E29647E2D77}
@@ -93,5 +99,6 @@ Global
 		{309AA77A-1CC0-48AD-94C0-F22A53FF17D8} = {3463B254-3132-4EAC-8205-E1B56D2E8537}
 		{AAFD608A-0530-478E-B64C-1E8B53FF8B33} = {3463B254-3132-4EAC-8205-E1B56D2E8537}
 		{D2E41C09-6762-475B-B392-DEA4B0F7B0F8} = {0611065F-444A-4844-816C-508A32ABD479}
+		{F2836F32-924A-4A89-91D7-84292C7C591D} = {0611065F-444A-4844-816C-508A32ABD479}
 	EndGlobalSection
 EndGlobal

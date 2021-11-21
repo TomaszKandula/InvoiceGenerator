@@ -1,7 +1,7 @@
 namespace InvoiceGenerator.Backend.Cqrs.Requests
 {
     using System.Collections.Generic;
-    using BatchService.Models;
+    using TemplateService.Models;
     using Shared.Models;
     using MediatR;
 

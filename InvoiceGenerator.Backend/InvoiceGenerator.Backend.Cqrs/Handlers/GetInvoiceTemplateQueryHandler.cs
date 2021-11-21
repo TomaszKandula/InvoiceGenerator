@@ -6,19 +6,19 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using Microsoft.AspNetCore.Mvc;
     using Requests;
     using UserService;
-    using BatchService;
+    using TemplateService;
     using Core.Exceptions;
     using Shared.Resources;
 
     public class GetInvoiceTemplateQueryHandler : TemplateHandler<GetInvoiceTemplateQueryRequest, FileContentResult>
     {
-        private readonly IBatchService _batchService;
+        private readonly ITemplateService _templateService;
         
         private readonly IUserService _userService;
 
-        public GetInvoiceTemplateQueryHandler(IBatchService batchService, IUserService userService)
+        public GetInvoiceTemplateQueryHandler(ITemplateService templateService, IUserService userService)
         {
-            _batchService = batchService;
+            _templateService = templateService;
             _userService = userService;
         }
 
@@ -29,7 +29,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
 
             VerifyArguments(isKeyValid, userId);
 
-            var result = await _batchService.GetInvoiceTemplate(request.Id, cancellationToken);
+            var result = await _templateService.GetInvoiceTemplate(request.Id, cancellationToken);
             return new FileContentResult(result.ContentData, result.ContentType);
         }
 

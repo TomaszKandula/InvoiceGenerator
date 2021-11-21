@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.Backend.BatchService.Models
+namespace InvoiceGenerator.Backend.TemplateService.Models
 {
     using System.Diagnostics.CodeAnalysis;
 

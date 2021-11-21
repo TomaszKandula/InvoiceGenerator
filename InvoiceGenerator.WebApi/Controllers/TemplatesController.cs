@@ -8,7 +8,7 @@ namespace InvoiceGenerator.WebApi.Controllers
     using Backend.Cqrs.Mappers;
     using Backend.Cqrs.Requests;
     using Backend.Cqrs.Responses;
-    using Backend.BatchService.Models;
+    using Backend.TemplateService.Models;
     using MediatR;
 
     public class TemplatesController : BaseController

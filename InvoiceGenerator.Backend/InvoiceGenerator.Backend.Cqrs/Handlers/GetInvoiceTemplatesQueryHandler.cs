@@ -6,20 +6,20 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
     using System.Collections.Generic;
     using Requests;
     using UserService;
-    using BatchService;
+    using TemplateService;
     using Core.Exceptions;
     using Shared.Resources;
-    using BatchService.Models;
+    using TemplateService.Models;
 
     public class GetInvoiceTemplatesQueryHandler : TemplateHandler<GetInvoiceTemplatesQueryRequest, IEnumerable<InvoiceTemplateInfo>>
     {
-        private readonly IBatchService _batchService;
+        private readonly ITemplateService _templateService;
         
         private readonly IUserService _userService;
 
-        public GetInvoiceTemplatesQueryHandler(IBatchService batchService, IUserService userService)
+        public GetInvoiceTemplatesQueryHandler(ITemplateService templateService, IUserService userService)
         {
-            _batchService = batchService;
+            _templateService = templateService;
             _userService = userService;
         }
         
@@ -30,7 +30,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
 
             VerifyArguments(isKeyValid, userId);
 
-            return await _batchService.GetInvoiceTemplates(cancellationToken);
+            return await _templateService.GetInvoiceTemplates(cancellationToken);
         }
 
         private static void VerifyArguments(bool isKeyValid, Guid? userId)
