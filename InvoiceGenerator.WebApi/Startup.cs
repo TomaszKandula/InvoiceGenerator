@@ -30,7 +30,7 @@ namespace InvoiceGenerator.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            //services.AddCors();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
             services.RegisterDependencies(_configuration);
@@ -67,14 +67,14 @@ namespace InvoiceGenerator.WebApi
             builder.UseHsts();
             
             builder.UseForwardedHeaders();
-            builder.ApplyCorsPolicy();
+            //builder.ApplyCorsPolicy();
 
             builder.UseResponseCompression();
             builder.UseRouting();
 
             builder.UseMiddleware<Exceptions>();
             builder.UseMiddleware<CacheControl>();
-            builder.UseMiddleware<DomainControl>();
+            //builder.UseMiddleware<DomainControl>();
            
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
 
