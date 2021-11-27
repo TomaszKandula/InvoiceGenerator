@@ -32,7 +32,7 @@ namespace InvoiceGenerator.WebApi.Configuration
                         HeaderNames.AccessControlAllowHeaders, 
                         HeaderNames.AccessControlAllowMethods,
                         HeaderNames.AccessControlMaxAge)
-                    .WithMethods("GET", "PUT", "POST", "PATCH", "DELETE")
+                    .WithMethods("GET", "POST")
                     .SetPreflightMaxAge(TimeSpan.FromSeconds(86400));
             });            
         }
