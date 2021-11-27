@@ -1,8 +1,8 @@
 namespace InvoiceGenerator.Backend.Cqrs.Handlers
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using System;
     using Requests;
     using Responses;
     using UserService;
@@ -48,7 +48,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers
         private static void VerifyArguments(bool isKeyValid, Guid? userId)
         {
             if (!isKeyValid)
-                throw new BusinessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
+                throw new AccessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
 
             if (userId == null || userId == Guid.Empty)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_ASSOCIATED_USER), ErrorCodes.INVALID_ASSOCIATED_USER);

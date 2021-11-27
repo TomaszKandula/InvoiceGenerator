@@ -69,4 +69,10 @@
     <data name="USER_UNAUTHORIZED" xml:space="preserve">
         <value>User is not authorized to perform the operation</value>
     </data>
+    <data name="ACCESS_FORBIDDEN" xml:space="preserve">
+        <value>User is not authorized to perform the operation</value>
+    </data>
+    <data name="INVALID_FILE_SIZE" xml:space="preserve">
+        <value>File size is too large</value>
+    </data>
 </root>
