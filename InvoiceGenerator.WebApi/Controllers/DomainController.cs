@@ -20,15 +20,15 @@ namespace InvoiceGenerator.WebApi.Controllers
             await Mediator.Send(new GetCurrencyCodesQueryRequest { PrivateKey = privateKey, FilterBy = currency });
 
         [HttpGet]
-        public async Task<IEnumerable<GetPaymentTypesQueryResponse>> GetPaymentTypes([FromQuery] string privateKey, string currency) =>
-            await Mediator.Send(new GetPaymentTypesQueryRequest { PrivateKey = privateKey, FilterBy = currency });
+        public async Task<IEnumerable<GetPaymentTypesQueryResponse>> GetPaymentTypes([FromQuery] string privateKey, string type) =>
+            await Mediator.Send(new GetPaymentTypesQueryRequest { PrivateKey = privateKey, FilterBy = type });
 
         [HttpGet]
-        public async Task<IEnumerable<GetPaymentStatusesQueryResponse>> GetPaymentStatuses([FromQuery] string privateKey, string currency) =>
-            await Mediator.Send(new GetPaymentStatusesQueryRequest { PrivateKey = privateKey, FilterBy = currency });
+        public async Task<IEnumerable<GetPaymentStatusesQueryResponse>> GetPaymentStatuses([FromQuery] string privateKey, string status) =>
+            await Mediator.Send(new GetPaymentStatusesQueryRequest { PrivateKey = privateKey, FilterBy = status });
 
         [HttpGet]
-        public async Task<IEnumerable<GetProcessingStatusesQueryResponse>> GetProcessingStatuses([FromQuery] string privateKey, string currency) =>
-            await Mediator.Send(new GetProcessingStatusesQueryRequest { PrivateKey = privateKey, FilterBy = currency });
+        public async Task<IEnumerable<GetProcessingStatusesQueryResponse>> GetProcessingStatuses([FromQuery] string privateKey, string status) =>
+            await Mediator.Send(new GetProcessingStatusesQueryRequest { PrivateKey = privateKey, FilterBy = status });
     }
 }

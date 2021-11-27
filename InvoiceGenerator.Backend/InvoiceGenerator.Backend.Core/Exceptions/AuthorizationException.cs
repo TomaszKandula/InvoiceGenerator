@@ -6,14 +6,14 @@ namespace InvoiceGenerator.Backend.Core.Exceptions
 
     [ExcludeFromCodeCoverage]
     [Serializable]
-    public class ServerException : Exception
+    public class AuthorizationException : Exception
     {
         public string ErrorCode { get; }
 
-        protected ServerException(SerializationInfo serializationInfo, 
+        protected AuthorizationException(SerializationInfo serializationInfo, 
             StreamingContext streamingContext) : base(serializationInfo, streamingContext) { }
 
-        public ServerException(string errorCode, string errorMessage = "") : base(errorMessage)
+        public AuthorizationException(string errorCode, string errorMessage = "") : base(errorMessage)
             => ErrorCode = errorCode;
     }
 }

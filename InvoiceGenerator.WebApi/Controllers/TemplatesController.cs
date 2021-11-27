@@ -27,11 +27,11 @@ namespace InvoiceGenerator.WebApi.Controllers
         public async Task<AddInvoiceTemplateCommandResponse> AddInvoiceTemplate([FromForm] AddInvoiceTemplateDto payload)
             => await Mediator.Send(InvoiceTemplatesMapper.MapToAddInvoiceTemplateCommandRequest(payload));
 
-        [HttpPut]
+        [HttpPost]
         public async Task<Unit> ReplaceInvoiceTemplate([FromForm] ReplaceInvoiceTemplateDto payload) 
             => await Mediator.Send(InvoiceTemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
 
-        [HttpDelete]
+        [HttpPost]
         public async Task<Unit> RemoveInvoiceTemplate([FromQuery] string privateKey, Guid templateId) 
             => await Mediator.Send(new RemoveInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = templateId });
     }
