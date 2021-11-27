@@ -30,9 +30,9 @@ namespace InvoiceGenerator.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddCors();
+            services.AddCors();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
-            //services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
+            services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
             services.RegisterDependencies(_configuration);
 
             if (_environment.IsDevelopment() || _environment.IsStaging())
@@ -63,19 +63,16 @@ namespace InvoiceGenerator.WebApi
         {
             builder.UseSerilogRequestLogging();
 
-            //builder.UseHttpsRedirection();
-            //builder.UseHsts();
-            
+            builder.UseHttpsRedirection();
             builder.UseForwardedHeaders();
-            //builder.ApplyCorsPolicy();
+            builder.ApplyCorsPolicy();
 
-            //builder.UseMiddleware<Exceptions>();
-            //builder.UseMiddleware<CacheControl>();
-            //builder.UseMiddleware<DomainControl>();
+            builder.UseMiddleware<Exceptions>();
+            builder.UseMiddleware<CacheControl>();
+            builder.UseMiddleware<DomainControl>();
 
-            //builder.UseResponseCompression();
+            builder.UseResponseCompression();
             builder.UseRouting();
-           
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
 
             if (!_environment.IsDevelopment() && !_environment.IsStaging()) 
