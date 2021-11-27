@@ -25,6 +25,11 @@ namespace InvoiceGenerator.Backend.Cqrs.Validators
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
+            RuleForEach(request => request.Data)
+                .NotEmpty()
+                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                .WithMessage(ValidationCodes.REQUIRED);
+
             RuleFor(request => request.DataType)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))

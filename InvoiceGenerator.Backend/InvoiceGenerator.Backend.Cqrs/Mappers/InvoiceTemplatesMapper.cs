@@ -1,6 +1,7 @@
 namespace InvoiceGenerator.Backend.Cqrs.Mappers
 {
     using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Http;
     using Requests;
     using Shared.Dto;
 
@@ -21,9 +22,19 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
         {
             PrivateKey = model.PrivateKey,
             Name = model.Name,
-            Data = model.Data,
-            DataType = model.DataType,
+            Data = GetFileContent(model.Data),
+            DataType = model.Data.ContentType,
             Description = model.Description
         };
+
+        private static byte[] GetFileContent(IFormFile file)
+        {
+            using var fileStream = file.OpenReadStream();
+
+            var bytes = new byte[file.Length];
+            fileStream.Read(bytes, 0, (int)file.Length);
+
+            return bytes;
+        }
     }
 }

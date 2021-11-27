@@ -146,5 +146,17 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("USER_UNAUTHORIZED", resourceCulture);
             }
         }
+        
+        public static string ACCESS_FORBIDDEN {
+            get {
+                return ResourceManager.GetString("ACCESS_FORBIDDEN", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_FILE_SIZE {
+            get {
+                return ResourceManager.GetString("INVALID_FILE_SIZE", resourceCulture);
+            }
+        }
     }
 }
