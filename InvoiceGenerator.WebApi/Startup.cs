@@ -32,7 +32,7 @@ namespace InvoiceGenerator.WebApi
         {
             //services.AddCors();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
-            services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
+            //services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
             services.RegisterDependencies(_configuration);
 
             if (_environment.IsDevelopment() || _environment.IsStaging())
@@ -63,18 +63,18 @@ namespace InvoiceGenerator.WebApi
         {
             builder.UseSerilogRequestLogging();
 
-            builder.UseHttpsRedirection();
-            builder.UseHsts();
+            //builder.UseHttpsRedirection();
+            //builder.UseHsts();
             
             builder.UseForwardedHeaders();
             //builder.ApplyCorsPolicy();
 
-            builder.UseResponseCompression();
-            builder.UseRouting();
-
-            builder.UseMiddleware<Exceptions>();
-            builder.UseMiddleware<CacheControl>();
+            //builder.UseMiddleware<Exceptions>();
+            //builder.UseMiddleware<CacheControl>();
             //builder.UseMiddleware<DomainControl>();
+
+            //builder.UseResponseCompression();
+            builder.UseRouting();
            
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
 
