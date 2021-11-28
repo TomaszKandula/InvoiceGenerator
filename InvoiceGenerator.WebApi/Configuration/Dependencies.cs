@@ -85,7 +85,7 @@
                 options.DefaultRequestHeaders.Add("Accept", "application/json");
                 options.Timeout = TimeSpan.FromMinutes(5);
                 options.DefaultRequestHeaders.ConnectionClose = true;
-            }).AddPolicyHandler(PolicyHandler.SetupRetry());
+            }).AddPolicyHandler(PollyPolicyHandler.SetupRetry());
         }
     }
 }
