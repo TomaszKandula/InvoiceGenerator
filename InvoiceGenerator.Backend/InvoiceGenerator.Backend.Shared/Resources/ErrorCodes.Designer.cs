@@ -158,5 +158,11 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_FILE_SIZE", resourceCulture);
             }
         }
+        
+        public static string INVALID_API_VERSION {
+            get {
+                return ResourceManager.GetString("INVALID_API_VERSION", resourceCulture);
+            }
+        }
     }
 }
