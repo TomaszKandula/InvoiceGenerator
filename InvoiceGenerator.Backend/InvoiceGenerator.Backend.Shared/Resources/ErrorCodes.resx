@@ -75,4 +75,7 @@
     <data name="INVALID_FILE_SIZE" xml:space="preserve">
         <value>File size is too large</value>
     </data>
+    <data name="INVALID_API_VERSION" xml:space="preserve">
+        <value>Provided API version seems to be invalid</value>
+    </data>
 </root>
