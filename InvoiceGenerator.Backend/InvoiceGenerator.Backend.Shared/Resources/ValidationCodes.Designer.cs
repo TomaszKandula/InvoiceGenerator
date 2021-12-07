@@ -56,5 +56,11 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_VAT", resourceCulture);
             }
         }
+        
+        public static string INVALID_FILE_SIZE {
+            get {
+                return ResourceManager.GetString("INVALID_FILE_SIZE", resourceCulture);
+            }
+        }
     }
 }
