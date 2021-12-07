@@ -24,4 +24,7 @@
     <data name="INVALID_VAT" xml:space="preserve">
         <value>VAT number validation failed</value>
     </data>
+    <data name="INVALID_FILE_SIZE" xml:space="preserve">
+        <value>File size is too large</value>
+    </data>
 </root>
