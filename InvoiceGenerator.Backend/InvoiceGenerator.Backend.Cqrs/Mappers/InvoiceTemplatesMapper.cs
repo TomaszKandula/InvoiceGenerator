@@ -1,5 +1,7 @@
+#nullable enable
 namespace InvoiceGenerator.Backend.Cqrs.Mappers
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
     using Requests;
@@ -23,12 +25,15 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
             PrivateKey = model.PrivateKey,
             Name = model.Name,
             Data = GetFileContent(model.Data),
-            DataType = model.Data.ContentType,
+            DataType = model.Data != null ? model.Data?.ContentType : string.Empty,
             Description = model.Description
         };
 
-        private static byte[] GetFileContent(IFormFile file)
+        private static byte[] GetFileContent(IFormFile? file)
         {
+            if (file is null)
+                return Array.Empty<byte>();
+
             using var fileStream = file.OpenReadStream();
 
             var bytes = new byte[file.Length];
