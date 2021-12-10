@@ -14,6 +14,8 @@
 
         public virtual DbSet<UserDetails> UserDetails { get; set; }
 
+        public virtual DbSet<UserBankData> UserBankData { get; set; }
+
         public virtual DbSet<AllowDomains> AllowDomains { get; set; }
 
         public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
