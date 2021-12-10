@@ -35,6 +35,8 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         public ICollection<UserDetails> UserDetails { get; set; } = new HashSet<UserDetails>();
 
+        public ICollection<UserBankData> UserBankData { get; set; } = new HashSet<UserBankData>();
+
         public ICollection<AllowDomains> AllowDomains { get; set; } = new HashSet<AllowDomains>();
 
         public ICollection<IssuedInvoices> IssuedInvoices { get; set; } = new HashSet<IssuedInvoices>();
