@@ -8,7 +8,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
     using Shared.Dto;
 
     [ExcludeFromCodeCoverage]
-    public static class InvoiceTemplatesMapper
+    public static class TemplatesMapper
     {
         public static ReplaceInvoiceTemplateCommandRequest MapToReplaceInvoiceTemplateCommandRequest(
             ReplaceInvoiceTemplateDto model) => new()
@@ -27,6 +27,13 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
             Data = GetFileContent(model.Data),
             DataType = model.Data != null ? model.Data?.ContentType : string.Empty,
             Description = model.Description
+        };
+
+        public static RemoveInvoiceTemplateCommandRequest MapToRemoveInvoiceTemplateCommandRequest(
+            RemoveInvoiceTemplateDto model) => new()
+        {
+            PrivateKey = model.PrivateKey,
+            Id = model.Id
         };
 
         private static byte[] GetFileContent(IFormFile? file)

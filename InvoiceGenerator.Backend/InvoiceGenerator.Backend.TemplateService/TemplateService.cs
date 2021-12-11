@@ -31,7 +31,9 @@ namespace InvoiceGenerator.Backend.TemplateService
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns></returns>
         public async Task<IEnumerable<InvoiceTemplateInfo>> GetInvoiceTemplates(CancellationToken cancellationToken = default)
-            => await _databaseContext.InvoiceTemplates.Select(templates => new InvoiceTemplateInfo
+            => await _databaseContext.InvoiceTemplates
+                .Where(templates => !templates.IsDeleted)
+                .Select(templates => new InvoiceTemplateInfo
                 {
                     Id = templates.Id,
                     Name = templates.Name
@@ -50,7 +52,7 @@ namespace InvoiceGenerator.Backend.TemplateService
             var template = await _databaseContext.InvoiceTemplates
                 .AsNoTracking()
                 .Where(templates => templates.Id == templateId)
-                .Where(templates => templates.IsDeleted == false)
+                .Where(templates => !templates.IsDeleted)
                 .Select(templates => new InvoiceTemplateData
                 {
                     ContentData = templates.Data,
@@ -74,7 +76,7 @@ namespace InvoiceGenerator.Backend.TemplateService
         {
             var template = await _databaseContext.InvoiceTemplates
                 .Where(templates => templates.Id == templateId)
-                .Where(templates => templates.IsDeleted == false)
+                .Where(templates => !templates.IsDeleted)
                 .FirstOrDefaultAsync(cancellationToken);
 
             if (template == null)
@@ -98,7 +100,7 @@ namespace InvoiceGenerator.Backend.TemplateService
 
             var template = await _databaseContext.InvoiceTemplates
                 .Where(templates => templates.Id == templateId)
-                .Where(templates => templates.IsDeleted == false)
+                .Where(templates => !templates.IsDeleted)
                 .FirstOrDefaultAsync(cancellationToken);
 
             if (template == null)
