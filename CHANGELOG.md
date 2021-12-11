@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.1.0...v1.2.0) (2021-12-11)
+
+
+### Features
+
+* add new endpoints ([a05f1ee](https://github.com/TomaszKandula/InvoiceGenerator/commit/a05f1ee7f82e3b40c2e3fa2c73cf93aa2a556f7a))
+* split domains endpoints into separate endpoints under new controllers ([b44c363](https://github.com/TomaszKandula/InvoiceGenerator/commit/b44c36369047213ecdb2fee6e1f8a45c6576cd47))
+
 # [1.1.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.0.0...v1.1.0) (2021-12-11)
 
 
