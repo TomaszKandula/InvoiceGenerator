@@ -7,7 +7,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batch
     using Shared.Dto.Models;
 
     [ExcludeFromCodeCoverage]
-    public class OrderInvoiceBatchCommandRequest : RequestProperties, IRequest<OrderInvoiceBatchCommandResponse>
+    public class OrderInvoiceBatchCommand : RequestProperties, IRequest<OrderInvoiceBatchCommandResult>
     {
         public IEnumerable<OrderDetailBase> OrderDetails { get; set; }
     }

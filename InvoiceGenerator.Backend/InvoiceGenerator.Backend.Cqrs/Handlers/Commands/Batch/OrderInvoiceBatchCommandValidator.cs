@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batch
     using Shared.Resources;
 
     [ExcludeFromCodeCoverage]
-    public class OrderInvoiceBatchCommandValidator : AbstractValidator<OrderInvoiceBatchCommandRequest>
+    public class OrderInvoiceBatchCommandValidator : AbstractValidator<OrderInvoiceBatchCommand>
     {
         public OrderInvoiceBatchCommandValidator()
         {

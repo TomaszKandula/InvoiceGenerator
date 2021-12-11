@@ -3,7 +3,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates
     using FluentValidation;
     using Shared.Resources;
 
-    public class GetInvoiceTemplatesQueryValidator : AbstractValidator<GetInvoiceTemplatesQueryRequest>
+    public class GetInvoiceTemplatesQueryValidator : AbstractValidator<GetInvoiceTemplatesQuery>
     {
         public GetInvoiceTemplatesQueryValidator()
         {

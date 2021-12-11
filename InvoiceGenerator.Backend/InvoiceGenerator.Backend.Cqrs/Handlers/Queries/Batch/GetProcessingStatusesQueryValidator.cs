@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using Shared.Resources;
 
     [ExcludeFromCodeCoverage]
-    public class GetProcessingStatusesQueryValidator : AbstractValidator<GetProcessingStatusesQueryRequest>
+    public class GetProcessingStatusesQueryValidator : AbstractValidator<GetProcessingStatusesQuery>
     {
         public GetProcessingStatusesQueryValidator()
         {

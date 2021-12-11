@@ -20,16 +20,16 @@ namespace InvoiceGenerator.WebApi.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<InvoiceTemplateInfo>), StatusCodes.Status200OK)]
         public async Task<IEnumerable<InvoiceTemplateInfo>> GetInvoiceTemplates([FromQuery] string privateKey) 
-            => await Mediator.Send(new GetInvoiceTemplatesQueryRequest { PrivateKey = privateKey });
+            => await Mediator.Send(new GetInvoiceTemplatesQuery { PrivateKey = privateKey });
 
         [HttpGet("{id:guid}")]
         [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
         public async Task<FileContentResult> GetInvoiceTemplate([FromRoute] Guid id, [FromQuery] string privateKey) 
-            => await Mediator.Send(new GetInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = id});
+            => await Mediator.Send(new GetInvoiceTemplateQuery { PrivateKey = privateKey, Id = id});
 
         [HttpPost]
-        [ProducesResponseType(typeof(AddInvoiceTemplateCommandResponse), StatusCodes.Status200OK)]
-        public async Task<AddInvoiceTemplateCommandResponse> AddInvoiceTemplate([FromForm] AddInvoiceTemplateDto payload)
+        [ProducesResponseType(typeof(AddInvoiceTemplateCommandResult), StatusCodes.Status200OK)]
+        public async Task<AddInvoiceTemplateCommandResult> AddInvoiceTemplate([FromForm] AddInvoiceTemplateDto payload)
             => await Mediator.Send(TemplatesMapper.MapToAddInvoiceTemplateCommandRequest(payload));
 
         [HttpPost]

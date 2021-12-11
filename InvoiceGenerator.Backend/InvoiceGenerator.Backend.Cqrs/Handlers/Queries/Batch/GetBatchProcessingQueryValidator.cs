@@ -3,7 +3,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using FluentValidation;
     using Shared.Resources;
 
-    public class GetBatchProcessingQueryValidator : AbstractValidator<GetBatchProcessingQueryRequest>
+    public class GetBatchProcessingQueryValidator : AbstractValidator<GetBatchProcessingQuery>
     {
         public GetBatchProcessingQueryValidator()
         {

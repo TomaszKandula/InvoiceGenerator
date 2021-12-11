@@ -6,7 +6,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using Shared.Models;
 
     [ExcludeFromCodeCoverage]
-    public class GetCurrencyCodesQueryRequest : RequestProperties, IRequest<IEnumerable<GetCurrencyCodesQueryResponse>>
+    public class GetCurrencyCodesQuery : RequestProperties, IRequest<IEnumerable<GetCurrencyCodesQueryResult>>
     {
         public string FilterBy { get; set; }
     }

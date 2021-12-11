@@ -3,7 +3,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class GetCountryCodesQueryResponse
+    public class GetCountryCodesQueryResult
     {
         public int SystemCode { get; set; }
 

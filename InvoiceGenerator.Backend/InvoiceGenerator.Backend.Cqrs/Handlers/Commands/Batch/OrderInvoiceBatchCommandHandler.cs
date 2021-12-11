@@ -16,7 +16,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batch
     using BatchService.Models;
     using Core.Services.DateTimeService;
 
-    public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchCommandRequest, OrderInvoiceBatchCommandResponse>
+    public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchCommand, OrderInvoiceBatchCommandResult>
     {
         private readonly DatabaseContext _databaseContext;
         
@@ -38,7 +38,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batch
             _dateTimeService = dateTimeService;
         }
 
-        public override async Task<OrderInvoiceBatchCommandResponse> Handle(OrderInvoiceBatchCommandRequest request, CancellationToken cancellationToken)
+        public override async Task<OrderInvoiceBatchCommandResult> Handle(OrderInvoiceBatchCommand request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
@@ -118,7 +118,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batch
             }
 
             var result = await _batchService.OrderInvoiceBatchProcessing(order, cancellationToken);
-            return new OrderInvoiceBatchCommandResponse
+            return new OrderInvoiceBatchCommandResult
             {
                 ProcessBatchKey = result
             };

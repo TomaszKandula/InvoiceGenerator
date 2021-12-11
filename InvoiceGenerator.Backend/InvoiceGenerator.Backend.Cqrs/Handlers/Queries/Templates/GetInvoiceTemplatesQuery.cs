@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates
     using Shared.Models;
     using MediatR;
 
-    public class GetInvoiceTemplatesQueryRequest : RequestProperties, IRequest<IEnumerable<InvoiceTemplateInfo>>
+    public class GetInvoiceTemplatesQuery : RequestProperties, IRequest<IEnumerable<InvoiceTemplateInfo>>
     {
     }
 }

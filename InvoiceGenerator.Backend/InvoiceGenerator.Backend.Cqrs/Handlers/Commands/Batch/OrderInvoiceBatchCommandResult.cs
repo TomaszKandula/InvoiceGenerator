@@ -4,7 +4,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batch
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class OrderInvoiceBatchCommandResponse
+    public class OrderInvoiceBatchCommandResult
     {
         public Guid ProcessBatchKey { get; set; }
     }

@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using Shared.Resources;
 
     [ExcludeFromCodeCoverage]
-    public class GetPaymentStatusesQueryValidator : AbstractValidator<GetPaymentStatusesQueryRequest>
+    public class GetPaymentStatusesQueryValidator : AbstractValidator<GetPaymentStatusesQuery>
     {
         public GetPaymentStatusesQueryValidator()
         {

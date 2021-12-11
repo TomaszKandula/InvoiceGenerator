@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates
     using Shared.Models;
     using MediatR;
 
-    public class GetInvoiceTemplateQueryRequest : RequestProperties, IRequest<FileContentResult>
+    public class GetInvoiceTemplateQuery : RequestProperties, IRequest<FileContentResult>
     {
         public Guid Id { get; set; }        
     }

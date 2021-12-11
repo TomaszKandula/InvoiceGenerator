@@ -3,7 +3,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     using Shared.Models;
     using MediatR;
 
-    public class AddInvoiceTemplateCommandRequest : RequestProperties, IRequest<AddInvoiceTemplateCommandResponse>
+    public class AddInvoiceTemplateCommand : RequestProperties, IRequest<AddInvoiceTemplateCommandResult>
     {
         public string Name { get; set; }
 

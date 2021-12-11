@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates
     using Core.Exceptions;
     using Shared.Resources;
 
-    public class GetInvoiceTemplateQueryHandler : RequestHandler<GetInvoiceTemplateQueryRequest, FileContentResult>
+    public class GetInvoiceTemplateQueryHandler : RequestHandler<GetInvoiceTemplateQuery, FileContentResult>
     {
         private readonly ITemplateService _templateService;
         
@@ -21,7 +21,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates
             _userService = userService;
         }
 
-        public override async Task<FileContentResult> Handle(GetInvoiceTemplateQueryRequest request, CancellationToken cancellationToken)
+        public override async Task<FileContentResult> Handle(GetInvoiceTemplateQuery request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);

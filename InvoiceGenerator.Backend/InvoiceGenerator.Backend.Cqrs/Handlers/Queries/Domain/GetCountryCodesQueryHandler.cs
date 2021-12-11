@@ -11,13 +11,13 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using Shared.Resources;
     using Backend.Domain.Enums;
 
-    public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQueryRequest, IEnumerable<GetCountryCodesQueryResponse>>
+    public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, IEnumerable<GetCountryCodesQueryResult>>
     {
         private readonly IUserService _userService;
 
         public GetCountryCodesQueryHandler(IUserService userService) => _userService = userService;
 
-        public override async Task<IEnumerable<GetCountryCodesQueryResponse>> Handle(GetCountryCodesQueryRequest request, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<GetCountryCodesQueryResult>> Handle(GetCountryCodesQuery request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
@@ -26,7 +26,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
 
             var codes = Enum.GetValues<CountryCodes>();
             var result = codes
-                .Select((countryCodes, index) => new GetCountryCodesQueryResponse
+                .Select((countryCodes, index) => new GetCountryCodesQueryResult
                 {
                     SystemCode = index,
                     Country = countryCodes.ToString().ToUpper()

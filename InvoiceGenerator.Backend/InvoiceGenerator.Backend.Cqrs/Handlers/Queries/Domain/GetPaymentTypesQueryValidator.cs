@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using FluentValidation;
 
     [ExcludeFromCodeCoverage]
-    public class GetPaymentTypesQueryValidator : AbstractValidator<GetPaymentTypesQueryRequest>
+    public class GetPaymentTypesQueryValidator : AbstractValidator<GetPaymentTypesQuery>
     {
         public GetPaymentTypesQueryValidator()
         {

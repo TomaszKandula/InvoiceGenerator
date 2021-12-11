@@ -3,10 +3,10 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class GetPaymentTypesQueryResponse
+    public class GetCurrencyCodesQueryResult
     {
         public int SystemCode { get; set; }
 
-        public string PaymentType { get; set; }
+        public string Currency { get; set; }
     }
 }

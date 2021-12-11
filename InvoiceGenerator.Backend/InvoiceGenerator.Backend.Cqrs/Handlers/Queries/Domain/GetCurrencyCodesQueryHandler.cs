@@ -11,13 +11,13 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using Shared.Resources;
     using Backend.Domain.Enums;
 
-    public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQueryRequest, IEnumerable<GetCurrencyCodesQueryResponse>>
+    public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery, IEnumerable<GetCurrencyCodesQueryResult>>
     {
         private readonly IUserService _userService;
 
         public GetCurrencyCodesQueryHandler(IUserService userService) => _userService = userService;
 
-        public override async Task<IEnumerable<GetCurrencyCodesQueryResponse>> Handle(GetCurrencyCodesQueryRequest request, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<GetCurrencyCodesQueryResult>> Handle(GetCurrencyCodesQuery request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
@@ -26,7 +26,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
 
             var codes = Enum.GetValues<CurrencyCodes>();
             var result = codes
-                .Select((currencyCodes, index) => new GetCurrencyCodesQueryResponse
+                .Select((currencyCodes, index) => new GetCurrencyCodesQueryResult
                 {
                     SystemCode = index,
                     Currency = currencyCodes.ToString().ToUpper()

@@ -14,28 +14,28 @@ namespace InvoiceGenerator.WebApi.Controllers
         public DomainController(IMediator mediator) : base(mediator) { }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<GetCountryCodesQueryResponse>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetCountryCodesQueryResponse>> GetCountryCodes([FromQuery] string privateKey, string country) =>
-            await Mediator.Send(new GetCountryCodesQueryRequest { PrivateKey = privateKey, FilterBy = country });
+        [ProducesResponseType(typeof(IEnumerable<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCodes([FromQuery] string privateKey, string country) =>
+            await Mediator.Send(new GetCountryCodesQuery { PrivateKey = privateKey, FilterBy = country });
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<GetCurrencyCodesQueryResponse>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetCurrencyCodesQueryResponse>> GetCurrencyCodes([FromQuery] string privateKey, string currency) =>
-            await Mediator.Send(new GetCurrencyCodesQueryRequest { PrivateKey = privateKey, FilterBy = currency });
+        [ProducesResponseType(typeof(IEnumerable<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCodes([FromQuery] string privateKey, string currency) =>
+            await Mediator.Send(new GetCurrencyCodesQuery { PrivateKey = privateKey, FilterBy = currency });
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<GetPaymentTypesQueryResponse>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetPaymentTypesQueryResponse>> GetPaymentTypes([FromQuery] string privateKey, string type) =>
-            await Mediator.Send(new GetPaymentTypesQueryRequest { PrivateKey = privateKey, FilterBy = type });
+        [ProducesResponseType(typeof(IEnumerable<GetPaymentTypesQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetPaymentTypesQueryResult>> GetPaymentTypes([FromQuery] string privateKey, string type) =>
+            await Mediator.Send(new GetPaymentTypesQuery { PrivateKey = privateKey, FilterBy = type });
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusesQueryResponse>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetPaymentStatusesQueryResponse>> GetPaymentStatuses([FromQuery] string privateKey, string status) =>
-            await Mediator.Send(new GetPaymentStatusesQueryRequest { PrivateKey = privateKey, FilterBy = status });
+        [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusesQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetPaymentStatusesQueryResult>> GetPaymentStatuses([FromQuery] string privateKey, string status) =>
+            await Mediator.Send(new GetPaymentStatusesQuery { PrivateKey = privateKey, FilterBy = status });
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<GetProcessingStatusesQueryResponse>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetProcessingStatusesQueryResponse>> GetProcessingStatuses([FromQuery] string privateKey, string status) =>
-            await Mediator.Send(new GetProcessingStatusesQueryRequest { PrivateKey = privateKey, FilterBy = status });
+        [ProducesResponseType(typeof(IEnumerable<GetProcessingStatusesQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetProcessingStatusesQueryResult>> GetProcessingStatuses([FromQuery] string privateKey, string status) =>
+            await Mediator.Send(new GetProcessingStatusesQuery { PrivateKey = privateKey, FilterBy = status });
     }
 }

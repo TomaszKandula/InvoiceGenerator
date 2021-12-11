@@ -10,7 +10,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     using TemplateService.Models;
     using MediatR;
 
-    public class ReplaceInvoiceTemplateCommandHandler : Cqrs.RequestHandler<ReplaceInvoiceTemplateCommandRequest, Unit>
+    public class ReplaceInvoiceTemplateCommandHandler : Cqrs.RequestHandler<ReplaceInvoiceTemplateCommand, Unit>
     {
         private readonly ITemplateService _templateService;
 
@@ -22,7 +22,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
             _userService = userService;
         }
 
-        public override async Task<Unit> Handle(ReplaceInvoiceTemplateCommandRequest request, CancellationToken cancellationToken)
+        public override async Task<Unit> Handle(ReplaceInvoiceTemplateCommand request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);

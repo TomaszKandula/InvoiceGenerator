@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using Core.Exceptions;
     using Shared.Resources;
 
-    public class GetIssuedInvoiceQueryHandler : RequestHandler<GetIssuedInvoiceQueryRequest, FileContentResult>
+    public class GetIssuedInvoiceQueryHandler : RequestHandler<GetIssuedInvoiceQuery, FileContentResult>
     {
         private readonly IBatchService _batchService;
         
@@ -21,7 +21,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
             _userService = userService;
         }
 
-        public override async Task<FileContentResult> Handle(GetIssuedInvoiceQueryRequest request, CancellationToken cancellationToken)
+        public override async Task<FileContentResult> Handle(GetIssuedInvoiceQuery request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);

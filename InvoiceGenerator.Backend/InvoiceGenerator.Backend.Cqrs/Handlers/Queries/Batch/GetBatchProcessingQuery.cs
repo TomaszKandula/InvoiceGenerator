@@ -4,7 +4,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using MediatR;
     using Shared.Models;
 
-    public class GetBatchProcessingQueryRequest : RequestProperties, IRequest<GetBatchProcessingQueryResponse>
+    public class GetBatchProcessingQuery : RequestProperties, IRequest<GetBatchProcessingQueryResult>
     {
         public Guid ProcessBatchKey { get; set; }        
     }

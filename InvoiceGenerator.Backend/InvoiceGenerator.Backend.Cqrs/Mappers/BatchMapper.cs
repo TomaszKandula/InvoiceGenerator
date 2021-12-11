@@ -7,7 +7,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
     [ExcludeFromCodeCoverage]
     public static class BatchMapper
     {
-        public static OrderInvoiceBatchCommandRequest MapToOrderInvoiceBatchCommandRequest(
+        public static OrderInvoiceBatchCommand MapToOrderInvoiceBatchCommandRequest(
             OrderInvoiceBatchDto model) => new()
         {
             PrivateKey = model.PrivateKey,

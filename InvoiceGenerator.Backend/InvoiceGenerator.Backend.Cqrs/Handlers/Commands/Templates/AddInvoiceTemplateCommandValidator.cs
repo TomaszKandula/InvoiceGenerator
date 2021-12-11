@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     using Shared.Resources;
 
     [ExcludeFromCodeCoverage]
-    public class AddInvoiceTemplateCommandValidator : AbstractValidator<AddInvoiceTemplateCommandRequest>
+    public class AddInvoiceTemplateCommandValidator : AbstractValidator<AddInvoiceTemplateCommand>
     {
         public AddInvoiceTemplateCommandValidator()
         {

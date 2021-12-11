@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     using Shared.Resources;
     using TemplateService.Models;
 
-    public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplateCommandRequest, AddInvoiceTemplateCommandResponse>
+    public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplateCommand, AddInvoiceTemplateCommandResult>
     {
         private readonly ITemplateService _templateService;
 
@@ -21,7 +21,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
             _userService = userService;
         }
 
-        public override async Task<AddInvoiceTemplateCommandResponse> Handle(AddInvoiceTemplateCommandRequest request, CancellationToken cancellationToken)
+        public override async Task<AddInvoiceTemplateCommandResult> Handle(AddInvoiceTemplateCommand request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
@@ -40,7 +40,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
             };
 
             var result = await _templateService.AddInvoiceTemplate(newInvoiceTemplate, cancellationToken);
-            return new AddInvoiceTemplateCommandResponse { TemplateId = result };
+            return new AddInvoiceTemplateCommandResult { TemplateId = result };
         }
 
         private static void VerifyArguments(bool isKeyValid, Guid? userId)

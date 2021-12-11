@@ -3,7 +3,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     using FluentValidation;
     using Shared.Resources;
 
-    public class RemoveInvoiceTemplateCommandValidator : AbstractValidator<RemoveInvoiceTemplateCommandRequest>
+    public class RemoveInvoiceTemplateCommandValidator : AbstractValidator<RemoveInvoiceTemplateCommand>
     {
         public RemoveInvoiceTemplateCommandValidator()
         {

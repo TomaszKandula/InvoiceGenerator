@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using Shared.Resources;
 
     [ExcludeFromCodeCoverage]
-    public class GetCountryCodesQueryValidator : AbstractValidator<GetCountryCodesQueryRequest>
+    public class GetCountryCodesQueryValidator : AbstractValidator<GetCountryCodesQuery>
     {
         public GetCountryCodesQueryValidator()
         {

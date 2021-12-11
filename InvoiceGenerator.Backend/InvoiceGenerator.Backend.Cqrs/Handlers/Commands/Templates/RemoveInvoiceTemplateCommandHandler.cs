@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     using Shared.Resources;
     using MediatR;
 
-    public class RemoveInvoiceTemplateCommandHandler : Cqrs.RequestHandler<RemoveInvoiceTemplateCommandRequest, Unit>
+    public class RemoveInvoiceTemplateCommandHandler : Cqrs.RequestHandler<RemoveInvoiceTemplateCommand, Unit>
     {
         private readonly ITemplateService _templateService;
         
@@ -21,7 +21,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
             _userService = userService;
         }
 
-        public override async Task<Unit> Handle(RemoveInvoiceTemplateCommandRequest request, CancellationToken cancellationToken)
+        public override async Task<Unit> Handle(RemoveInvoiceTemplateCommand request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);

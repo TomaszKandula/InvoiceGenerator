@@ -8,7 +8,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using Core.Exceptions;
     using Shared.Resources;
 
-    public class GetBatchProcessingQueryHandler : RequestHandler<GetBatchProcessingQueryRequest, GetBatchProcessingQueryResponse>
+    public class GetBatchProcessingQueryHandler : RequestHandler<GetBatchProcessingQuery, GetBatchProcessingQueryResult>
     {
         private readonly IBatchService _batchService;
 
@@ -20,7 +20,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
             _userService = userService;
         }
         
-        public override async Task<GetBatchProcessingQueryResponse> Handle(GetBatchProcessingQueryRequest request, CancellationToken cancellationToken)
+        public override async Task<GetBatchProcessingQueryResult> Handle(GetBatchProcessingQuery request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
@@ -28,7 +28,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
             VerifyArguments(isKeyValid, userId);
 
             var result = await _batchService.GetBatchInvoiceProcessingStatus(request.ProcessBatchKey, cancellationToken);
-            return new GetBatchProcessingQueryResponse
+            return new GetBatchProcessingQueryResult
             {
                 ProcessingStatus = result.Status,
                 BatchProcessingTime = result.BatchProcessingTime,
