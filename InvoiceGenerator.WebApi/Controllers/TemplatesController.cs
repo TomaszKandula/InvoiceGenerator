@@ -37,9 +37,9 @@ namespace InvoiceGenerator.WebApi.Controllers
         public async Task<Unit> ReplaceInvoiceTemplate([FromForm] ReplaceInvoiceTemplateDto payload) 
             => await Mediator.Send(TemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
 
-        [HttpPost("{id:guid}")]
+        [HttpPost]
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-        public async Task<Unit> RemoveInvoiceTemplate([FromRoute] Guid id, [FromQuery] string privateKey) 
-            => await Mediator.Send(new RemoveInvoiceTemplateCommandRequest { PrivateKey = privateKey, Id = id });
+        public async Task<Unit> RemoveInvoiceTemplate([FromBody] RemoveInvoiceTemplateDto payload) 
+            => await Mediator.Send(TemplatesMapper.MapToRemoveInvoiceTemplateCommandRequest(payload));
     }
 }

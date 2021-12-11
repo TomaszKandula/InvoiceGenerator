@@ -29,6 +29,13 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
             Description = model.Description
         };
 
+        public static RemoveInvoiceTemplateCommandRequest MapToRemoveInvoiceTemplateCommandRequest(
+            RemoveInvoiceTemplateDto model) => new()
+        {
+            PrivateKey = model.PrivateKey,
+            Id = model.Id
+        };
+
         private static byte[] GetFileContent(IFormFile? file)
         {
             if (file is null)
