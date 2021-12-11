@@ -8,7 +8,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
     using Shared.Dto;
 
     [ExcludeFromCodeCoverage]
-    public static class InvoiceTemplatesMapper
+    public static class TemplatesMapper
     {
         public static ReplaceInvoiceTemplateCommandRequest MapToReplaceInvoiceTemplateCommandRequest(
             ReplaceInvoiceTemplateDto model) => new()

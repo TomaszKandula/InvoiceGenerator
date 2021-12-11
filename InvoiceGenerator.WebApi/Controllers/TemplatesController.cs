@@ -30,12 +30,12 @@ namespace InvoiceGenerator.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(AddInvoiceTemplateCommandResponse), StatusCodes.Status200OK)]
         public async Task<AddInvoiceTemplateCommandResponse> AddInvoiceTemplate([FromForm] AddInvoiceTemplateDto payload)
-            => await Mediator.Send(InvoiceTemplatesMapper.MapToAddInvoiceTemplateCommandRequest(payload));
+            => await Mediator.Send(TemplatesMapper.MapToAddInvoiceTemplateCommandRequest(payload));
 
         [HttpPost]
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         public async Task<Unit> ReplaceInvoiceTemplate([FromForm] ReplaceInvoiceTemplateDto payload) 
-            => await Mediator.Send(InvoiceTemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
+            => await Mediator.Send(TemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
 
         [HttpPost("{id:guid}")]
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
