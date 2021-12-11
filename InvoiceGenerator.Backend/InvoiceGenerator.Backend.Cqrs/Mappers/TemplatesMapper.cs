@@ -4,13 +4,13 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
-    using Requests;
     using Shared.Dto;
+    using Handlers.Commands.Templates;
 
     [ExcludeFromCodeCoverage]
     public static class TemplatesMapper
     {
-        public static ReplaceInvoiceTemplateCommandRequest MapToReplaceInvoiceTemplateCommandRequest(
+        public static ReplaceInvoiceTemplateCommand MapToReplaceInvoiceTemplateCommandRequest(
             ReplaceInvoiceTemplateDto model) => new()
         {
             PrivateKey = model.PrivateKey,
@@ -19,7 +19,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
             DataType = model.DataType
         };
 
-        public static AddInvoiceTemplateCommandRequest MapToAddInvoiceTemplateCommandRequest(
+        public static AddInvoiceTemplateCommand MapToAddInvoiceTemplateCommandRequest(
             AddInvoiceTemplateDto model) => new()
         {
             PrivateKey = model.PrivateKey,
@@ -29,7 +29,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
             Description = model.Description
         };
 
-        public static RemoveInvoiceTemplateCommandRequest MapToRemoveInvoiceTemplateCommandRequest(
+        public static RemoveInvoiceTemplateCommand MapToRemoveInvoiceTemplateCommandRequest(
             RemoveInvoiceTemplateDto model) => new()
         {
             PrivateKey = model.PrivateKey,
