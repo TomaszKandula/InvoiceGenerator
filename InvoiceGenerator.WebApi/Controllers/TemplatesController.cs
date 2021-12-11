@@ -22,24 +22,24 @@ namespace InvoiceGenerator.WebApi.Controllers
         public async Task<IEnumerable<InvoiceTemplateInfo>> GetInvoiceTemplates([FromQuery] string privateKey) 
             => await Mediator.Send(new GetInvoiceTemplatesQueryRequest { PrivateKey = privateKey });
 
-        [HttpGet]
+        [HttpGet("{id:guid}")]
         [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
-        public async Task<FileContentResult> GetInvoiceTemplate([FromQuery] string privateKey, Guid templateId) 
-            => await Mediator.Send(new GetInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = templateId});
+        public async Task<FileContentResult> GetInvoiceTemplate([FromRoute] Guid id, [FromQuery] string privateKey) 
+            => await Mediator.Send(new GetInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = id});
 
         [HttpPost]
         [ProducesResponseType(typeof(AddInvoiceTemplateCommandResponse), StatusCodes.Status200OK)]
         public async Task<AddInvoiceTemplateCommandResponse> AddInvoiceTemplate([FromForm] AddInvoiceTemplateDto payload)
-            => await Mediator.Send(InvoiceTemplatesMapper.MapToAddInvoiceTemplateCommandRequest(payload));
+            => await Mediator.Send(TemplatesMapper.MapToAddInvoiceTemplateCommandRequest(payload));
 
         [HttpPost]
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         public async Task<Unit> ReplaceInvoiceTemplate([FromForm] ReplaceInvoiceTemplateDto payload) 
-            => await Mediator.Send(InvoiceTemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
+            => await Mediator.Send(TemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
 
         [HttpPost]
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-        public async Task<Unit> RemoveInvoiceTemplate([FromQuery] string privateKey, Guid templateId) 
-            => await Mediator.Send(new RemoveInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = templateId });
+        public async Task<Unit> RemoveInvoiceTemplate([FromBody] RemoveInvoiceTemplateDto payload) 
+            => await Mediator.Send(TemplatesMapper.MapToRemoveInvoiceTemplateCommandRequest(payload));
     }
 }

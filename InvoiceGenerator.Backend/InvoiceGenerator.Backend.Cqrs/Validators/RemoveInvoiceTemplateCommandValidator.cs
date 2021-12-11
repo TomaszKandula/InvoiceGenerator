@@ -4,9 +4,9 @@ namespace InvoiceGenerator.Backend.Cqrs.Validators
     using Requests;
     using Shared.Resources;
 
-    public class RemoveInvoiceTemplateQueryValidator : AbstractValidator<RemoveInvoiceTemplateQueryRequest>
+    public class RemoveInvoiceTemplateCommandValidator : AbstractValidator<RemoveInvoiceTemplateCommandRequest>
     {
-        public RemoveInvoiceTemplateQueryValidator()
+        public RemoveInvoiceTemplateCommandValidator()
         {
             RuleFor(request => request.PrivateKey)
                 .NotEmpty()

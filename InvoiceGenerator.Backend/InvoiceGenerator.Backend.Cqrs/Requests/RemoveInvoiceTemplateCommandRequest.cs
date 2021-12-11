@@ -4,7 +4,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Requests
     using Shared.Models;
     using MediatR;
 
-    public class RemoveInvoiceTemplateQueryRequest : RequestProperties, IRequest<Unit>
+    public class RemoveInvoiceTemplateCommandRequest : RequestProperties, IRequest<Unit>
     {
         public Guid Id { get; set; }
     }
