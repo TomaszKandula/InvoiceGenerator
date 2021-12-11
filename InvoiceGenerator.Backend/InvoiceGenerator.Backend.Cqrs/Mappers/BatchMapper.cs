@@ -1,13 +1,13 @@
 namespace InvoiceGenerator.Backend.Cqrs.Mappers
 {
     using System.Diagnostics.CodeAnalysis;
-    using Requests;
     using Shared.Dto;
+    using Handlers.Commands.Batch;
 
     [ExcludeFromCodeCoverage]
     public static class BatchMapper
     {
-        public static OrderInvoiceBatchCommandRequest MapToOrderInvoiceBatchCommandRequest(
+        public static OrderInvoiceBatchCommand MapToOrderInvoiceBatchCommandRequest(
             OrderInvoiceBatchDto model) => new()
         {
             PrivateKey = model.PrivateKey,
