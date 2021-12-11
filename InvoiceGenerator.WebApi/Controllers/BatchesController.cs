@@ -22,9 +22,9 @@ namespace InvoiceGenerator.WebApi.Controllers
             => await Mediator.Send(BatchMapper.MapToOrderInvoiceBatchCommandRequest(payload));
 
         [HttpGet]
-        [ProducesResponseType(typeof(GetBatchProcessingQueryResult), StatusCodes.Status200OK)]
-        public async Task<GetBatchProcessingQueryResult> GetBatchProcessingStatus([FromQuery] string privateKey, Guid processBatchKey) =>
-            await Mediator.Send(new GetBatchProcessingQuery { PrivateKey = privateKey, ProcessBatchKey = processBatchKey });
+        [ProducesResponseType(typeof(GetBatchProcessingStatusQueryResult), StatusCodes.Status200OK)]
+        public async Task<GetBatchProcessingStatusQueryResult> GetBatchProcessingStatus([FromQuery] string privateKey, Guid processBatchKey) =>
+            await Mediator.Send(new GetBatchProcessingStatusQuery { PrivateKey = privateKey, ProcessBatchKey = processBatchKey });
 
         [HttpGet]
         [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]

@@ -5,7 +5,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches
     using Backend.Domain.Enums;
 
     [ExcludeFromCodeCoverage]
-    public class GetBatchProcessingQueryResult
+    public class GetBatchProcessingStatusQueryResult
     {
         public ProcessingStatuses ProcessingStatus { get; set; }
 
