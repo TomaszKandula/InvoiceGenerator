@@ -40,6 +40,6 @@ namespace InvoiceGenerator.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         public async Task<Unit> RemoveInvoiceTemplate([FromQuery] string privateKey, Guid templateId) 
-            => await Mediator.Send(new RemoveInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = templateId });
+            => await Mediator.Send(new RemoveInvoiceTemplateCommandRequest { PrivateKey = privateKey, Id = templateId });
     }
 }
