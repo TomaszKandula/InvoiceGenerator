@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.0.0...v1.1.0) (2021-12-11)
+
+
+### Bug Fixes
+
+* add missing condition to filter out soft deleted items ([2069d31](https://github.com/TomaszKandula/InvoiceGenerator/commit/2069d3181789277430900345c92d7205a93a7579))
+* rename argument, place it in endpoint route ([068489a](https://github.com/TomaszKandula/InvoiceGenerator/commit/068489aff22e9a85d65e8d233a7528f1c41feeec))
+
+
+### Features
+
+* add new DTO ([c86a238](https://github.com/TomaszKandula/InvoiceGenerator/commit/c86a238e14bf98d2ffe1cab9077596a4ff87b0b7))
+
 # 1.0.0 (2021-12-11)
 
 
