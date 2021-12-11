@@ -11,34 +11,34 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments
     using Shared.Resources;
     using Backend.Domain.Enums;
 
-    public class GetPaymentStatusesQueryHandler : RequestHandler<GetPaymentStatusesQuery, IEnumerable<GetPaymentStatusesQueryResult>>
+    public class GetPaymentTypeListQueryHandler : RequestHandler<GetPaymentTypeListQuery, IEnumerable<GetPaymentTypeListQueryResult>>
     {
         private readonly IUserService _userService;
-        
-        public GetPaymentStatusesQueryHandler(IUserService userService) => _userService = userService;
 
-        public override async Task<IEnumerable<GetPaymentStatusesQueryResult>> Handle(GetPaymentStatusesQuery request, CancellationToken cancellationToken)
+        public GetPaymentTypeListQueryHandler(IUserService userService) => _userService = userService;
+        
+        public override async Task<IEnumerable<GetPaymentTypeListQueryResult>> Handle(GetPaymentTypeListQuery request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
 
             VerifyArguments(isKeyValid, userId);
             
-            var statuses = Enum.GetValues<PaymentStatuses>();
-            var result = statuses
-                .Select((paymentStatuses, index) => new GetPaymentStatusesQueryResult
+            var types = Enum.GetValues<PaymentTypes>();
+            var result = types
+                .Select((paymentTypes, index) => new GetPaymentTypeListQueryResult
                 {
                     SystemCode = index,
-                    PaymentStatus = paymentStatuses.ToString().ToUpper()
+                    PaymentType = paymentTypes.ToString().ToUpper()
                 })
                 .WhereIf(
                     !string.IsNullOrEmpty(request.FilterBy), 
-                    response => response.PaymentStatus == request.FilterBy.ToUpper())
+                    response => response.PaymentType == request.FilterBy.ToUpper())
                 .ToList();
 
             return await Task.FromResult(result);
         }
-        
+
         private static void VerifyArguments(bool isKeyValid, Guid? userId)
         {
             if (!isKeyValid)

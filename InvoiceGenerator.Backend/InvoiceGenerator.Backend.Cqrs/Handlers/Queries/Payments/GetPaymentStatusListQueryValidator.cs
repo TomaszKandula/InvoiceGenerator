@@ -1,13 +1,13 @@
 namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments
 {
     using System.Diagnostics.CodeAnalysis;
-    using Shared.Resources;
     using FluentValidation;
+    using Shared.Resources;
 
     [ExcludeFromCodeCoverage]
-    public class GetPaymentTypesQueryValidator : AbstractValidator<GetPaymentTypesQuery>
+    public class GetPaymentStatusListQueryValidator : AbstractValidator<GetPaymentStatusListQuery>
     {
-        public GetPaymentTypesQueryValidator()
+        public GetPaymentStatusListQueryValidator()
         {
             RuleFor(request => request.PrivateKey)
                 .NotEmpty()

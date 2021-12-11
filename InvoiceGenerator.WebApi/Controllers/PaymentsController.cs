@@ -13,13 +13,23 @@ namespace InvoiceGenerator.WebApi.Controllers
         public PaymentsController(IMediator mediator) : base(mediator) { }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<GetPaymentTypesQueryResult>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetPaymentTypesQueryResult>> GetPaymentTypes([FromQuery] string privateKey, string type) =>
-            await Mediator.Send(new GetPaymentTypesQuery { PrivateKey = privateKey, FilterBy = type });
+        [ProducesResponseType(typeof(IEnumerable<GetPaymentTypeListQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetPaymentTypeListQueryResult>> GetPaymentTypeList([FromQuery] string privateKey) =>
+            await Mediator.Send(new GetPaymentTypeListQuery { PrivateKey = privateKey, FilterBy = string.Empty });
+
+        [HttpGet("{type}")]
+        [ProducesResponseType(typeof(IEnumerable<GetPaymentTypeListQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetPaymentTypeListQueryResult>> GetPaymentType([FromRoute] string type, [FromQuery] string privateKey) =>
+            await Mediator.Send(new GetPaymentTypeListQuery { PrivateKey = privateKey, FilterBy = type });
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusesQueryResult>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetPaymentStatusesQueryResult>> GetPaymentStatuses([FromQuery] string privateKey, string status) =>
-            await Mediator.Send(new GetPaymentStatusesQuery { PrivateKey = privateKey, FilterBy = status });
+        [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusListQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetPaymentStatusListQueryResult>> GetPaymentStatusList([FromQuery] string privateKey, string status) =>
+            await Mediator.Send(new GetPaymentStatusListQuery { PrivateKey = privateKey, FilterBy = status });
+
+        [HttpGet("{status}")]
+        [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusListQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetPaymentStatusListQueryResult>> GetPaymentStatusCode([FromRoute] string status, [FromQuery] string privateKey) =>
+            await Mediator.Send(new GetPaymentStatusListQuery { PrivateKey = privateKey, FilterBy = status });
     }
 }

@@ -6,7 +6,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments
     using Shared.Models;
 
     [ExcludeFromCodeCoverage]
-    public class GetPaymentTypesQuery : RequestProperties, IRequest<IEnumerable<GetPaymentTypesQueryResult>>
+    public class GetPaymentStatusListQuery : RequestProperties, IRequest<IEnumerable<GetPaymentStatusListQueryResult>>
     {
         public string FilterBy { get; set; }
     }

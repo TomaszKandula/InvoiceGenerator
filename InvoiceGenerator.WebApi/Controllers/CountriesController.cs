@@ -14,7 +14,12 @@ namespace InvoiceGenerator.WebApi.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCodes([FromQuery] string privateKey, string country) =>
+        public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCodeList([FromQuery] string privateKey) =>
+            await Mediator.Send(new GetCountryCodesQuery { PrivateKey = privateKey, FilterBy = string.Empty });
+
+        [HttpGet("{country}")]
+        [ProducesResponseType(typeof(IEnumerable<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCode([FromRoute] string country, [FromQuery] string privateKey) =>
             await Mediator.Send(new GetCountryCodesQuery { PrivateKey = privateKey, FilterBy = country });
     }
 }

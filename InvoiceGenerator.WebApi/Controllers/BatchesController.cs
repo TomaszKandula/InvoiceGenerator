@@ -12,9 +12,9 @@ namespace InvoiceGenerator.WebApi.Controllers
     using MediatR;
 
     [ApiVersion("1.0")]
-    public class BatchController : BaseController
+    public class BatchesController : BaseController
     {
-        public BatchController(IMediator mediator) :base(mediator) { }
+        public BatchesController(IMediator mediator) :base(mediator) { }
 
         [HttpPost]
         [ProducesResponseType(typeof(OrderInvoiceBatchCommandResult), StatusCodes.Status200OK)]
@@ -28,12 +28,17 @@ namespace InvoiceGenerator.WebApi.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
-        public async Task<FileContentResult> GetIssuedInvoice([FromQuery] string privateKey, string invoiceNumber) =>
+        public async Task<FileContentResult> GetIssuedBatchInvoice([FromQuery] string privateKey, string invoiceNumber) =>
             await Mediator.Send(new GetIssuedBatchInvoiceQuery { PrivateKey = privateKey, InvoiceNumber = invoiceNumber });
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusListQueryResult>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetProcessingStatuses([FromQuery] string privateKey, string status) =>
+        public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetBatchProcessingStatusList([FromQuery] string privateKey) =>
+            await Mediator.Send(new GetBatchProcessingStatusListQuery { PrivateKey = privateKey, FilterBy = string.Empty });
+
+        [HttpGet("{status}")]
+        [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusListQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetBatchProcessingStatusCode([FromRoute] string status, [FromQuery] string privateKey) =>
             await Mediator.Send(new GetBatchProcessingStatusListQuery { PrivateKey = privateKey, FilterBy = status });
     }
 }
