@@ -4,8 +4,8 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
-    using Requests;
     using Shared.Dto;
+    using Handlers.Commands.Templates;
 
     [ExcludeFromCodeCoverage]
     public static class TemplatesMapper

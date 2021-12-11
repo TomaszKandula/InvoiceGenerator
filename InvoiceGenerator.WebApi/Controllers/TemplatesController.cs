@@ -7,9 +7,9 @@ namespace InvoiceGenerator.WebApi.Controllers
     using Microsoft.AspNetCore.Http;
     using Backend.Shared.Dto;
     using Backend.Cqrs.Mappers;
-    using Backend.Cqrs.Requests;
-    using Backend.Cqrs.Responses;
     using Backend.TemplateService.Models;
+    using Backend.Cqrs.Handlers.Queries.Templates;
+    using Backend.Cqrs.Handlers.Commands.Templates;
     using MediatR;
 
     [ApiVersion("1.0")]
