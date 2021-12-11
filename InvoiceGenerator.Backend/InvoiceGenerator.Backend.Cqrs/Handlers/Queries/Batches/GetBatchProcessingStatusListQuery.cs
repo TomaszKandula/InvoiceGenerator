@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches
 {
     using MediatR;
     using System.Collections.Generic;

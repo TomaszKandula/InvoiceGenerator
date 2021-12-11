@@ -1,18 +1,18 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches
 {
     using FluentValidation;
     using Shared.Resources;
 
-    public class GetIssuedBatchInvoiceQueryValidator : AbstractValidator<GetIssuedBatchInvoiceQuery>
+    public class GetBatchProcessingQueryValidator : AbstractValidator<GetBatchProcessingQuery>
     {
-        public GetIssuedBatchInvoiceQueryValidator()
+        public GetBatchProcessingQueryValidator()
         {
             RuleFor(request => request.PrivateKey)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
-
-            RuleFor(request => request.InvoiceNumber)
+            
+            RuleFor(request => request.ProcessBatchKey)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

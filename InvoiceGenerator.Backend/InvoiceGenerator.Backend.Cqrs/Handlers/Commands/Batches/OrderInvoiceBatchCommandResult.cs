@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batch
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
