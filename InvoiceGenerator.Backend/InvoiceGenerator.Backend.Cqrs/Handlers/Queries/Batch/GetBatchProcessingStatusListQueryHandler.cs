@@ -11,13 +11,13 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using Shared.Resources;
     using Backend.Domain.Enums;
 
-    public class GetProcessingStatusesQueryHandler : RequestHandler<GetProcessingStatusesQuery, IEnumerable<GetProcessingStatusesQueryResult>>
+    public class GetBatchProcessingStatusListQueryHandler : RequestHandler<GetBatchProcessingStatusListQuery, IEnumerable<GetBatchProcessingStatusListQueryResult>>
     {
         private readonly IUserService _userService;
 
-        public GetProcessingStatusesQueryHandler(IUserService userService) => _userService = userService;
+        public GetBatchProcessingStatusListQueryHandler(IUserService userService) => _userService = userService;
 
-        public override async Task<IEnumerable<GetProcessingStatusesQueryResult>> Handle(GetProcessingStatusesQuery request, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> Handle(GetBatchProcessingStatusListQuery request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
@@ -26,7 +26,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
             
             var statuses = Enum.GetValues<ProcessingStatuses>();
             var result = statuses
-                .Select((processingStatuses, index) => new GetProcessingStatusesQueryResult
+                .Select((processingStatuses, index) => new GetBatchProcessingStatusListQueryResult
                 {
                     SystemCode = index,
                     ProcessingStatus = processingStatuses.ToString().ToUpper()

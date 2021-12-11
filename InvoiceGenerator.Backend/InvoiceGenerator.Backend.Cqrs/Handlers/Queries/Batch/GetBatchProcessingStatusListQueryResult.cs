@@ -3,7 +3,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class GetProcessingStatusesQueryResult
+    public class GetBatchProcessingStatusListQueryResult
     {
         public int SystemCode { get; set; }
 

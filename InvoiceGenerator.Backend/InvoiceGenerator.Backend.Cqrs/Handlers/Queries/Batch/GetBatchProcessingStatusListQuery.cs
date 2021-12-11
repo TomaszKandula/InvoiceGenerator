@@ -6,7 +6,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using Shared.Models;
 
     [ExcludeFromCodeCoverage]
-    public class GetProcessingStatusesQuery : RequestProperties, IRequest<IEnumerable<GetProcessingStatusesQueryResult>>
+    public class GetBatchProcessingStatusListQuery : RequestProperties, IRequest<IEnumerable<GetBatchProcessingStatusListQueryResult>>
     {
         public string FilterBy { get; set; }        
     }

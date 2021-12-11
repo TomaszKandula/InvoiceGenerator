@@ -3,9 +3,9 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using FluentValidation;
     using Shared.Resources;
 
-    public class GetIssuedInvoiceQueryValidator : AbstractValidator<GetIssuedInvoiceQuery>
+    public class GetIssuedBatchInvoiceQueryValidator : AbstractValidator<GetIssuedBatchInvoiceQuery>
     {
-        public GetIssuedInvoiceQueryValidator()
+        public GetIssuedBatchInvoiceQueryValidator()
         {
             RuleFor(request => request.PrivateKey)
                 .NotEmpty()

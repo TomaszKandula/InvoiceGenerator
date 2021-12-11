@@ -29,11 +29,11 @@ namespace InvoiceGenerator.WebApi.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
         public async Task<FileContentResult> GetIssuedInvoice([FromQuery] string privateKey, string invoiceNumber) =>
-            await Mediator.Send(new GetIssuedInvoiceQuery { PrivateKey = privateKey, InvoiceNumber = invoiceNumber });
+            await Mediator.Send(new GetIssuedBatchInvoiceQuery { PrivateKey = privateKey, InvoiceNumber = invoiceNumber });
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<GetProcessingStatusesQueryResult>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<GetProcessingStatusesQueryResult>> GetProcessingStatuses([FromQuery] string privateKey, string status) =>
-            await Mediator.Send(new GetProcessingStatusesQuery { PrivateKey = privateKey, FilterBy = status });
+        [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusListQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetProcessingStatuses([FromQuery] string privateKey, string status) =>
+            await Mediator.Send(new GetBatchProcessingStatusListQuery { PrivateKey = privateKey, FilterBy = status });
     }
 }
