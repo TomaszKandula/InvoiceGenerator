@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments
 {
     using System;
     using System.Linq;
@@ -11,30 +11,29 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using Shared.Resources;
     using Backend.Domain.Enums;
 
-    public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery, IEnumerable<GetCurrencyCodesQueryResult>>
+    public class GetPaymentTypesQueryHandler : RequestHandler<GetPaymentTypesQuery, IEnumerable<GetPaymentTypesQueryResult>>
     {
         private readonly IUserService _userService;
 
-        public GetCurrencyCodesQueryHandler(IUserService userService) => _userService = userService;
-
-        public override async Task<IEnumerable<GetCurrencyCodesQueryResult>> Handle(GetCurrencyCodesQuery request, CancellationToken cancellationToken)
+        public GetPaymentTypesQueryHandler(IUserService userService) => _userService = userService;
+        
+        public override async Task<IEnumerable<GetPaymentTypesQueryResult>> Handle(GetPaymentTypesQuery request, CancellationToken cancellationToken)
         {
             var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
             var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
 
             VerifyArguments(isKeyValid, userId);
-
-            var codes = Enum.GetValues<CurrencyCodes>();
-            var result = codes
-                .Select((currencyCodes, index) => new GetCurrencyCodesQueryResult
+            
+            var types = Enum.GetValues<PaymentTypes>();
+            var result = types
+                .Select((paymentTypes, index) => new GetPaymentTypesQueryResult
                 {
                     SystemCode = index,
-                    Currency = currencyCodes.ToString().ToUpper()
+                    PaymentType = paymentTypes.ToString().ToUpper()
                 })
-                .Where(response => response.SystemCode != 0)
                 .WhereIf(
                     !string.IsNullOrEmpty(request.FilterBy), 
-                    response => response.Currency == request.FilterBy.ToUpper())
+                    response => response.PaymentType == request.FilterBy.ToUpper())
                 .ToList();
 
             return await Task.FromResult(result);

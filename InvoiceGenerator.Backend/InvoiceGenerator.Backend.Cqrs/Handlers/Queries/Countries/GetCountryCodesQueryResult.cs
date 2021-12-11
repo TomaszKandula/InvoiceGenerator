@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Countries
 {
     using System.Diagnostics.CodeAnalysis;
 

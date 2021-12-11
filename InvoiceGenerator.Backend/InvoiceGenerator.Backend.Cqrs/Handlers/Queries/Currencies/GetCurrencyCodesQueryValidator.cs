@@ -1,13 +1,13 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies
 {
     using System.Diagnostics.CodeAnalysis;
-    using FluentValidation;
     using Shared.Resources;
+    using FluentValidation;
 
     [ExcludeFromCodeCoverage]
-    public class GetPaymentStatusesQueryValidator : AbstractValidator<GetPaymentStatusesQuery>
+    public class GetCurrencyCodesQueryValidator : AbstractValidator<GetCurrencyCodesQuery>
     {
-        public GetPaymentStatusesQueryValidator()
+        public GetCurrencyCodesQueryValidator()
         {
             RuleFor(request => request.PrivateKey)
                 .NotEmpty()

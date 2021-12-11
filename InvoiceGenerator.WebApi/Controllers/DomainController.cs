@@ -5,7 +5,9 @@ namespace InvoiceGenerator.WebApi.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Http;
     using Backend.Cqrs.Handlers.Queries.Batch;
-    using Backend.Cqrs.Handlers.Queries.Domain;
+    using Backend.Cqrs.Handlers.Queries.Payments;
+    using Backend.Cqrs.Handlers.Queries.Countries;
+    using Backend.Cqrs.Handlers.Queries.Currencies;
     using MediatR;
 
     [ApiVersion("1.0")]
