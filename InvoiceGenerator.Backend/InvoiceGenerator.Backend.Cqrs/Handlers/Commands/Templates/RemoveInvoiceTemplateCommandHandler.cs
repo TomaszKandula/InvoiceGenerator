@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     using Shared.Resources;
     using MediatR;
 
-    public class RemoveInvoiceTemplateCommandHandler : TemplateHandler<RemoveInvoiceTemplateCommandRequest, Unit>
+    public class RemoveInvoiceTemplateCommandHandler : Cqrs.RequestHandler<RemoveInvoiceTemplateCommandRequest, Unit>
     {
         private readonly ITemplateService _templateService;
         

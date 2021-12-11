@@ -11,7 +11,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using Shared.Resources;
     using Backend.Domain.Enums;
 
-    public class GetPaymentTypesQueryHandler : TemplateHandler<GetPaymentTypesQueryRequest, IEnumerable<GetPaymentTypesQueryResponse>>
+    public class GetPaymentTypesQueryHandler : RequestHandler<GetPaymentTypesQueryRequest, IEnumerable<GetPaymentTypesQueryResponse>>
     {
         private readonly IUserService _userService;
 

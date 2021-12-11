@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     using Shared.Resources;
     using TemplateService.Models;
 
-    public class AddInvoiceTemplateCommandHandler : TemplateHandler<AddInvoiceTemplateCommandRequest, AddInvoiceTemplateCommandResponse>
+    public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplateCommandRequest, AddInvoiceTemplateCommandResponse>
     {
         private readonly ITemplateService _templateService;
 

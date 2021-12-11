@@ -8,7 +8,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using Core.Exceptions;
     using Shared.Resources;
 
-    public class GetBatchProcessingQueryHandler : TemplateHandler<GetBatchProcessingQueryRequest, GetBatchProcessingQueryResponse>
+    public class GetBatchProcessingQueryHandler : RequestHandler<GetBatchProcessingQueryRequest, GetBatchProcessingQueryResponse>
     {
         private readonly IBatchService _batchService;
 

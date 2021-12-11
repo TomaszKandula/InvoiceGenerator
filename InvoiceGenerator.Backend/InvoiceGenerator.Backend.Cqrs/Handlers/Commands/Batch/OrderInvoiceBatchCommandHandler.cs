@@ -16,7 +16,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batch
     using BatchService.Models;
     using Core.Services.DateTimeService;
 
-    public class OrderInvoiceBatchCommandHandler : TemplateHandler<OrderInvoiceBatchCommandRequest, OrderInvoiceBatchCommandResponse>
+    public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchCommandRequest, OrderInvoiceBatchCommandResponse>
     {
         private readonly DatabaseContext _databaseContext;
         

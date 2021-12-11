@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using Core.Exceptions;
     using Shared.Resources;
 
-    public class GetIssuedInvoiceQueryHandler : TemplateHandler<GetIssuedInvoiceQueryRequest, FileContentResult>
+    public class GetIssuedInvoiceQueryHandler : RequestHandler<GetIssuedInvoiceQueryRequest, FileContentResult>
     {
         private readonly IBatchService _batchService;
         

@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates
     using Core.Exceptions;
     using Shared.Resources;
 
-    public class GetInvoiceTemplateQueryHandler : TemplateHandler<GetInvoiceTemplateQueryRequest, FileContentResult>
+    public class GetInvoiceTemplateQueryHandler : RequestHandler<GetInvoiceTemplateQueryRequest, FileContentResult>
     {
         private readonly ITemplateService _templateService;
         

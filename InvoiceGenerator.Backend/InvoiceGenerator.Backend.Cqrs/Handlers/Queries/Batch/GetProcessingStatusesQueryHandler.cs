@@ -11,7 +11,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batch
     using Shared.Resources;
     using Backend.Domain.Enums;
 
-    public class GetProcessingStatusesQueryHandler : TemplateHandler<GetProcessingStatusesQueryRequest, IEnumerable<GetProcessingStatusesQueryResponse>>
+    public class GetProcessingStatusesQueryHandler : RequestHandler<GetProcessingStatusesQueryRequest, IEnumerable<GetProcessingStatusesQueryResponse>>
     {
         private readonly IUserService _userService;
 

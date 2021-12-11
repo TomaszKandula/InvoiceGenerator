@@ -10,7 +10,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates
     using Shared.Resources;
     using TemplateService.Models;
 
-    public class GetInvoiceTemplatesQueryHandler : TemplateHandler<GetInvoiceTemplatesQueryRequest, IEnumerable<InvoiceTemplateInfo>>
+    public class GetInvoiceTemplatesQueryHandler : RequestHandler<GetInvoiceTemplatesQueryRequest, IEnumerable<InvoiceTemplateInfo>>
     {
         private readonly ITemplateService _templateService;
         

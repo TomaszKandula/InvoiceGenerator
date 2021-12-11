@@ -11,7 +11,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using Shared.Resources;
     using Backend.Domain.Enums;
 
-    public class GetCurrencyCodesQueryHandler : TemplateHandler<GetCurrencyCodesQueryRequest, IEnumerable<GetCurrencyCodesQueryResponse>>
+    public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQueryRequest, IEnumerable<GetCurrencyCodesQueryResponse>>
     {
         private readonly IUserService _userService;
 

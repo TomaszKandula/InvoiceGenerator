@@ -67,12 +67,12 @@
         }
 
         private static void SetupValidators(IServiceCollection services)
-            => services.AddValidatorsFromAssemblyContaining<TemplateHandler<IRequest, Unit>>();
+            => services.AddValidatorsFromAssemblyContaining<Backend.Cqrs.RequestHandler<IRequest, Unit>>();
 
         private static void SetupMediatR(IServiceCollection services) 
         {
             services.AddMediatR(options => options.AsScoped(), 
-                typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
+                typeof(Backend.Cqrs.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));

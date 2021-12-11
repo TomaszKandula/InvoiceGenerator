@@ -10,7 +10,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     using TemplateService.Models;
     using MediatR;
 
-    public class ReplaceInvoiceTemplateCommandHandler : TemplateHandler<ReplaceInvoiceTemplateCommandRequest, Unit>
+    public class ReplaceInvoiceTemplateCommandHandler : Cqrs.RequestHandler<ReplaceInvoiceTemplateCommandRequest, Unit>
     {
         private readonly ITemplateService _templateService;
 

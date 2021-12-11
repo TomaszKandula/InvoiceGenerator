@@ -11,7 +11,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Domain
     using Shared.Resources;
     using Backend.Domain.Enums;
 
-    public class GetCountryCodesQueryHandler : TemplateHandler<GetCountryCodesQueryRequest, IEnumerable<GetCountryCodesQueryResponse>>
+    public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQueryRequest, IEnumerable<GetCountryCodesQueryResponse>>
     {
         private readonly IUserService _userService;
 
