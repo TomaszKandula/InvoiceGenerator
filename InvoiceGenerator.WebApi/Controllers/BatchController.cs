@@ -2,6 +2,7 @@ namespace InvoiceGenerator.WebApi.Controllers
 {
     using System;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Http;
     using Backend.Shared.Dto;
@@ -29,5 +30,10 @@ namespace InvoiceGenerator.WebApi.Controllers
         [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
         public async Task<FileContentResult> GetIssuedInvoice([FromQuery] string privateKey, string invoiceNumber) =>
             await Mediator.Send(new GetIssuedInvoiceQuery { PrivateKey = privateKey, InvoiceNumber = invoiceNumber });
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<GetProcessingStatusesQueryResult>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<GetProcessingStatusesQueryResult>> GetProcessingStatuses([FromQuery] string privateKey, string status) =>
+            await Mediator.Send(new GetProcessingStatusesQuery { PrivateKey = privateKey, FilterBy = status });
     }
 }
