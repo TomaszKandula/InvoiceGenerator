@@ -22,10 +22,10 @@ namespace InvoiceGenerator.WebApi.Controllers
         public async Task<IEnumerable<InvoiceTemplateInfo>> GetInvoiceTemplates([FromQuery] string privateKey) 
             => await Mediator.Send(new GetInvoiceTemplatesQueryRequest { PrivateKey = privateKey });
 
-        [HttpGet]
+        [HttpGet("{id:guid}")]
         [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
-        public async Task<FileContentResult> GetInvoiceTemplate([FromQuery] string privateKey, Guid templateId) 
-            => await Mediator.Send(new GetInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = templateId});
+        public async Task<FileContentResult> GetInvoiceTemplate([FromRoute] Guid id, [FromQuery] string privateKey) 
+            => await Mediator.Send(new GetInvoiceTemplateQueryRequest { PrivateKey = privateKey, Id = id});
 
         [HttpPost]
         [ProducesResponseType(typeof(AddInvoiceTemplateCommandResponse), StatusCodes.Status200OK)]
@@ -37,9 +37,9 @@ namespace InvoiceGenerator.WebApi.Controllers
         public async Task<Unit> ReplaceInvoiceTemplate([FromForm] ReplaceInvoiceTemplateDto payload) 
             => await Mediator.Send(InvoiceTemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
 
-        [HttpPost]
+        [HttpPost("{id:guid}")]
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-        public async Task<Unit> RemoveInvoiceTemplate([FromQuery] string privateKey, Guid templateId) 
-            => await Mediator.Send(new RemoveInvoiceTemplateCommandRequest { PrivateKey = privateKey, Id = templateId });
+        public async Task<Unit> RemoveInvoiceTemplate([FromRoute] Guid id, [FromQuery] string privateKey) 
+            => await Mediator.Send(new RemoveInvoiceTemplateCommandRequest { PrivateKey = privateKey, Id = id });
     }
 }
