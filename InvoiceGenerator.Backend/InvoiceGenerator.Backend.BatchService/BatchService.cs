@@ -203,10 +203,10 @@ namespace InvoiceGenerator.Backend.BatchService
                         .FirstOrDefault();
 
                     var userDetails = userDetailsList
-                        .FirstOrDefault(details => details.UserId == invoice.UserDetailId);
+                        .FirstOrDefault(details => details.Id == invoice.UserDetailId);
 
                     var userBankData = userBankDataList
-                        .FirstOrDefault(bankData => bankData.UserId == invoice.UserBankDataId);
+                        .FirstOrDefault(bankData => bankData.Id == invoice.UserBankDataId);
 
                     var template = Encoding.Default.GetString(templateData);
                     var userFullAddress = $"{userDetails?.StreetAddress} {userDetails?.PostalCode} {userDetails?.City}";
@@ -215,21 +215,21 @@ namespace InvoiceGenerator.Backend.BatchService
                         .Replace("{{F2}}", userFullAddress)
                         .Replace("{{F3}}", userDetails?.VatNumber)
                         .Replace("{{F4}}", userEmailAddress)
-                        .Replace("{{F5}}", "Missing User Phone Number")
+                        .Replace("{{F5}}", "Missing phone")
                         .Replace("{{F6}}", invoice.InvoiceNumber)
                         .Replace("{{F7}}", invoice.ValueDate.ToString(CultureInfo.InvariantCulture))
                         .Replace("{{F8}}", invoice.DueDate.ToString(CultureInfo.InvariantCulture))
                         .Replace("{{F9}}", $"{invoice.PaymentTerms} days")
-                        .Replace("{{F10}}", "Missing Invoice Currency")
+                        .Replace("{{F10}}", "Missing currency")
                         .Replace("{{F11}}", invoice.CustomerName)
                         .Replace("{{F12}}", invoice.CustomerVatNumber)
                         .Replace("{{F13}}", invoice.StreetAddress)
-                        .Replace("{{F14}}", "Missing Customer Phone Number")
-                        .Replace("{{F25}}", userBankData?.BankName)
-                        .Replace("{{F26}}", userBankData?.SwiftNumber)
-                        .Replace("{{F27}}", userBankData?.AccountNumber)
-                        .Replace("{{F28}}", "Payment Status EXT")
-                        .Replace("{{F29}}", invoice.PaymentType.ToString());
+                        .Replace("{{F14}}", "Missing phone")
+                        .Replace("{{F24}}", userBankData?.BankName)
+                        .Replace("{{F25}}", userBankData?.SwiftNumber)
+                        .Replace("{{F26}}", userBankData?.AccountNumber)
+                        .Replace("{{F27}}", "Payment Status EXT")
+                        .Replace("{{F28}}", invoice.PaymentType.ToString());
 
                     var rowTemplate = Regex.Match(template, @"(?<=<row-template>)((.|\n)*)(?=<\/row-template>)");
                     var invoiceItems = string.Empty;
