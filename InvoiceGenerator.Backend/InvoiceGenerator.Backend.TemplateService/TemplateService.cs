@@ -108,6 +108,7 @@ namespace InvoiceGenerator.Backend.TemplateService
 
             template.Data = invoiceTemplateData.ContentData;
             template.ContentType = invoiceTemplateData.ContentType;
+            template.ShortDescription = invoiceTemplateData.Description;
             await _databaseContext.SaveChangesAsync(cancellationToken);
         }
 
