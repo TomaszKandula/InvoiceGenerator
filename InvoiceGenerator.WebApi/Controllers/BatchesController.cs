@@ -18,8 +18,13 @@ namespace InvoiceGenerator.WebApi.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(OrderInvoiceBatchCommandResult), StatusCodes.Status200OK)]
-        public async Task<OrderInvoiceBatchCommandResult> OrderInvoiceBatchProcessing([FromBody] OrderInvoiceBatchDto payload) 
+        public async Task<OrderInvoiceBatchCommandResult> OrderInvoiceBatch([FromBody] OrderInvoiceBatchDto payload) 
             => await Mediator.Send(BatchMapper.MapToOrderInvoiceBatchCommandRequest(payload));
+
+        [HttpPost]
+        [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+        public async Task<Unit> OrderBatchProcessing() 
+            => await Mediator.Send(new OrderBatchProcessingCommand());
 
         [HttpGet]
         [ProducesResponseType(typeof(GetBatchProcessingStatusQueryResult), StatusCodes.Status200OK)]
