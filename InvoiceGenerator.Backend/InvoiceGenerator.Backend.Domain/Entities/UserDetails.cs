@@ -1,6 +1,7 @@
 namespace InvoiceGenerator.Backend.Domain.Entities
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
 
@@ -32,5 +33,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public string City { get; set; }
 
         public Users User { get; set; }
+
+        public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
     }
 }

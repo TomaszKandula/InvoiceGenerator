@@ -97,6 +97,8 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
                 order.Add(new OrderDetail
                 {
                     UserId = userId,
+                    UserDetailId = request.UserDetailId,
+                    UserBankDataId = request.UserBankDataId,
                     InvoiceNumber = Guid.NewGuid().ToString("N"),
                     VoucherDate = voucherDate,
                     ValueDate = valueDate,

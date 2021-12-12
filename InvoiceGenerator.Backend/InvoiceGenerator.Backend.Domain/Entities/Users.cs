@@ -40,5 +40,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public ICollection<AllowDomains> AllowDomains { get; set; } = new HashSet<AllowDomains>();
 
         public ICollection<IssuedInvoices> IssuedInvoices { get; set; } = new HashSet<IssuedInvoices>();
+
+        public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
     }
 }
