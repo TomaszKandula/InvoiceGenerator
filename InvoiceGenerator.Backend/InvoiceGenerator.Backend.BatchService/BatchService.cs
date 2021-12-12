@@ -277,6 +277,8 @@ namespace InvoiceGenerator.Backend.BatchService
                 await _databaseContext.IssuedInvoices.AddRangeAsync(issuedInvoices, cancellationToken);
                 await _databaseContext.SaveChangesAsync(cancellationToken);
             }
+
+            _loggerService.LogInformation($"Issued invoices: {issuedInvoices.Count}.");
         }
 
         /// <summary>
