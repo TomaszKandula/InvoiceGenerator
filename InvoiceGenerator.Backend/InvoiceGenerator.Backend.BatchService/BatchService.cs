@@ -1,10 +1,14 @@
 namespace InvoiceGenerator.Backend.BatchService
 {
     using System;
+    using System.Text;
     using System.Linq;
     using System.Threading;
+    using System.Diagnostics;
+    using System.Globalization;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using System.Text.RegularExpressions;
     using Microsoft.EntityFrameworkCore;
     using Models;
     using Database;
@@ -56,18 +60,16 @@ namespace InvoiceGenerator.Backend.BatchService
                 {
                     Id = batchInvoiceId,
                     InvoiceNumber = order.InvoiceNumber,
-                    VoucherDate = order.VoucherDate,
-                    ValueDate = order.ValueDate,
+                    VoucherDate = order.VoucherDate ?? DateTime.Now,
+                    ValueDate = order.ValueDate ?? DateTime.Now,
                     DueDate = order.DueDate,
                     PaymentTerms = order.PaymentTerms,
                     PaymentType = order.PaymentType,
-                    CompanyName = order.CompanyName,
-                    CompanyVatNumber = order.CompanyVatNumber,
+                    CustomerName = order.CompanyName,
+                    CustomerVatNumber = order.CompanyVatNumber,
                     CountryCode = order.CountryCode,
                     City = order.City,
-                    AddressLine1 = order.AddressLine1,
-                    AddressLine2 = order.AddressLine2,
-                    AddressLine3 = order.AddressLine3,
+                    StreetAddress = order.StreetAddress,
                     PostalCode = order.PostalCode,
                     PostalArea = order.PostalArea,
                     InvoiceTemplateName = order.InvoiceTemplateName,
@@ -75,7 +77,10 @@ namespace InvoiceGenerator.Backend.BatchService
                     CreatedBy = order.UserId,
                     ModifiedAt = null,
                     ModifiedBy = null,
-                    ProcessBatchKey = processing.Id
+                    ProcessBatchKey = processing.Id,
+                    UserId = order.UserId,
+                    UserDetailId = order.UserDetailId,
+                    UserBankDataId = order.UserBankDataId
                 });
 
                 foreach (var item in order.InvoiceItems)
@@ -107,6 +112,171 @@ namespace InvoiceGenerator.Backend.BatchService
 
             _loggerService.LogInformation($"{messageText1} {messageText2}.");
             return processing.Id;
+        }
+
+        /// <summary>
+        /// Processes all outstanding invoices that have status 'new'.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        public async Task ProcessOutstandingInvoices(CancellationToken cancellationToken = default)
+        {
+            var processingList = await _databaseContext.BatchInvoicesProcessing
+                .AsNoTracking()
+                .Where(processing => processing.Status == ProcessingStatuses.New)
+                .Select(processing => processing.Id)
+                .ToListAsync(cancellationToken);
+
+            if (!processingList.Any())
+            {
+                _loggerService.LogInformation("No new invoices to process.");
+                return;
+            }
+
+            var invoicesIds = new HashSet<Guid>(processingList);
+            var invoices = await _databaseContext.BatchInvoices
+                .AsNoTracking()
+                .Where(batchInvoices => invoicesIds.Contains(batchInvoices.ProcessBatchKey))
+                .ToListAsync(cancellationToken);
+
+            var invoiceItemsIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.Id));
+            var invoiceItemsList = await _databaseContext.BatchInvoiceItems
+                .AsNoTracking()
+                .Where(batchInvoiceItems => invoiceItemsIds.Contains(batchInvoiceItems.BatchInvoiceId))
+                .ToListAsync(cancellationToken);
+
+            var templateNames = invoices
+                .Select(batchInvoices => batchInvoices.InvoiceTemplateName)
+                .ToList();
+
+            var invoiceTemplates = await _databaseContext.InvoiceTemplates
+                .AsNoTracking()
+                .Where(templates => templateNames.Contains(templates.Name))
+                .Where(templates => !templates.IsDeleted)
+                .ToListAsync(cancellationToken);
+
+            var userIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.UserId));
+            var userEmailAddressList = await _databaseContext.Users
+                .AsNoTracking()
+                .Where(users => userIds.Contains(users.Id))
+                .ToListAsync(cancellationToken);
+
+            var userDetailsList = await _databaseContext.UserDetails
+                .AsNoTracking()
+                .Where(details => userIds.Contains(details.UserId))
+                .ToListAsync(cancellationToken);
+
+            var userBankDataList = await _databaseContext.UserBankData
+                .AsNoTracking()
+                .Where(bankData => userIds.Contains(bankData.UserId))
+                .ToListAsync(cancellationToken);
+
+            var issuedInvoices = new List<IssuedInvoices>();
+            
+            foreach (var invoice in invoices)
+            {
+                var templateData = invoiceTemplates
+                    .Where(templates => templates.Name == invoice.InvoiceTemplateName)
+                    .Select(templates => templates.Data)
+                    .SingleOrDefault();
+
+                if (templateData is null)
+                {
+                    _loggerService.LogWarning($"Cannot process invoice (PBK: {invoice.BatchInvoicesProcessing}). Missing invoice template.");
+                }
+                else
+                {
+                    _loggerService.LogInformation($"Start processing invoice number: {invoice.InvoiceNumber}");
+
+                    var processedInvoiceBatch = await _databaseContext.BatchInvoicesProcessing
+                        .Where(processing => processing.Id == invoice.ProcessBatchKey)
+                        .SingleOrDefaultAsync(cancellationToken);
+
+                    processedInvoiceBatch.Status = ProcessingStatuses.InvoiceGeneratingStarted;
+                    await _databaseContext.SaveChangesAsync(cancellationToken);
+                    
+                    var timer = new Stopwatch();
+                    timer.Start();
+                    
+                    var userEmailAddress = userEmailAddressList
+                        .Where(users => users.Id == invoice.UserId)
+                        .Select(users => users.EmailAddress)
+                        .FirstOrDefault();
+
+                    var userDetails = userDetailsList
+                        .FirstOrDefault(details => details.UserId == invoice.UserDetailId);
+
+                    var userBankData = userBankDataList
+                        .FirstOrDefault(bankData => bankData.UserId == invoice.UserBankDataId);
+
+                    var template = Encoding.Default.GetString(templateData);
+                    var userFullAddress = $"{userDetails?.StreetAddress} {userDetails?.PostalCode} {userDetails?.City}";
+                    var newInvoice = template
+                        .Replace("{{F1}}", userDetails?.CompanyName)
+                        .Replace("{{F2}}", userFullAddress)
+                        .Replace("{{F3}}", userDetails?.VatNumber)
+                        .Replace("{{F4}}", userEmailAddress)
+                        .Replace("{{F5}}", "Missing User Phone Number")
+                        .Replace("{{F6}}", invoice.InvoiceNumber)
+                        .Replace("{{F7}}", invoice.ValueDate.ToString(CultureInfo.InvariantCulture))
+                        .Replace("{{F8}}", invoice.DueDate.ToString(CultureInfo.InvariantCulture))
+                        .Replace("{{F9}}", $"{invoice.PaymentTerms} days")
+                        .Replace("{{F10}}", "Missing Invoice Currency")
+                        .Replace("{{F11}}", invoice.CustomerName)
+                        .Replace("{{F12}}", invoice.CustomerVatNumber)
+                        .Replace("{{F13}}", invoice.StreetAddress)
+                        .Replace("{{F14}}", "Missing Customer Phone Number")
+                        .Replace("{{F25}}", userBankData?.BankName)
+                        .Replace("{{F26}}", userBankData?.SwiftNumber)
+                        .Replace("{{F27}}", userBankData?.AccountNumber)
+                        .Replace("{{F28}}", "Payment Status EXT")
+                        .Replace("{{F29}}", invoice.PaymentType.ToString());
+
+                    var rowTemplate = Regex.Match(template, @"(?<=<row-template>)((.|\n)*)(?=<\/row-template>)");
+                    var invoiceItems = string.Empty;
+                    var totalAmount = 0.0m;
+
+                    foreach (var item in invoiceItemsList)
+                    {
+                        totalAmount += item.GrossAmount;
+                        invoiceItems += rowTemplate.Value
+                            .Replace("{{F15}}", item.ItemText)
+                            .Replace("{{F16}}", item.ItemQuantity.ToString())
+                            .Replace("{{F17}}", item.ItemQuantityUnit)
+                            .Replace("{{F18}}", item.ItemAmount.ToString(CultureInfo.InvariantCulture))
+                            .Replace("{{F19}}", item.ItemDiscountRate.ToString())
+                            .Replace("{{F20}}", item.ValueAmount.ToString(CultureInfo.InvariantCulture))
+                            .Replace("{{F21}}", item.VatRate.ToString())
+                            .Replace("{{F22}}", item.GrossAmount.ToString(CultureInfo.InvariantCulture));
+                    }
+
+                    newInvoice = newInvoice
+                        .Replace(rowTemplate.Value, invoiceItems)
+                        .Replace("{{F23}}", totalAmount.ToString(CultureInfo.InvariantCulture));
+
+                    var issuedInvoice = new IssuedInvoices
+                    {
+                        UserId = invoice.UserId,
+                        InvoiceNumber = invoice.InvoiceNumber,
+                        InvoiceData = Encoding.Default.GetBytes(newInvoice),
+                        ContentType = "text/html",
+                        GeneratedAt = _dateTimeService.Now
+                    };
+
+                    issuedInvoices.Add(issuedInvoice);
+                    timer.Stop();
+                    
+                    processedInvoiceBatch.Status = ProcessingStatuses.InvoiceGeneratingFinished;
+                    processedInvoiceBatch.BatchProcessingTime = timer.Elapsed;
+                    
+                    await _databaseContext.SaveChangesAsync(cancellationToken);
+                }
+            }
+
+            if (issuedInvoices.Any())
+            {
+                await _databaseContext.IssuedInvoices.AddRangeAsync(issuedInvoices, cancellationToken);
+                await _databaseContext.SaveChangesAsync(cancellationToken);
+            }
         }
 
         /// <summary>
