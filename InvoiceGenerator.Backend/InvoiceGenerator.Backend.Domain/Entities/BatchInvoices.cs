@@ -44,15 +44,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         [Required]
         [MaxLength(100)]
-        public string AddressLine1 { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string AddressLine2 { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string AddressLine3 { get; set; }
+        public string StreetAddress { get; set; }
 
         [Required]
         [MaxLength(25)]

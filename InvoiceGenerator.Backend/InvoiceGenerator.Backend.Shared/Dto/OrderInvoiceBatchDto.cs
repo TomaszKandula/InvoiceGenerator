@@ -8,6 +8,6 @@ namespace InvoiceGenerator.Backend.Shared.Dto
     [ExcludeFromCodeCoverage]
     public class OrderInvoiceBatchDto : RequestProperties
     {
-        public IEnumerable<OrderDetailBase> OrderDetails { get; set; }
+        public IEnumerable<OrderDetailBase<InvoiceItemBase>> OrderDetails { get; set; }
     }
 }

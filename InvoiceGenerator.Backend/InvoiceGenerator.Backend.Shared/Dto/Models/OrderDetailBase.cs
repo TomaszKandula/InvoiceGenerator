@@ -6,7 +6,7 @@ namespace InvoiceGenerator.Backend.Shared.Dto.Models
     using Domain.Enums;
 
     [ExcludeFromCodeCoverage]
-    public class OrderDetailBase
+    public class OrderDetailBase<T>
     {
         public DateTime? VoucherDate { get; set; }
 
@@ -24,11 +24,7 @@ namespace InvoiceGenerator.Backend.Shared.Dto.Models
 
         public string City { get; set; }
 
-        public string AddressLine1 { get; set; }
-
-        public string AddressLine2 { get; set; }
-
-        public string AddressLine3 { get; set; }
+        public string StreetAddress { get; set; }
 
         public string PostalCode { get; set; }
 
@@ -36,6 +32,6 @@ namespace InvoiceGenerator.Backend.Shared.Dto.Models
 
         public string InvoiceTemplateName { get; set; }
 
-        public IEnumerable<OrderDetailsInvoiceItem> InvoiceItems { get; set; }
+        public IEnumerable<T> InvoiceItems { get; set; }
     }
 }

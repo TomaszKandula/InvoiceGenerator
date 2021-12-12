@@ -4,7 +4,7 @@ namespace InvoiceGenerator.Backend.Shared.Dto.Models
     using Domain.Enums;
 
     [ExcludeFromCodeCoverage]
-    public class OrderDetailsInvoiceItem
+    public class InvoiceItemBase
     {
         public string ItemText { get; set; }
 

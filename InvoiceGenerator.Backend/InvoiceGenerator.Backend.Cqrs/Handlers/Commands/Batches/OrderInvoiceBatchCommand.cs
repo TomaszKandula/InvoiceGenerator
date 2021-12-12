@@ -9,6 +9,6 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
     [ExcludeFromCodeCoverage]
     public class OrderInvoiceBatchCommand : RequestProperties, IRequest<OrderInvoiceBatchCommandResult>
     {
-        public IEnumerable<OrderDetailBase> OrderDetails { get; set; }
+        public IEnumerable<OrderDetailBase<InvoiceItemBase>> OrderDetails { get; set; }
     }
 }
