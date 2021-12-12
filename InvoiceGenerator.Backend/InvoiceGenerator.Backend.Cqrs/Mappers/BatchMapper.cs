@@ -11,6 +11,9 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
             OrderInvoiceBatchDto model) => new()
         {
             PrivateKey = model.PrivateKey,
+            UserId = model.UserId,
+            UserDetailId = model.UserDetailId,
+            UserBankDataId = model.UserBankDataId,
             OrderDetails = model.OrderDetails
         };
     }
