@@ -89,8 +89,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
                 var voucherDate = orderDetails.VoucherDate ?? _dateTimeService.Now;
                 var valueDate = orderDetails.ValueDate ?? _dateTimeService.Now;
 
-                var isTemplateExists = availableTemplates
-                    .Any(templates => templates.Name == orderDetails.InvoiceTemplateName);
+                var isTemplateExists = availableTemplates.Any(templates => templates.Name == orderDetails.InvoiceTemplateName);
                 if (!isTemplateExists)
                     throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_NAME), ErrorCodes.INVALID_TEMPLATE_NAME);
 
@@ -108,6 +107,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
                     CompanyName = orderDetails.CompanyName,
                     CompanyVatNumber = orderDetails.CompanyVatNumber,
                     CountryCode = orderDetails.CountryCode,
+                    CurrencyCode = orderDetails.CurrencyCode,
                     City = orderDetails.City,
                     StreetAddress = orderDetails.StreetAddress,
                     PostalCode = orderDetails.PostalCode,

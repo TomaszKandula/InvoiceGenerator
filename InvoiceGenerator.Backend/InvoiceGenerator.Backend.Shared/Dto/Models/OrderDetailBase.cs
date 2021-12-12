@@ -32,6 +32,8 @@ namespace InvoiceGenerator.Backend.Shared.Dto.Models
 
         public string InvoiceTemplateName { get; set; }
 
+        public CurrencyCodes CurrencyCode { get; set; }
+
         public IEnumerable<T> InvoiceItems { get; set; }
     }
 }
