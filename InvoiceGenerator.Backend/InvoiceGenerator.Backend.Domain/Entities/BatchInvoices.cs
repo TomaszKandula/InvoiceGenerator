@@ -30,10 +30,10 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         [Required]
         [MaxLength(255)]
-        public string CompanyName { get; set; }
+        public string CustomerName { get; set; }
 
         [MaxLength(25)]
-        public string CompanyVatNumber { get; set; }
+        public string CustomerVatNumber { get; set; }
 
         [Required]
         public CountryCodes CountryCode { get; set; }
