@@ -33,7 +33,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public CurrencyCodes CurrencyCode { get; set; }
 
         [Required]
-        public CountryCodes CountryCodes { get; set; }
+        public CountryCodes CountryCode { get; set; }
 
         public Users User { get; set; }
 
