@@ -65,6 +65,7 @@ namespace InvoiceGenerator.Backend.BatchService
                     DueDate = order.DueDate,
                     PaymentTerms = order.PaymentTerms,
                     PaymentType = order.PaymentType,
+                    PaymentStatus = order.PaymentStatus,
                     CustomerName = order.CompanyName,
                     CustomerVatNumber = order.CompanyVatNumber,
                     CountryCode = order.CountryCode,
@@ -79,8 +80,8 @@ namespace InvoiceGenerator.Backend.BatchService
                     ModifiedBy = null,
                     ProcessBatchKey = processing.Id,
                     UserId = order.UserId,
-                    UserDetailId = order.UserDetailId,
-                    UserBankDataId = order.UserBankDataId
+                    UserCompanyId = order.UserCompanyId,
+                    UserBankAccountId = order.UserBankAccountId
                 });
 
                 foreach (var item in order.InvoiceItems)
@@ -133,7 +134,7 @@ namespace InvoiceGenerator.Backend.BatchService
             }
 
             var (invoices, invoiceItemsList, invoiceTemplates) = await GetInvoiceData(processingList, cancellationToken);
-            var (userEmailAddressList, userDetailsList, userBankDataList) = await GetUserData(invoices, cancellationToken);
+            var (userCompaniesList, userBankAccountsList) = await GetUserData(invoices, cancellationToken);
             var issuedInvoices = new List<IssuedInvoices>();
 
             foreach (var invoice in invoices)
@@ -154,45 +155,36 @@ namespace InvoiceGenerator.Backend.BatchService
                     if (templateData is null)
                         throw new InvoiceProcessingException(nameof(ErrorCodes.MISSING_INVOICE_TEMPLATE), ErrorCodes.MISSING_INVOICE_TEMPLATE);
 
-                    var userEmailAddress = userEmailAddressList
-                        .Where(users => users.Id == invoice.UserId)
-                        .Select(users => users.EmailAddress)
-                        .FirstOrDefault();
+                    var userCompanies = userCompaniesList
+                        .SingleOrDefault(details => details.Id == invoice.UserCompanyId);
 
-                    var userDetails = userDetailsList
-                        .FirstOrDefault(details => details.Id == invoice.UserDetailId);
+                    var userBankAccounts = userBankAccountsList
+                        .SingleOrDefault(bankData => bankData.Id == invoice.UserBankAccountId);
 
-                    var userBankData = userBankDataList
-                        .FirstOrDefault(bankData => bankData.Id == invoice.UserBankDataId);
-
-                    if (string.IsNullOrEmpty(userEmailAddress))
-                        userEmailAddress = "n/a";
-
-                    if (userDetails is null || userBankData is null)
+                    if (userCompanies is null || userBankAccounts is null)
                         throw new InvoiceProcessingException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
  
                     var template = Encoding.Default.GetString(templateData);
-                    var userFullAddress = $"{userDetails.StreetAddress}, {userDetails.PostalCode} {userDetails.City}";
+                    var userFullAddress = $"{userCompanies.StreetAddress}, {userCompanies.PostalCode} {userCompanies.City}";
                     var newInvoice = template
-                        .Replace("{{F1}}", userDetails.CompanyName)
+                        .Replace("{{F1}}", userCompanies.CompanyName)
                         .Replace("{{F2}}", userFullAddress)
-                        .Replace("{{F3}}", userDetails.VatNumber)
-                        .Replace("{{F4}}", userEmailAddress)
-                        .Replace("{{F5}}", "Missing phone")
+                        .Replace("{{F3}}", userCompanies.VatNumber)
+                        .Replace("{{F4}}", userCompanies.EmailAddress)
+                        .Replace("{{F5}}", userCompanies.PhoneNumber)
                         .Replace("{{F6}}", invoice.InvoiceNumber)
                         .Replace("{{F7}}", invoice.ValueDate.ToString(CultureInfo.InvariantCulture))
                         .Replace("{{F8}}", invoice.DueDate.ToString(CultureInfo.InvariantCulture))
                         .Replace("{{F9}}", $"{invoice.PaymentTerms} days")
-                        .Replace("{{F10}}", "Missing currency")
-                        .Replace("{{F11}}", invoice.CustomerName)
-                        .Replace("{{F12}}", invoice.CustomerVatNumber)
-                        .Replace("{{F13}}", invoice.StreetAddress)
-                        .Replace("{{F14}}", "Missing phone")
-                        .Replace("{{F24}}", userBankData.BankName)
-                        .Replace("{{F25}}", userBankData.SwiftNumber)
-                        .Replace("{{F26}}", userBankData.AccountNumber)
-                        .Replace("{{F27}}", "Payment Status EXT")
-                        .Replace("{{F28}}", invoice.PaymentType.ToString());
+                        .Replace("{{F22}}", userCompanies.CurrencyCode.ToString())
+                        .Replace("{{F10}}", invoice.CustomerName)
+                        .Replace("{{F11}}", invoice.CustomerVatNumber)
+                        .Replace("{{F12}}", invoice.StreetAddress)
+                        .Replace("{{F23}}", userBankAccounts.BankName)
+                        .Replace("{{F24}}", userBankAccounts.SwiftNumber)
+                        .Replace("{{F25}}", userBankAccounts.AccountNumber)
+                        .Replace("{{F26}}", invoice.PaymentStatus.ToString())
+                        .Replace("{{F27}}", invoice.PaymentType.ToString());
 
                     var rowTemplate = Regex.Match(template, @"(?<=<row-template>)((.|\n)*)(?=<\/row-template>)");
                     var invoiceItems = string.Empty;
@@ -202,19 +194,19 @@ namespace InvoiceGenerator.Backend.BatchService
                     {
                         totalAmount += item.GrossAmount;
                         invoiceItems += rowTemplate.Value
-                            .Replace("{{F15}}", item.ItemText)
-                            .Replace("{{F16}}", item.ItemQuantity.ToString())
-                            .Replace("{{F17}}", item.ItemQuantityUnit)
-                            .Replace("{{F18}}", item.ItemAmount.ToString(CultureInfo.InvariantCulture))
-                            .Replace("{{F19}}", item.ItemDiscountRate.ToString())
-                            .Replace("{{F20}}", item.ValueAmount.ToString(CultureInfo.InvariantCulture))
-                            .Replace("{{F21}}", item.VatRate.ToString())
-                            .Replace("{{F22}}", item.GrossAmount.ToString(CultureInfo.InvariantCulture));
+                            .Replace("{{F13}}", item.ItemText)
+                            .Replace("{{F14}}", item.ItemQuantity.ToString())
+                            .Replace("{{F15}}", item.ItemQuantityUnit)
+                            .Replace("{{F16}}", item.ItemAmount.ToString(CultureInfo.InvariantCulture))
+                            .Replace("{{F17}}", item.ItemDiscountRate.ToString())
+                            .Replace("{{F18}}", item.ValueAmount.ToString(CultureInfo.InvariantCulture))
+                            .Replace("{{F19}}", item.VatRate.ToString())
+                            .Replace("{{F20}}", item.GrossAmount.ToString(CultureInfo.InvariantCulture));
                     }
 
                     newInvoice = newInvoice
                         .Replace(rowTemplate.Value, invoiceItems)
-                        .Replace("{{F23}}", totalAmount.ToString(CultureInfo.InvariantCulture));
+                        .Replace("{{F21}}", totalAmount.ToString(CultureInfo.InvariantCulture));
 
                     var issuedInvoiceData = new IssuedInvoiceData
                     {
@@ -263,7 +255,7 @@ namespace InvoiceGenerator.Backend.BatchService
             var processing = await _databaseContext.BatchInvoicesProcessing
                 .AsNoTracking()
                 .Where(processing => processing.Id == processBatchKey)
-                .FirstOrDefaultAsync(cancellationToken);
+                .SingleOrDefaultAsync(cancellationToken);
 
             if (processing == null)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_PROCESSING_BATCH_KEY), ErrorCodes.INVALID_PROCESSING_BATCH_KEY);
@@ -288,7 +280,7 @@ namespace InvoiceGenerator.Backend.BatchService
             var invoice = await _databaseContext.IssuedInvoices
                 .AsNoTracking()
                 .Where(invoices => invoices.InvoiceNumber == invoiceNumber)
-                .FirstOrDefaultAsync(cancellationToken);
+                .SingleOrDefaultAsync(cancellationToken);
 
             if (invoice == null)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_INVOICE_NUMBER), ErrorCodes.INVALID_INVOICE_NUMBER);
@@ -330,26 +322,22 @@ namespace InvoiceGenerator.Backend.BatchService
             return (invoices, invoiceItemsList, invoiceTemplates);
         }
 
-        private async Task<(List<Users> userEmailAddressList, List<UserDetails> userDetailsList, List<UserBankData> userBankDataList)> GetUserData(
+        private async Task<(List<UserCompanies> userCompanies, List<UserBankAccounts> userBankAccounts)> GetUserData(
             IEnumerable<BatchInvoices> invoices, CancellationToken cancellationToken)
         {
             var userIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.UserId));
-            var userEmailAddressList = await _databaseContext.Users
-                .AsNoTracking()
-                .Where(users => userIds.Contains(users.Id))
-                .ToListAsync(cancellationToken);
 
-            var userDetailsList = await _databaseContext.UserDetails
+            var userCompanies = await _databaseContext.UserCompanies
                 .AsNoTracking()
                 .Where(details => userIds.Contains(details.UserId))
                 .ToListAsync(cancellationToken);
 
-            var userBankDataList = await _databaseContext.UserBankData
+            var userBankAccounts = await _databaseContext.UserBankAccounts
                 .AsNoTracking()
                 .Where(bankData => userIds.Contains(bankData.UserId))
                 .ToListAsync(cancellationToken);
 
-            return (userEmailAddressList, userDetailsList, userBankDataList);
+            return (userCompanies, userBankAccounts);
         }
 
         private async Task LogIssuedInvoice(IssuedInvoiceData issuedInvoiceData, CancellationToken cancellationToken)
@@ -366,7 +354,7 @@ namespace InvoiceGenerator.Backend.BatchService
             issuedInvoiceData.InvoiceCollection.Add(issuedInvoice);
             issuedInvoiceData.ProcessingTimer.Stop();
                     
-            issuedInvoiceData.BatchInvoicesProcessing.Status = ProcessingStatuses.InvoiceGeneratingFinished;
+            issuedInvoiceData.BatchInvoicesProcessing.Status = ProcessingStatuses.Finished;
             issuedInvoiceData.BatchInvoicesProcessing.BatchProcessingTime = issuedInvoiceData.ProcessingTimer.Elapsed;
                     
             await _databaseContext.SaveChangesAsync(cancellationToken);
@@ -376,7 +364,7 @@ namespace InvoiceGenerator.Backend.BatchService
         {
             timer.Start();
             _loggerService.LogInformation($"Start processing invoice number: {currentInvoice.InvoiceNumber}.");
-            processing.Status = ProcessingStatuses.InvoiceGeneratingStarted;
+            processing.Status = ProcessingStatuses.Started;
             await _databaseContext.SaveChangesAsync(cancellationToken);
         }
 
