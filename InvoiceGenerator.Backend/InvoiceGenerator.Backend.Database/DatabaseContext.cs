@@ -12,7 +12,7 @@
 
         public virtual DbSet<Users> Users { get; set; }
 
-        public virtual DbSet<UserDetails> UserDetails { get; set; }
+        public virtual DbSet<UserCompanies> UserCompanies { get; set; }
 
         public virtual DbSet<UserBankAccounts> UserBankAccounts { get; set; }
 

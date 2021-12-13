@@ -75,7 +75,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public Guid UserId { get; set; }
 
         [Required]
-        public Guid UserDetailId { get; set; }
+        public Guid UserCompanyId { get; set; }
 
         [Required]
         public Guid UserBankAccountId { get; set; }
@@ -84,7 +84,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         public Users Users { get; set; }
 
-        public UserDetails UserDetails { get; set; }
+        public UserCompanies UserCompanies { get; set; }
 
         public UserBankAccounts UserBankAccounts { get; set; }
 

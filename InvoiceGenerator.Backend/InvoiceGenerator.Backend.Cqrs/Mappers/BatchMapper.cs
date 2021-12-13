@@ -12,7 +12,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
         {
             PrivateKey = model.PrivateKey,
             UserId = model.UserId,
-            UserDetailId = model.UserDetailId,
+            UserCompanyId = model.UserCompanyId,
             UserBankAccountId = model.UserBankAccountId,
             OrderDetails = model.OrderDetails
         };

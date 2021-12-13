@@ -27,11 +27,11 @@ namespace InvoiceGenerator.Backend.Database.Mappings
                 .HasConstraintName("FK_BatchInvoices_Users");
 
             builder
-                .HasOne(invoices => invoices.UserDetails)
+                .HasOne(invoices => invoices.UserCompanies)
                 .WithMany(details => details.BatchInvoices)
-                .HasForeignKey(invoices => invoices.UserDetailId)
+                .HasForeignKey(invoices => invoices.UserCompanyId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_BatchInvoices_UserDetails");
+                .HasConstraintName("FK_BatchInvoices_UserCompanies");
 
             builder
                 .HasOne(invoices => invoices.UserBankAccounts)

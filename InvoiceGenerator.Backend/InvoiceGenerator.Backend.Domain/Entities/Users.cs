@@ -33,7 +33,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         [MaxLength(100)]
         public string PrivateKey { get; set; }
 
-        public ICollection<UserDetails> UserDetails { get; set; } = new HashSet<UserDetails>();
+        public ICollection<UserCompanies> UserCompanies { get; set; } = new HashSet<UserCompanies>();
 
         public ICollection<UserBankAccounts> UserBankAccounts { get; set; } = new HashSet<UserBankAccounts>();
 

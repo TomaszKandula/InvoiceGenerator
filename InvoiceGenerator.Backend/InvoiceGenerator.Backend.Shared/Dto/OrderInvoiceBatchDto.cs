@@ -11,7 +11,7 @@ namespace InvoiceGenerator.Backend.Shared.Dto
     {
         public Guid UserId { get; set; }
 
-        public Guid UserDetailId { get; set; }
+        public Guid UserCompanyId { get; set; }
 
         public Guid UserBankAccountId { get; set; }
 

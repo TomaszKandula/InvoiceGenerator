@@ -7,7 +7,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
     using Enums;
 
     [ExcludeFromCodeCoverage]
-    public class UserDetails : Entity<Guid>
+    public class UserCompanies : Entity<Guid>
     {
         public Guid UserId { get; set; }
 
