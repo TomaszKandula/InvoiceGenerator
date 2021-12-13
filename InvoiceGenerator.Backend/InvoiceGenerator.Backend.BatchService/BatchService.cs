@@ -5,7 +5,6 @@ namespace InvoiceGenerator.Backend.BatchService
     using System.Linq;
     using System.Threading;
     using System.Diagnostics;
-    using System.Globalization;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
@@ -164,8 +163,13 @@ namespace InvoiceGenerator.Backend.BatchService
                     if (userCompanies is null || userBankAccounts is null)
                         throw new InvoiceProcessingException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
  
+                    const string dateFormat = "yyyy-MM-dd";
+                    const string currencyFormat = "#,#.00";
+
                     var template = Encoding.Default.GetString(templateData);
                     var userFullAddress = $"{userCompanies.StreetAddress}, {userCompanies.PostalCode} {userCompanies.City}";
+                    var customerAddress = $"{invoice.StreetAddress}, {invoice.PostalCode} {invoice.City}";
+
                     var newInvoice = template
                         .Replace("{{F1}}", userCompanies.CompanyName)
                         .Replace("{{F2}}", userFullAddress)
@@ -173,13 +177,13 @@ namespace InvoiceGenerator.Backend.BatchService
                         .Replace("{{F4}}", userCompanies.EmailAddress)
                         .Replace("{{F5}}", userCompanies.PhoneNumber)
                         .Replace("{{F6}}", invoice.InvoiceNumber)
-                        .Replace("{{F7}}", invoice.ValueDate.ToString(CultureInfo.InvariantCulture))
-                        .Replace("{{F8}}", invoice.DueDate.ToString(CultureInfo.InvariantCulture))
+                        .Replace("{{F7}}", invoice.ValueDate.ToString(dateFormat))
+                        .Replace("{{F8}}", invoice.DueDate.ToString(dateFormat))
                         .Replace("{{F9}}", $"{invoice.PaymentTerms} days")
-                        .Replace("{{F22}}", userCompanies.CurrencyCode.ToString())
+                        .Replace("{{F22}}", userCompanies.CurrencyCode.ToString().ToUpper())
                         .Replace("{{F10}}", invoice.CustomerName)
                         .Replace("{{F11}}", invoice.CustomerVatNumber)
-                        .Replace("{{F12}}", invoice.StreetAddress)
+                        .Replace("{{F12}}", customerAddress)
                         .Replace("{{F23}}", userBankAccounts.BankName)
                         .Replace("{{F24}}", userBankAccounts.SwiftNumber)
                         .Replace("{{F25}}", userBankAccounts.AccountNumber)
@@ -197,16 +201,18 @@ namespace InvoiceGenerator.Backend.BatchService
                             .Replace("{{F13}}", item.ItemText)
                             .Replace("{{F14}}", item.ItemQuantity.ToString())
                             .Replace("{{F15}}", item.ItemQuantityUnit)
-                            .Replace("{{F16}}", item.ItemAmount.ToString(CultureInfo.InvariantCulture))
+                            .Replace("{{F16}}", item.ItemAmount.ToString(currencyFormat))
                             .Replace("{{F17}}", item.ItemDiscountRate.ToString())
-                            .Replace("{{F18}}", item.ValueAmount.ToString(CultureInfo.InvariantCulture))
+                            .Replace("{{F18}}", item.ValueAmount.ToString(currencyFormat))
                             .Replace("{{F19}}", item.VatRate.ToString())
-                            .Replace("{{F20}}", item.GrossAmount.ToString(CultureInfo.InvariantCulture));
+                            .Replace("{{F20}}", item.GrossAmount.ToString(currencyFormat));
                     }
 
                     newInvoice = newInvoice
                         .Replace(rowTemplate.Value, invoiceItems)
-                        .Replace("{{F21}}", totalAmount.ToString(CultureInfo.InvariantCulture));
+                        .Replace("{{F21}}", totalAmount.ToString(currencyFormat))
+                        .Replace("<row-template>", string.Empty)
+                        .Replace("</row-template>", string.Empty);
 
                     var issuedInvoiceData = new IssuedInvoiceData
                     {
