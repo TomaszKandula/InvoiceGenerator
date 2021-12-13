@@ -27,14 +27,13 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         [Required]
         [MaxLength(255)]
-        public string Country { get; set; }
-
-        [Required]
-        [MaxLength(255)]
         public string City { get; set; }
 
         [Required]
         public CurrencyCodes CurrencyCode { get; set; }
+
+        [Required]
+        public CountryCodes CountryCodes { get; set; }
 
         public Users User { get; set; }
 
