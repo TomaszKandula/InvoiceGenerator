@@ -14,7 +14,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
 
         public Guid UserDetailId { get; set; }
 
-        public Guid UserBankDataId { get; set; }
+        public Guid UserBankAccountId { get; set; }
 
         public IEnumerable<OrderDetailBase<InvoiceItemBase>> OrderDetails { get; set; }
     }

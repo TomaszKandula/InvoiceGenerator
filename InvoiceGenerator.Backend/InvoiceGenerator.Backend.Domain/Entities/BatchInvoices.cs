@@ -78,7 +78,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public Guid UserDetailId { get; set; }
 
         [Required]
-        public Guid UserBankDataId { get; set; }
+        public Guid UserBankAccountId { get; set; }
 
         public BatchInvoicesProcessing BatchInvoicesProcessing { get; set; }
 
@@ -86,7 +86,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         public UserDetails UserDetails { get; set; }
 
-        public UserBankData UserBankData { get; set; }
+        public UserBankAccounts UserBankAccounts { get; set; }
 
         public ICollection<BatchInvoiceItems> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItems>();
     }

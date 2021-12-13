@@ -6,9 +6,9 @@ namespace InvoiceGenerator.Backend.Database.Mappings
     using Domain.Entities;
 
     [ExcludeFromCodeCoverage]
-    public class UserBankDataConfiguration : IEntityTypeConfiguration<UserBankData>
+    public class UserBankAccountsConfiguration : IEntityTypeConfiguration<UserBankAccounts>
     {
-        public void Configure(EntityTypeBuilder<UserBankData> builder)
-            => builder.Property(userBankData => userBankData.Id).ValueGeneratedOnAdd();
+        public void Configure(EntityTypeBuilder<UserBankAccounts> builder)
+            => builder.Property(accounts => accounts.Id).ValueGeneratedOnAdd();
     }
 }

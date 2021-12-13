@@ -11,7 +11,7 @@ namespace InvoiceGenerator.Backend.BatchService.Models
 
         public Guid UserDetailId { get; set; }
 
-        public Guid UserBankDataId { get; set; }
+        public Guid UserBankAccountId { get; set; }
 
         public string InvoiceNumber { get; set; }
 

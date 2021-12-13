@@ -6,7 +6,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
     using System.ComponentModel.DataAnnotations;
 
     [ExcludeFromCodeCoverage]
-    public class UserBankData : Entity<Guid>
+    public class UserBankAccounts : Entity<Guid>
     {
         public Guid UserId { get; set; }
 
