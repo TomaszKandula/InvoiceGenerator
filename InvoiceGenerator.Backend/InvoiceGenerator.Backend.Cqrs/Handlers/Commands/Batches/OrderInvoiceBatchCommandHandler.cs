@@ -104,6 +104,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
                     DueDate = valueDate.AddDays(orderDetails.PaymentTerms),
                     PaymentTerms = orderDetails.PaymentTerms,
                     PaymentType = orderDetails.PaymentType,
+                    PaymentStatus = orderDetails.PaymentStatus,
                     CompanyName = orderDetails.CompanyName,
                     CompanyVatNumber = orderDetails.CompanyVatNumber,
                     CountryCode = orderDetails.CountryCode,
