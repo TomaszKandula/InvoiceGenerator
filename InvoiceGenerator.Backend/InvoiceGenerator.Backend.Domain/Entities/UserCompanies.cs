@@ -17,6 +17,12 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         [MaxLength(25)]
         public string VatNumber { get; set; }
 
+        [MaxLength(255)]
+        public string EmailAddress { get; set; }
+
+        [MaxLength(11)]
+        public string PhoneNumber { get; set; }
+
         [Required]
         [MaxLength(255)]
         public string StreetAddress { get; set; }
