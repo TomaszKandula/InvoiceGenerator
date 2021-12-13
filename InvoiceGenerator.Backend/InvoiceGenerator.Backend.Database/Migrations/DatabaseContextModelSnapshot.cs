@@ -135,6 +135,9 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Property<Guid?>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("PaymentStatus")
+                        .HasColumnType("int");
+
                     b.Property<int>("PaymentTerms")
                         .HasColumnType("int");
 

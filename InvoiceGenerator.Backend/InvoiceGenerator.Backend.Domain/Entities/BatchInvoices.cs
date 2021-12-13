@@ -29,6 +29,9 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public PaymentTypes PaymentType { get; set; }
 
         [Required]
+        public PaymentStatuses PaymentStatus { get; set; }
+
+        [Required]
         [MaxLength(255)]
         public string CustomerName { get; set; }
 

@@ -16,6 +16,8 @@ namespace InvoiceGenerator.Backend.Shared.Dto.Models
 
         public PaymentTypes PaymentType { get; set; }
 
+        public PaymentStatuses PaymentStatus { get; set; }
+
         public string CompanyName { get; set; }
 
         public string CompanyVatNumber { get; set; }
