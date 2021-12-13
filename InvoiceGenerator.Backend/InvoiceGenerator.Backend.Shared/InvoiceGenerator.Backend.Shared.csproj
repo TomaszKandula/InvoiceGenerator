@@ -29,11 +29,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InvoiceGenerator.Backend.Domain\InvoiceGenerator.Backend.Domain.csproj" />
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+      <ProjectReference Include="..\InvoiceGenerator.Backend.Domain\InvoiceGenerator.Backend.Domain.csproj" />
     </ItemGroup>
 
 </Project>
