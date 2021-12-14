@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.3.0...v1.3.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* filter invoice items, return items per order ID ([57f19ac](https://github.com/TomaszKandula/InvoiceGenerator/commit/57f19ac61bec413d31c44c2b0cf59d7e1530e7ce))
+
 # [1.3.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.2.0...v1.3.0) (2021-12-14)
 
 
