@@ -162,7 +162,7 @@ namespace InvoiceGenerator.Backend.BatchService
 
                     if (userCompanies is null || userBankAccounts is null)
                         throw new InvoiceProcessingException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
- 
+
                     const string dateFormat = "yyyy-MM-dd";
                     const string currencyFormat = "#,#.00";
 
@@ -179,7 +179,7 @@ namespace InvoiceGenerator.Backend.BatchService
                         .Replace("{{F6}}", invoice.InvoiceNumber)
                         .Replace("{{F7}}", invoice.ValueDate.ToString(dateFormat))
                         .Replace("{{F8}}", invoice.DueDate.ToString(dateFormat))
-                        .Replace("{{F9}}", $"{invoice.PaymentTerms} days")
+                        .Replace("{{F9}}", invoice.PaymentTerms.ToString())
                         .Replace("{{F22}}", userCompanies.CurrencyCode.ToString().ToUpper())
                         .Replace("{{F10}}", invoice.CustomerName)
                         .Replace("{{F11}}", invoice.CustomerVatNumber)
@@ -194,7 +194,14 @@ namespace InvoiceGenerator.Backend.BatchService
                     var invoiceItems = string.Empty;
                     var totalAmount = 0.0m;
 
-                    foreach (var item in invoiceItemsList)
+                    var batchInvoiceItems = invoiceItemsList
+                        .Where(items => items.BatchInvoiceId == invoice.Id)
+                        .ToList();
+
+                    if (!batchInvoiceItems.Any())
+                        throw new InvoiceProcessingException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
+
+                    foreach (var item in batchInvoiceItems)
                     {
                         totalAmount += item.GrossAmount;
                         invoiceItems += rowTemplate.Value
@@ -304,12 +311,14 @@ namespace InvoiceGenerator.Backend.BatchService
             (IEnumerable<Guid> processingList, CancellationToken cancellationToken)
         {
             var invoicesIds = new HashSet<Guid>(processingList);
+
             var invoices = await _databaseContext.BatchInvoices
                 .AsNoTracking()
                 .Where(batchInvoices => invoicesIds.Contains(batchInvoices.ProcessBatchKey))
                 .ToListAsync(cancellationToken);
 
             var invoiceItemsIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.Id));
+
             var invoiceItemsList = await _databaseContext.BatchInvoiceItems
                 .AsNoTracking()
                 .Where(batchInvoiceItems => invoiceItemsIds.Contains(batchInvoiceItems.BatchInvoiceId))
