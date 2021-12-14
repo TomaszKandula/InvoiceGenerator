@@ -11,5 +11,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
         public byte[] Data { get; set; }
 
         public string DataType { get; set; }
+
+        public string Description { get; set; }
     }
 }

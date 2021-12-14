@@ -32,7 +32,8 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
             var newTemplate = new InvoiceTemplateData
             {
                 ContentData = request.Data,
-                ContentType = request.DataType
+                ContentType = request.DataType,
+                Description = request.Description
             };
 
             await _templateService.ReplaceInvoiceTemplate(request.Id, newTemplate, cancellationToken);

@@ -1,12 +1,8 @@
 namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies
 {
     using System.Diagnostics.CodeAnalysis;
+    using BatchService.Models;
 
     [ExcludeFromCodeCoverage]
-    public class GetCurrencyCodesQueryResult
-    {
-        public int SystemCode { get; set; }
-
-        public string Currency { get; set; }
-    }
+    public class GetCurrencyCodesQueryResult : CurrencyCode { }
 }

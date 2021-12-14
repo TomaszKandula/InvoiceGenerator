@@ -9,17 +9,17 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     {
         public AddInvoiceTemplateCommandValidator()
         {
-            RuleFor(request => request.PrivateKey)
+            RuleFor(command => command.PrivateKey)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(request => request.Name)
+            RuleFor(command => command.Name)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(request => request.Data)
+            RuleFor(command => command.Data)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
@@ -29,7 +29,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
                 .WithErrorCode(nameof(ValidationCodes.INVALID_FILE_SIZE))
                 .WithMessage(ValidationCodes.INVALID_FILE_SIZE);
 
-            RuleFor(request => request.Description)
+            RuleFor(command => command.Description)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

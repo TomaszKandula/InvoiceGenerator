@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;
-    using Backend.Domain.Enums;
+    using Domain.Enums;
 
     public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery, IEnumerable<GetCurrencyCodesQueryResult>>
     {

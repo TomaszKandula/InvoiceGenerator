@@ -29,11 +29,14 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         public PaymentTypes PaymentType { get; set; }
 
         [Required]
+        public PaymentStatuses PaymentStatus { get; set; }
+
+        [Required]
         [MaxLength(255)]
-        public string CompanyName { get; set; }
+        public string CustomerName { get; set; }
 
         [MaxLength(25)]
-        public string CompanyVatNumber { get; set; }
+        public string CustomerVatNumber { get; set; }
 
         [Required]
         public CountryCodes CountryCode { get; set; }
@@ -44,15 +47,7 @@ namespace InvoiceGenerator.Backend.Domain.Entities
 
         [Required]
         [MaxLength(100)]
-        public string AddressLine1 { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string AddressLine2 { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string AddressLine3 { get; set; }
+        public string StreetAddress { get; set; }
 
         [Required]
         [MaxLength(25)]
@@ -79,7 +74,22 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         [MaxLength(255)]
         public string InvoiceTemplateName { get; set; }
 
+        [Required]
+        public Guid UserId { get; set; }
+
+        [Required]
+        public Guid UserCompanyId { get; set; }
+
+        [Required]
+        public Guid UserBankAccountId { get; set; }
+
         public BatchInvoicesProcessing BatchInvoicesProcessing { get; set; }
+
+        public Users Users { get; set; }
+
+        public UserCompanies UserCompanies { get; set; }
+
+        public UserBankAccounts UserBankAccounts { get; set; }
 
         public ICollection<BatchInvoiceItems> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItems>();
     }

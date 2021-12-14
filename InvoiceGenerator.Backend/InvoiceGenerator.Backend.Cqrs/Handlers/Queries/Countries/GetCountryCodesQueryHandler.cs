@@ -9,7 +9,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Countries
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;
-    using Backend.Domain.Enums;
+    using Domain.Enums;
 
     public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, IEnumerable<GetCountryCodesQueryResult>>
     {

@@ -1,182 +1,66 @@
 namespace InvoiceGenerator.Backend.Domain.Enums
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Core.Converters;
+
+    /// <summary>
+    /// Country currency codes (ISO 3166 and ISO 4217).
+    /// </summary>
+    /// <remarks>
+    /// The alphabetic code is based on another ISO standard, ISO 3166, which lists the codes for country names.
+    /// The first two letters of the ISO 4217 three-letter code are the same as the code for the country name, and,
+    /// where possible, the third letter corresponds to the first letter of the currency name.
+    /// The three-digit numeric code is useful when currency codes need to be understood in countries
+    /// that do not use Latin scripts and for computerized systems. Where possible,
+    /// the three-digit numeric code is the same as the numeric country code.
+    /// </remarks>
+    [JsonConverter(typeof(StringToEnumWithDefaultConverter))]
     public enum CurrencyCodes
     {
-        NotSet,
-        Aed,
-        Afa,
-        All,
-        Amd,
-        Ang,
-        Aoa,
-        Ars,
-        Aud,
-        Awg,
-        Azm,
-        Bam,
-        Bbd,
-        Bdt,
-        Bgn,
-        Bhd,
-        Bif,
-        Bmd,
-        Bnd,
-        Bob,
-        Brl,
-        Bsd,
-        Btn,
-        Bwp,
-        Byr,
-        Bzd,
-        Cad,
-        Cdf,
-        Chf,
-        Clp,
-        Cny,
-        Cop,
-        Crc,
-        Csd,
-        Cup,
-        Cve,
-        Cyp,
-        Czk,
-        Djf,
-        Dkk,
-        Dop,
-        Dzd,
-        Eek,
-        Egp,
-        Ern,
-        Etb,
-        Eur,
-        Fjd,
-        Fkp,
-        Gbp,
-        Gel,
-        Ggp,
-        Ghc,
-        Gip,
-        Gmd,
-        Gnf,
-        Gtq,
-        Gyd,
-        Hkd,
-        Hnl,
-        Hrk,
-        Htg,
-        Huf,
-        Idr,
-        Ils,
-        Imp,
-        Inr,
-        Iqd,
-        Irr,
-        Isk,
-        Jep,
-        Jmd,
-        Jod,
-        Jpy,
-        Kes,
-        Kgs,
-        Khr,
-        Kmf,
-        Kpw,
-        Krw,
-        Kwd,
-        Kyd,
-        Kzt,
-        Lak,
-        Lbp,
-        Lkr,
-        Lrd,
-        Lsl,
-        Ltl,
-        Lvl,
-        Lyd,
-        Mad,
-        Mdl,
-        Mga,
-        Mkd,
-        Mmk,
-        Mnt,
-        Mop,
-        Mro,
-        Mtl,
-        Mur,
-        Mvr,
-        Mwk,
-        Mxn,
-        Myr,
-        Mzm,
-        Nad,
-        Ngn,
-        Nio,
-        Nok,
-        Npr,
-        Nzd,
-        Omr,
-        Pab,
-        Pen,
-        Pgk,
-        Php,
-        Pkr,
-        Pln,
-        Pyg,
-        Qar,
-        Rol,
-        Ron,
-        Rub,
-        Rur,
-        Rwf,
-        Sar,
-        Sbd,
-        Scr,
-        Sdd,
-        Sek,
-        Sgd,
-        Shp,
-        Sit,
-        Skk,
-        Sll,
-        Sos,
-        Spl,
-        Srd,
-        Std,
-        Svc,
-        Syp,
-        Szl,
-        Thb,
-        Tjs,
-        Tmm,
-        Tnd,
-        Top,
-        Trl,
-        Try,
-        Ttd,
-        Tvd,
-        Twd,
-        Tzs,
-        Uah,
-        Ugx,
-        Usd,
-        Uyu,
-        Uzs,
-        Veb,
-        Vnd,
-        Vuv,
-        Wst,
-        Xaf,
-        Xag,
-        Xau,
-        Xcd,
-        Xdr,
-        Xof,
-        Xpd,
-        Xpf,
-        Xpt,
-        Yer,
-        Zar,
-        Zmk,
-        Zwd        
+        [EnumMember(Value = "unknown")]
+        Unknown = 0,
+
+        [EnumMember(Value = "bgn")]
+        Bgn = 975,
+
+        [EnumMember(Value = "chf")]
+        Chf = 756,
+
+        [EnumMember(Value = "czk")]
+        Czk = 203,
+
+        [EnumMember(Value = "dkk")]
+        Dkk = 208,
+
+        [EnumMember(Value = "eur")]
+        Eur = 978,
+
+        [EnumMember(Value = "gdp")]
+        Gbp = 826,
+
+        [EnumMember(Value = "hrk")]
+        Hrk = 191,
+
+        [EnumMember(Value = "huf")]
+        Huf = 348,
+
+        [EnumMember(Value = "nok")]
+        Nok = 578,
+
+        [EnumMember(Value = "pln")]
+        Pln = 985,
+
+        [EnumMember(Value = "ron")]
+        Ron = 946,
+
+        [EnumMember(Value = "sek")]
+        Sek = 752,
+
+        [EnumMember(Value = "try")]
+        Try = 949,
+
+        [EnumMember(Value = "usd")]
+        Usd = 840
     }
 }
