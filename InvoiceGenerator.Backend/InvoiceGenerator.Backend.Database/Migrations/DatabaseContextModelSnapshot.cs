@@ -93,34 +93,10 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AddressLine2")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AddressLine3")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("City")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("CompanyVatNumber")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("CountryCode")
                         .HasColumnType("int");
@@ -130,6 +106,15 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("CustomerVatNumber")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
@@ -150,6 +135,9 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Property<Guid?>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("PaymentStatus")
+                        .HasColumnType("int");
+
                     b.Property<int>("PaymentTerms")
                         .HasColumnType("int");
 
@@ -169,6 +157,20 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Property<Guid>("ProcessBatchKey")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("StreetAddress")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("UserBankAccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserCompanyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("ValueDate")
                         .HasColumnType("datetime2");
 
@@ -178,6 +180,12 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProcessBatchKey");
+
+                    b.HasIndex("UserBankAccountId");
+
+                    b.HasIndex("UserCompanyId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("BatchInvoices");
                 });
@@ -271,7 +279,7 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.ToTable("IssuedInvoices");
                 });
 
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserBankData", b =>
+            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserBankAccounts", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -287,6 +295,9 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int>("CurrencyCode")
+                        .HasColumnType("int");
+
                     b.Property<string>("SwiftNumber")
                         .IsRequired()
                         .HasMaxLength(11)
@@ -299,10 +310,10 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserBankData");
+                    b.ToTable("UserBankAccounts");
                 });
 
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserDetails", b =>
+            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserCompanies", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -317,10 +328,19 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
+                    b.Property<int>("CountryCode")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CurrencyCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmailAddress")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
@@ -343,7 +363,7 @@ namespace InvoiceGenerator.Backend.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserDetails");
+                    b.ToTable("UserCompanies");
                 });
 
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.Users", b =>
@@ -439,7 +459,31 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                         .HasConstraintName("FK_BatchInvoices_BatchInvoicesProcessing")
                         .IsRequired();
 
+                    b.HasOne("InvoiceGenerator.Backend.Domain.Entities.UserBankAccounts", "UserBankAccounts")
+                        .WithMany("BatchInvoices")
+                        .HasForeignKey("UserBankAccountId")
+                        .HasConstraintName("FK_BatchInvoices_UserBankAccount")
+                        .IsRequired();
+
+                    b.HasOne("InvoiceGenerator.Backend.Domain.Entities.UserCompanies", "UserCompanies")
+                        .WithMany("BatchInvoices")
+                        .HasForeignKey("UserCompanyId")
+                        .HasConstraintName("FK_BatchInvoices_UserCompanies")
+                        .IsRequired();
+
+                    b.HasOne("InvoiceGenerator.Backend.Domain.Entities.Users", "Users")
+                        .WithMany("BatchInvoices")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_BatchInvoices_Users")
+                        .IsRequired();
+
                     b.Navigation("BatchInvoicesProcessing");
+
+                    b.Navigation("UserBankAccounts");
+
+                    b.Navigation("UserCompanies");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.IssuedInvoices", b =>
@@ -453,10 +497,10 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserBankData", b =>
+            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserBankAccounts", b =>
                 {
                     b.HasOne("InvoiceGenerator.Backend.Domain.Entities.Users", "User")
-                        .WithMany("UserBankData")
+                        .WithMany("UserBankAccounts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -464,10 +508,10 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserDetails", b =>
+            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserCompanies", b =>
                 {
                     b.HasOne("InvoiceGenerator.Backend.Domain.Entities.Users", "User")
-                        .WithMany("UserDetails")
+                        .WithMany("UserCompanies")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -485,15 +529,27 @@ namespace InvoiceGenerator.Backend.Database.Migrations
                     b.Navigation("BatchInvoices");
                 });
 
+            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserBankAccounts", b =>
+                {
+                    b.Navigation("BatchInvoices");
+                });
+
+            modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.UserCompanies", b =>
+                {
+                    b.Navigation("BatchInvoices");
+                });
+
             modelBuilder.Entity("InvoiceGenerator.Backend.Domain.Entities.Users", b =>
                 {
                     b.Navigation("AllowDomains");
 
+                    b.Navigation("BatchInvoices");
+
                     b.Navigation("IssuedInvoices");
 
-                    b.Navigation("UserBankData");
+                    b.Navigation("UserBankAccounts");
 
-                    b.Navigation("UserDetails");
+                    b.Navigation("UserCompanies");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,22 +7,27 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
     {
         public ReplaceInvoiceTemplateCommandValidator()
         {
-            RuleFor(request => request.PrivateKey)
+            RuleFor(command => command.PrivateKey)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(request => request.Id)
+            RuleFor(command => command.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(request => request.Data)
+            RuleFor(command => command.Data)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(request => request.DataType)
+            RuleFor(command => command.Data)
+                .Must(bytes => bytes.Length <= 4 * 1024 * 1024)
+                .WithErrorCode(nameof(ValidationCodes.INVALID_FILE_SIZE))
+                .WithMessage(ValidationCodes.INVALID_FILE_SIZE);
+
+            RuleFor(command => command.Description)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

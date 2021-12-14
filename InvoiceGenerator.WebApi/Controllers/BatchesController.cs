@@ -7,8 +7,8 @@ namespace InvoiceGenerator.WebApi.Controllers
     using Microsoft.AspNetCore.Http;
     using Backend.Shared.Dto;
     using Backend.Cqrs.Mappers;
-    using Backend.Cqrs.Handlers.Queries.Batch;
-    using Backend.Cqrs.Handlers.Commands.Batch;
+    using Backend.Cqrs.Handlers.Queries.Batches;
+    using Backend.Cqrs.Handlers.Commands.Batches;
     using MediatR;
 
     [ApiVersion("1.0")]
@@ -18,13 +18,18 @@ namespace InvoiceGenerator.WebApi.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(OrderInvoiceBatchCommandResult), StatusCodes.Status200OK)]
-        public async Task<OrderInvoiceBatchCommandResult> OrderInvoiceBatchProcessing([FromBody] OrderInvoiceBatchDto payload) 
+        public async Task<OrderInvoiceBatchCommandResult> OrderInvoiceBatch([FromBody] OrderInvoiceBatchDto payload) 
             => await Mediator.Send(BatchMapper.MapToOrderInvoiceBatchCommandRequest(payload));
 
+        [HttpPost]
+        [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+        public async Task<Unit> OrderBatchProcessing() 
+            => await Mediator.Send(new OrderBatchProcessingCommand());
+
         [HttpGet]
-        [ProducesResponseType(typeof(GetBatchProcessingQueryResult), StatusCodes.Status200OK)]
-        public async Task<GetBatchProcessingQueryResult> GetBatchProcessingStatus([FromQuery] string privateKey, Guid processBatchKey) =>
-            await Mediator.Send(new GetBatchProcessingQuery { PrivateKey = privateKey, ProcessBatchKey = processBatchKey });
+        [ProducesResponseType(typeof(GetBatchProcessingStatusQueryResult), StatusCodes.Status200OK)]
+        public async Task<GetBatchProcessingStatusQueryResult> GetBatchProcessingStatus([FromQuery] string privateKey, Guid processBatchKey) =>
+            await Mediator.Send(new GetBatchProcessingStatusQuery { PrivateKey = privateKey, ProcessBatchKey = processBatchKey });
 
         [HttpGet]
         [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]

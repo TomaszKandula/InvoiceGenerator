@@ -158,5 +158,17 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_API_VERSION", resourceCulture);
             }
         }
+        
+        public static string PROCESSING_EXCEPTION {
+            get {
+                return ResourceManager.GetString("PROCESSING_EXCEPTION", resourceCulture);
+            }
+        }
+        
+        public static string MISSING_INVOICE_TEMPLATE {
+            get {
+                return ResourceManager.GetString("MISSING_INVOICE_TEMPLATE", resourceCulture);
+            }
+        }
     }
 }

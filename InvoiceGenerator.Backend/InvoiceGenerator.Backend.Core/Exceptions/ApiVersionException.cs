@@ -9,10 +9,10 @@ namespace InvoiceGenerator.Backend.Core.Exceptions
     {
         public IActionResult CreateResponse(ErrorResponseContext context)
         {
-            const string errorCode = nameof(Shared.Resources.ErrorCodes.INVALID_API_VERSION);
-            var errorMessage = Shared.Resources.ErrorCodes.INVALID_API_VERSION;
-            var innerError = context.Message;
+            const string errorCode = "INVALID_API_VERSION";
+            const string errorMessage = "Provided API version seems to be invalid";
 
+            var innerError = context.Message;
             var error = new ApplicationError(errorCode, errorMessage, innerError);
             var response = new ObjectResult(error) { StatusCode = StatusCodes.Status400BadRequest };
 

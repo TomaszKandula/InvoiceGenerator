@@ -9,6 +9,6 @@ namespace InvoiceGenerator.Backend.Database.Mappings
     public class UsersConfiguration : IEntityTypeConfiguration<Users>
     {
         public void Configure(EntityTypeBuilder<Users> builder) 
-            => builder.Property(user => user.Id).ValueGeneratedOnAdd();
+            => builder.Property(users => users.Id).ValueGeneratedOnAdd();
     }
 }
