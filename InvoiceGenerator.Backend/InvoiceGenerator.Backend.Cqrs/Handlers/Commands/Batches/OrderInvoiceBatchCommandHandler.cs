@@ -56,7 +56,6 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
                 .ToListAsync(cancellationToken);
             
             var order = new List<OrderDetail>();
-            var items = new List<InvoiceItem>();
             foreach (var orderDetails in request.OrderDetails)
             {
                 var vatCheckRequest = new VatValidationRequest(orderDetails.CompanyVatNumber, vatPatterns, vatOptions);
@@ -65,6 +64,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
                 if (!vatCheckResult.IsValid)
                     throw new ValidationException(vatCheckResult, ValidationCodes.INVALID_VAT);
 
+                var items = new List<InvoiceItem>();
                 foreach (var item in orderDetails.InvoiceItems)
                 {
                     var valueAmount = GetValueAmount(item.ItemQuantity, item.ItemAmount, item.ItemDiscountRate);
