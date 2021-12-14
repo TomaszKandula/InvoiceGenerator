@@ -146,12 +146,39 @@ namespace InvoiceGenerator.UnitTests.Services
                 IsActivated = true,
                 PrivateKey = DataUtilityService.GetRandomString()
             };
-            
+
+            var userCompany = new UserCompanies
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+                CompanyName = DataUtilityService.GetRandomString(60),
+                VatNumber = DataUtilityService.GetRandomString(25),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                PhoneNumber = DataUtilityService.GetRandomString(11),
+                StreetAddress = DataUtilityService.GetRandomString(25),
+                PostalCode = DataUtilityService.GetRandomString(6),
+                City = DataUtilityService.GetRandomString(7),
+                CurrencyCode = CurrencyCodes.Dkk,
+                CountryCode = CountryCodes.Denmark
+            };
+
+            var userBankAccount = new UserBankAccounts
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+                BankName = DataUtilityService.GetRandomString(10),
+                SwiftNumber = DataUtilityService.GetRandomString(11),
+                AccountNumber = DataUtilityService.GetRandomString(28),
+                CurrencyCode = CurrencyCodes.Dkk
+            };
+
             var orders = new List<OrderDetail>
             {
                 new()
                 {
                     UserId = user.Id,
+                    UserCompanyId = userCompany.Id,
+                    UserBankAccountId = userBankAccount.Id,
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
@@ -161,6 +188,7 @@ namespace InvoiceGenerator.UnitTests.Services
                     CompanyName = DataUtilityService.GetRandomString(),
                     CompanyVatNumber = DataUtilityService.GetRandomString(),
                     CountryCode = CountryCodes.Poland,
+                    CurrencyCode = CurrencyCodes.Eur,
                     City = DataUtilityService.GetRandomString(),
                     StreetAddress = DataUtilityService.GetRandomString(),
                     PostalCode = DataUtilityService.GetRandomString(),
@@ -197,6 +225,8 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     UserId = user.Id,
+                    UserCompanyId = userCompany.Id,
+                    UserBankAccountId = userBankAccount.Id,
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
@@ -206,6 +236,7 @@ namespace InvoiceGenerator.UnitTests.Services
                     CompanyName = DataUtilityService.GetRandomString(),
                     CompanyVatNumber = DataUtilityService.GetRandomString(),
                     CountryCode = CountryCodes.Poland,
+                    CurrencyCode = CurrencyCodes.Eur,
                     City = DataUtilityService.GetRandomString(),
                     StreetAddress = DataUtilityService.GetRandomString(),
                     PostalCode = DataUtilityService.GetRandomString(),
@@ -243,6 +274,8 @@ namespace InvoiceGenerator.UnitTests.Services
 
             var databaseContext = GetTestDatabaseContext();
             await databaseContext.AddAsync(user);
+            await databaseContext.AddAsync(userCompany);
+            await databaseContext.AddAsync(userBankAccount);
             await databaseContext.SaveChangesAsync();
             
             var mockedDateTimeService = new Mock<IDateTimeService>();
@@ -288,11 +321,39 @@ namespace InvoiceGenerator.UnitTests.Services
                 CreatedAt = DateTimeService.Now
             };
 
+            var userCompany = new UserCompanies
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+                CompanyName = DataUtilityService.GetRandomString(60),
+                VatNumber = DataUtilityService.GetRandomString(25),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                PhoneNumber = DataUtilityService.GetRandomString(11),
+                StreetAddress = DataUtilityService.GetRandomString(25),
+                PostalCode = DataUtilityService.GetRandomString(6),
+                City = DataUtilityService.GetRandomString(7),
+                CurrencyCode = CurrencyCodes.Dkk,
+                CountryCode = CountryCodes.Denmark
+            };
+
+            var userBankAccount = new UserBankAccounts
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+                BankName = DataUtilityService.GetRandomString(10),
+                SwiftNumber = DataUtilityService.GetRandomString(11),
+                AccountNumber = DataUtilityService.GetRandomString(28),
+                CurrencyCode = CurrencyCodes.Dkk
+            };
+
             var invoices = new List<BatchInvoices>
             {
                 new()
                 {
                     Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    UserCompanyId = userCompany.Id,
+                    UserBankAccountId = userBankAccount.Id,
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
@@ -316,6 +377,9 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    UserCompanyId = userCompany.Id,
+                    UserBankAccountId = userBankAccount.Id,
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
@@ -370,6 +434,8 @@ namespace InvoiceGenerator.UnitTests.Services
 
             var databaseContext = GetTestDatabaseContext();
             await databaseContext.AddAsync(user);
+            await databaseContext.AddAsync(userCompany);
+            await databaseContext.AddAsync(userBankAccount);
             await databaseContext.AddAsync(processing);
             await databaseContext.AddRangeAsync(invoices);
             await databaseContext.AddRangeAsync(invoiceItems);
@@ -415,11 +481,39 @@ namespace InvoiceGenerator.UnitTests.Services
                 CreatedAt = DateTimeService.Now
             };
 
+            var userCompany = new UserCompanies
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+                CompanyName = DataUtilityService.GetRandomString(60),
+                VatNumber = DataUtilityService.GetRandomString(25),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                PhoneNumber = DataUtilityService.GetRandomString(11),
+                StreetAddress = DataUtilityService.GetRandomString(25),
+                PostalCode = DataUtilityService.GetRandomString(6),
+                City = DataUtilityService.GetRandomString(7),
+                CurrencyCode = CurrencyCodes.Dkk,
+                CountryCode = CountryCodes.Denmark
+            };
+
+            var userBankAccount = new UserBankAccounts
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+                BankName = DataUtilityService.GetRandomString(10),
+                SwiftNumber = DataUtilityService.GetRandomString(11),
+                AccountNumber = DataUtilityService.GetRandomString(28),
+                CurrencyCode = CurrencyCodes.Dkk
+            };
+
             var invoices = new List<BatchInvoices>
             {
                 new()
                 {
                     Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    UserCompanyId = userCompany.Id,
+                    UserBankAccountId = userBankAccount.Id,
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
@@ -443,6 +537,9 @@ namespace InvoiceGenerator.UnitTests.Services
                 new()
                 {
                     Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    UserCompanyId = userCompany.Id,
+                    UserBankAccountId = userBankAccount.Id,
                     InvoiceNumber = DataUtilityService.GetRandomString(),
                     VoucherDate = DataUtilityService.GetRandomDateTime(),
                     ValueDate = DataUtilityService.GetRandomDateTime(),
@@ -497,6 +594,8 @@ namespace InvoiceGenerator.UnitTests.Services
 
             var databaseContext = GetTestDatabaseContext();
             await databaseContext.AddAsync(user);
+            await databaseContext.AddAsync(userCompany);
+            await databaseContext.AddAsync(userBankAccount);
             await databaseContext.AddAsync(processing);
             await databaseContext.AddRangeAsync(invoices);
             await databaseContext.AddRangeAsync(invoiceItems);
