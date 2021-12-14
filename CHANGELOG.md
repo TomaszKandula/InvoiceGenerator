@@ -1,3 +1,38 @@
+# [1.3.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.2.0...v1.3.0) (2021-12-14)
+
+
+### Bug Fixes
+
+* add missing description ([9a6dfda](https://github.com/TomaszKandula/InvoiceGenerator/commit/9a6dfda58b2f70c569a650753fca14d97bc75d4b))
+* change incorrect file upload implementation ([171eb5c](https://github.com/TomaszKandula/InvoiceGenerator/commit/171eb5c5f94913481b53bb019e82aa4137e3d92b))
+* correct filed names ([0699afe](https://github.com/TomaszKandula/InvoiceGenerator/commit/0699afefc7d5fffe65f701cf1bc5b85bf3f8a7a9))
+* object should be created for each new order ([cba1f23](https://github.com/TomaszKandula/InvoiceGenerator/commit/cba1f233b28e8a4ed7aaa5b53d6af70ffc3ec458))
+
+
+### Features
+
+* add batch processing order ([aeb9648](https://github.com/TomaszKandula/InvoiceGenerator/commit/aeb9648333ac92fc1451f80044c733cd6520663d))
+* add columns to database table ([38312f7](https://github.com/TomaszKandula/InvoiceGenerator/commit/38312f7a0fe0409473b4a23721d51ea6fe353085))
+* add configuration for new constraints ([6e22dd2](https://github.com/TomaszKandula/InvoiceGenerator/commit/6e22dd221bb94b784eba9020335cd81d07c8e33f))
+* add currency code to database tables ([ac5c6e5](https://github.com/TomaszKandula/InvoiceGenerator/commit/ac5c6e5cd991d1fd5becb975bf56f96fe6ad79c8))
+* add currency code to user bank accounts table ([df94046](https://github.com/TomaszKandula/InvoiceGenerator/commit/df94046c915392a0bf493133dc365545c41844c9))
+* add custom string to enum converter ([f726f10](https://github.com/TomaszKandula/InvoiceGenerator/commit/f726f10f34540de426043b4b5d286af198b29e2d))
+* add endpoint to call batch processing ([112cd79](https://github.com/TomaszKandula/InvoiceGenerator/commit/112cd7973c997260b3af87797184809108df369d))
+* add migration ([614bead](https://github.com/TomaszKandula/InvoiceGenerator/commit/614bead524d92401718e5ef683514991d8e83496))
+* add migration of currency code (change in database) ([af86c54](https://github.com/TomaszKandula/InvoiceGenerator/commit/af86c545e1c0922fa0adee1c4ffff622c3a06609))
+* add new columns to user companies database table ([5e6cfda](https://github.com/TomaszKandula/InvoiceGenerator/commit/5e6cfda1c114faedfa24168362604bd526b584a8))
+* add new error codes ([7afe705](https://github.com/TomaszKandula/InvoiceGenerator/commit/7afe7053ba46230d3d5b0595c8b58acebf67ad6d))
+* add new exception for invoice processing ([efc3061](https://github.com/TomaszKandula/InvoiceGenerator/commit/efc3061cba337a03c8622af06e9a21ab3d47844c))
+* add new models for invoice batch processing ([99edde9](https://github.com/TomaszKandula/InvoiceGenerator/commit/99edde9c16b46a0b794a3689c242b1eb858698ea))
+* add outstanding invoice processing ([6b4c8ee](https://github.com/TomaszKandula/InvoiceGenerator/commit/6b4c8eeaed5a09b2f9ec04e51741a6d4e2f2f8a8))
+* add payment status column to database table ([7c6a144](https://github.com/TomaszKandula/InvoiceGenerator/commit/7c6a144c24354fcc20cd3c2b34d26718cdfdc815))
+* add payments status to order new batch invoice ([1a37145](https://github.com/TomaszKandula/InvoiceGenerator/commit/1a37145a55f5a8564fdc99fbea74fcf7ccd5e35f))
+* apply currency and date formatting ([6259299](https://github.com/TomaszKandula/InvoiceGenerator/commit/625929922fa0ca87d791fe10f40953f9e11fcf7d))
+* map new properties ([4a43703](https://github.com/TomaszKandula/InvoiceGenerator/commit/4a4370371d650769291a00b2e1929d3ea0da66c6))
+* simplify invoice processing implementation ([1251357](https://github.com/TomaszKandula/InvoiceGenerator/commit/125135712a7099d343e68e156af6a9d237ac3672))
+* upgrade implementation to follow other changes ([cfb4dfd](https://github.com/TomaszKandula/InvoiceGenerator/commit/cfb4dfde0df190445a3386bd7111814234cdd013))
+* use json converter attribute ([80b5a0e](https://github.com/TomaszKandula/InvoiceGenerator/commit/80b5a0e435f3c211d386bec6aaa2a30cbefaf4d6))
+
 # [1.2.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.1.0...v1.2.0) (2021-12-11)
 
 
