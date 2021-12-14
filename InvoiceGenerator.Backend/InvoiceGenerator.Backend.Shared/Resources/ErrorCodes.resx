@@ -75,4 +75,10 @@
     <data name="INVALID_API_VERSION" xml:space="preserve">
         <value>Provided API version seems to be invalid</value>
     </data>
+    <data name="PROCESSING_EXCEPTION" xml:space="preserve">
+        <value>An error occurred during the processing</value>
+    </data>
+    <data name="MISSING_INVOICE_TEMPLATE" xml:space="preserve">
+        <value>Missing invoice template</value>
+    </data>
 </root>

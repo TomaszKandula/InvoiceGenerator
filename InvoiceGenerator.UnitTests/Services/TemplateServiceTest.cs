@@ -272,7 +272,8 @@ namespace InvoiceGenerator.UnitTests.Services
             var newTemplateData = new InvoiceTemplateData
             {
                 ContentData = new byte[514],
-                ContentType = DataUtilityService.GetRandomString()
+                ContentType = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(useAlphabetOnly: true)
             };
 
             var templates = new List<InvoiceTemplates>

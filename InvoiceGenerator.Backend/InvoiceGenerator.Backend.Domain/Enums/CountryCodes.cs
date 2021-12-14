@@ -1,259 +1,107 @@
 namespace InvoiceGenerator.Backend.Domain.Enums
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Core.Converters;
+
+    /// <summary>
+    /// Country codes. Numeric values follows UN Code.
+    /// </summary>
+    /// <remarks>
+    /// This is a incomplete list of country ISO codes as described in the ISO 3166 international standard.
+    /// In case of extending this list, please keep the correct numeric value.
+    /// </remarks>
+    [JsonConverter(typeof(StringToEnumWithDefaultConverter))]
     public enum CountryCodes
     {
-        NotSet,
-        Ac,
-        Ad,
-        Ae,
-        Af,
-        Ag,
-        Ai,
-        Al,
-        Am,
-        An,
-        Ao,
-        Aq,
-        Ar,
-        As,
-        At,
-        Au,
-        Aw,
-        Ax,
-        Az,
-        Ba,
-        Bb,
-        Bd,
-        Be,
-        Bf,
-        Bg,
-        Bh,
-        Bi,
-        Bj,
-        Bl,
-        Bm,
-        Bn,
-        Bo,
-        Br,
-        Bs,
-        Bt,
-        Bv,
-        Bw,
-        By,
-        Bz,
-        Ca,
-        Cc,
-        Cd,
-        Cf,
-        Cg,
-        Ch,
-        Ci,
-        Ck,
-        Cl,
-        Cm,
-        Cn,
-        Co,
-        Cr,
-        Cu,
-        Cv,
-        Cx,
-        Cy,
-        Cz,
-        De,
-        Dj,
-        Dk,
-        Dm,
-        Do,
-        Dz,
-        Ec,
-        Ee,
-        Eg,
-        Eh,
-        El,
-        Er,
-        Es,
-        Et,
-        Fi,
-        Fj,
-        Fk,
-        Fm,
-        Fo,
-        Fr,
-        Ga,
-        Gb,
-        Gd,
-        Ge,
-        Gf,
-        Gg,
-        Gh,
-        Gi,
-        Gl,
-        Gm,
-        Gn,
-        Gp,
-        Gq,
-        Gs,
-        Gt,
-        Gu,
-        Gw,
-        Gy,
-        Hk,
-        Hm,
-        Hn,
-        Hr,
-        Ht,
-        Hu,
-        Id,
-        Ie,
-        Il,
-        Im,
-        In,
-        Io,
-        Iq,
-        Ir,
-        Is,
-        It,
-        Je,
-        Jm,
-        Jo,
-        Jp,
-        Ke,
-        Kg,
-        Kh,
-        Ki,
-        Km,
-        Kn,
-        Kp,
-        Kr,
-        Kw,
-        Ky,
-        Kz,
-        La,
-        Lb,
-        Lc,
-        Li,
-        Lk,
-        Lr,
-        Ls,
-        Lt,
-        Lu,
-        Lv,
-        Ly,
-        Ma,
-        Mc,
-        Md,
-        Me,
-        Mf,
-        Mg,
-        Mh,
-        Mk,
-        Ml,
-        Mm,
-        Mn,
-        Mo,
-        Mp,
-        Mq,
-        Mr,
-        Ms,
-        Mt,
-        Mu,
-        Mv,
-        Mw,
-        Mx,
-        My,
-        Mz,
-        Na,
-        Nc,
-        Ne,
-        Nf,
-        Ng,
-        Ni,
-        Nl,
-        No,
-        Np,
-        Nr,
-        Nu,
-        Nz,
-        Om,
-        Pa,
-        Pe,
-        Pf,
-        Pg,
-        Ph,
-        Pk,
-        Pl,
-        Pm,
-        Pn,
-        Pr,
-        Ps,
-        Pt,
-        Pw,
-        Py,
-        Qa,
-        Re,
-        Ro,
-        Rs,
-        Ru,
-        Rw,
-        Sa,
-        Sb,
-        Sc,
-        Sd,
-        Se,
-        Sg,
-        Sh,
-        Si,
-        Sj,
-        Sk,
-        Sl,
-        Sm,
-        Sn,
-        So,
-        Sr,
-        St,
-        Sv,
-        Sy,
-        Sz,
-        Tc,
-        Td,
-        Tf,
-        Tg,
-        Th,
-        Tj,
-        Tk,
-        Tl,
-        Tm,
-        Tn,
-        To,
-        Tp,
-        Tr,
-        Tt,
-        Tv,
-        Tw,
-        Tz,
-        Ua,
-        Ug,
-        Uk,
-        Um,
-        Us,
-        Uy,
-        Uz,
-        Va,
-        Vc,
-        Ve,
-        Vg,
-        Vi,
-        Vn,
-        Vu,
-        Wf,
-        Ws,
-        Xk,
-        Ye,
-        Yt,
-        Yu,
-        Za,
-        Zm,
-        Zr,
-        Zw
+        [EnumMember(Value = "unknown")]
+        Unknown = 0,
+
+        [EnumMember(Value = "austria")]
+        Austria = 40,
+
+        [EnumMember(Value = "belgium")]
+        Belgium = 56,
+
+        [EnumMember(Value = "bulgaria")]
+        Bulgaria = 100,
+
+        [EnumMember(Value = "croatia")]
+        Croatia = 191,
+
+        [EnumMember(Value = "cyprus")]
+        Cyprus = 196,
+
+        [EnumMember(Value = "czech")]
+        Czech = 203,
+
+        [EnumMember(Value = "denmark")]
+        Denmark = 208,
+
+        [EnumMember(Value = "estonia")]
+        Estonia = 233,
+
+        [EnumMember(Value = "finland")]
+        Finland = 246,
+
+        [EnumMember(Value = "france")]
+        France = 250,
+
+        [EnumMember(Value = "germany")]
+        Germany = 276,
+
+        [EnumMember(Value = "greece")]
+        Greece = 300,
+
+        [EnumMember(Value = "hungary")]
+        Hungary = 348,
+
+        [EnumMember(Value = "ireland")]
+        Ireland = 372,
+
+        [EnumMember(Value = "italy")]
+        Italy = 380,
+
+        [EnumMember(Value = "latvia")]
+        Latvia = 428,
+
+        [EnumMember(Value = "lithuania")]
+        Lithuania = 440,
+
+        [EnumMember(Value = "luxembourg")]
+        Luxembourg = 442,
+
+        [EnumMember(Value = "malta")]
+        Malta = 470,
+
+        [EnumMember(Value = "netherlands")]
+        Netherlands = 528,
+
+        [EnumMember(Value = "poland")]
+        Poland = 616,
+
+        [EnumMember(Value = "portugal")]
+        Portugal = 620,
+
+        [EnumMember(Value = "romania")]
+        Romania = 642,
+
+        [EnumMember(Value = "slovakia")]
+        Slovakia = 703,
+
+        [EnumMember(Value = "slovenia")]
+        Slovenia = 705,
+
+        [EnumMember(Value = "spain")]
+        Spain = 724,
+
+        [EnumMember(Value = "sweden")]
+        Sweden = 752,
+        
+        [EnumMember(Value = "usa")]
+        Usa = 840,
+        
+        [EnumMember(Value = "china")]
+        China = 156
     }
 }

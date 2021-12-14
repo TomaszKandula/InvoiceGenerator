@@ -15,8 +15,9 @@ namespace InvoiceGenerator.Backend.Cqrs.Mappers
         {
             PrivateKey = model.PrivateKey,
             Id = model.Id,
-            Data = model.Data,
-            DataType = model.DataType
+            Data = GetFileContent(model.Data),
+            DataType = model.Data != null ? model.Data?.ContentType : string.Empty,
+            Description = model.Description
         };
 
         public static AddInvoiceTemplateCommand MapToAddInvoiceTemplateCommandRequest(

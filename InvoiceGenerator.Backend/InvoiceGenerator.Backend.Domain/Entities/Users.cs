@@ -33,12 +33,14 @@ namespace InvoiceGenerator.Backend.Domain.Entities
         [MaxLength(100)]
         public string PrivateKey { get; set; }
 
-        public ICollection<UserDetails> UserDetails { get; set; } = new HashSet<UserDetails>();
+        public ICollection<UserCompanies> UserCompanies { get; set; } = new HashSet<UserCompanies>();
 
-        public ICollection<UserBankData> UserBankData { get; set; } = new HashSet<UserBankData>();
+        public ICollection<UserBankAccounts> UserBankAccounts { get; set; } = new HashSet<UserBankAccounts>();
 
         public ICollection<AllowDomains> AllowDomains { get; set; } = new HashSet<AllowDomains>();
 
         public ICollection<IssuedInvoices> IssuedInvoices { get; set; } = new HashSet<IssuedInvoices>();
+
+        public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
     }
 }
