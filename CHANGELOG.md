@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.3.1...v1.4.0) (2021-12-15)
+
+
+### Features
+
+* add Azure Functions to workers solution folder ([18f9fdc](https://github.com/TomaszKandula/InvoiceGenerator/commit/18f9fdc297c40b7b1ac3ee9e043c1fae90b044c0))
+
 ## [1.3.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.3.0...v1.3.1) (2021-12-14)
 
 
