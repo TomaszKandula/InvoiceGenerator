@@ -32,10 +32,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Us
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.TemplateService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.TemplateService\InvoiceGenerator.Backend.TemplateService.csproj", "{F2836F32-924A-4A89-91D7-84292C7C591D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workers", "Workers", "{D74C7FBE-B0A1-446F-A867-2A81821B3CAB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.BatchProcessing", "InvoiceGenerator.Workers\InvoiceGenerator.BatchProcessing\InvoiceGenerator.BatchProcessing.csproj", "{904EF764-FBC8-4092-A891-78954C5F492C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,10 +86,6 @@ Global
 		{F2836F32-924A-4A89-91D7-84292C7C591D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2836F32-924A-4A89-91D7-84292C7C591D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2836F32-924A-4A89-91D7-84292C7C591D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{904EF764-FBC8-4092-A891-78954C5F492C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{904EF764-FBC8-4092-A891-78954C5F492C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{904EF764-FBC8-4092-A891-78954C5F492C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{904EF764-FBC8-4092-A891-78954C5F492C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{435EA792-637C-4528-B5C5-9867F3047B58} = {BDC7C31C-9689-4622-9468-3E29647E2D77}
@@ -108,6 +100,5 @@ Global
 		{AAFD608A-0530-478E-B64C-1E8B53FF8B33} = {3463B254-3132-4EAC-8205-E1B56D2E8537}
 		{D2E41C09-6762-475B-B392-DEA4B0F7B0F8} = {0611065F-444A-4844-816C-508A32ABD479}
 		{F2836F32-924A-4A89-91D7-84292C7C591D} = {0611065F-444A-4844-816C-508A32ABD479}
-		{904EF764-FBC8-4092-A891-78954C5F492C} = {D74C7FBE-B0A1-446F-A867-2A81821B3CAB}
 	EndGlobalSection
 EndGlobal
