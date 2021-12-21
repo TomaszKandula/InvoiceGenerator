@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.4.0...v1.5.0) (2021-12-21)
+
+
+### Features
+
+* add Azure Functions to the solution ([955152e](https://github.com/TomaszKandula/InvoiceGenerator/commit/955152ec1d51e1552ec6ab13e16f0447e1216a7d))
+* add startup configuration ([650ba99](https://github.com/TomaszKandula/InvoiceGenerator/commit/650ba99cdf7d7161d548f9f8b323a66140d9c1f2))
+* add worker implementation for invoice processing ([d446b40](https://github.com/TomaszKandula/InvoiceGenerator/commit/d446b40321d888dbe3c5698b51a4ee06a4af2d84))
+
 # [1.4.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.3.1...v1.4.0) (2021-12-15)
 
 
