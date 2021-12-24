@@ -1,3 +1,13 @@
+## [1.5.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.5.0...v1.5.1) (2021-12-24)
+
+
+### Bug Fixes
+
+* add missing tabs ([048054a](https://github.com/TomaszKandula/InvoiceGenerator/commit/048054aba497196ab3179a48b47de2c0e0fddc2a))
+* change to one liner ([7985d86](https://github.com/TomaszKandula/InvoiceGenerator/commit/7985d866d54d7d33822ebd7ffd6fce703efb5985))
+* correct docker commands ([1473e0d](https://github.com/TomaszKandula/InvoiceGenerator/commit/1473e0d146c846d72e44dd10948b5063669f73e0))
+* remove 'dockerfiles' from commands ([e32a424](https://github.com/TomaszKandula/InvoiceGenerator/commit/e32a4245462f0f0c9a52fa3bbe184f71d78c930c))
+
 # [1.5.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.4.0...v1.5.0) (2021-12-21)
 
 
