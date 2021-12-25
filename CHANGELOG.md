@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.5.3...v1.6.0) (2021-12-25)
+
+
+### Features
+
+* force push release with last build fix (remove target OS) ([ad8b0ab](https://github.com/TomaszKandula/InvoiceGenerator/commit/ad8b0abf3550edb97687401caf50492740156bd2))
+
 ## [1.5.3](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.5.2...v1.5.3) (2021-12-25)
 
 
