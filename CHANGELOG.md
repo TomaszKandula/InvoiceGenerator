@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.5.2...v1.5.3) (2021-12-25)
+
+
+### Bug Fixes
+
+* publish profile name ([5a18033](https://github.com/TomaszKandula/InvoiceGenerator/commit/5a18033b75ee6c6d54938910e7afac645fc3fa80))
+
 ## [1.5.2](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.5.1...v1.5.2) (2021-12-25)
 
 
