@@ -22,4 +22,8 @@
   <ItemGroup>
     <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.BatchService\InvoiceGenerator.Backend.BatchService.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <ReferencePathWithRefAssemblies Update="\usr\local\share\dotnet\packs\Microsoft.AspNetCore.App.Ref\6.0.0\ref\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <ReferencePathWithRefAssemblies Update="\usr\local\share\dotnet\packs\Microsoft.AspNetCore.App.Ref\6.0.0\ref\net6.0\Microsoft.Extensions.DependencyInjection.dll" />
+  </ItemGroup>
 </Project>
