@@ -75,7 +75,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}/mcr.microsoft.com/azure-functions/workers-staging-:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:workers-staging-${{ github.sha }}
           file: ./workers.dockerfile
 
   workers-deploy:
@@ -96,4 +96,4 @@ jobs:
           app-name: invoicegenerator-func-stage
           slot-name: production
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FUNC_STAGE }}
-          images: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}/mcr.microsoft.com/azure-functions/workers-staging-:${{ github.sha }}
+          images: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:workers-staging-${{ github.sha }}
