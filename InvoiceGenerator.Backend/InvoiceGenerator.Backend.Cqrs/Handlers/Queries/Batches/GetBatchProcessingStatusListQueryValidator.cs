@@ -1,18 +1,17 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches
-{
-    using System.Diagnostics.CodeAnalysis;
-    using FluentValidation;
-    using Shared.Resources;
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
 
-    [ExcludeFromCodeCoverage]
-    public class GetBatchProcessingStatusListQueryValidator : AbstractValidator<GetBatchProcessingStatusListQuery>
+using System.Diagnostics.CodeAnalysis;
+using FluentValidation;
+using Shared.Resources;
+
+[ExcludeFromCodeCoverage]
+public class GetBatchProcessingStatusListQueryValidator : AbstractValidator<GetBatchProcessingStatusListQuery>
+{
+    public GetBatchProcessingStatusListQueryValidator()
     {
-        public GetBatchProcessingStatusListQueryValidator()
-        {
-            RuleFor(request => request.PrivateKey)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        }
+        RuleFor(request => request.PrivateKey)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
     }
 }

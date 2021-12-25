@@ -1,12 +1,11 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Countries
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Countries;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class GetCountryCodesQueryResult
 {
-    using System.Diagnostics.CodeAnalysis;
+    public int SystemCode { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class GetCountryCodesQueryResult
-    {
-        public int SystemCode { get; set; }
-
-        public string Country { get; set; }
-    }
+    public string Country { get; set; }
 }

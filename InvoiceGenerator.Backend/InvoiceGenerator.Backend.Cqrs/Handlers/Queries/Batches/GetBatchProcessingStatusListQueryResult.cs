@@ -1,12 +1,11 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class GetBatchProcessingStatusListQueryResult
 {
-    using System.Diagnostics.CodeAnalysis;
+    public int SystemCode { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class GetBatchProcessingStatusListQueryResult
-    {
-        public int SystemCode { get; set; }
-
-        public string ProcessingStatus { get; set; }
-    }
+    public string ProcessingStatus { get; set; }
 }

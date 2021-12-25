@@ -1,18 +1,17 @@
-namespace InvoiceGenerator.Backend.VatService.Models
+namespace InvoiceGenerator.Backend.VatService.Models;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class PolishVatNumberOptions
 {
-    using System.Diagnostics.CodeAnalysis;
+    public bool CalculateCheckSum { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class PolishVatNumberOptions
+    public bool CheckZeros { get; set; }
+
+    public PolishVatNumberOptions(bool checkZeros, bool calculateCheckSum)
     {
-        public bool CalculateCheckSum { get; set; }
-
-        public bool CheckZeros { get; set; }
-
-        public PolishVatNumberOptions(bool checkZeros, bool calculateCheckSum)
-        {
-            CheckZeros = checkZeros;
-            CalculateCheckSum = calculateCheckSum;
-        }
+        CheckZeros = checkZeros;
+        CalculateCheckSum = calculateCheckSum;
     }
 }

@@ -1,12 +1,11 @@
-namespace InvoiceGenerator.Backend.TemplateService.Models
+namespace InvoiceGenerator.Backend.TemplateService.Models;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class FileResult
 {
-    using System.Diagnostics.CodeAnalysis;
+    public byte[] ContentData { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class FileResult
-    {
-        public byte[] ContentData { get; set; }
-
-        public string ContentType { get; set; }
-    }
+    public string ContentType { get; set; }
 }

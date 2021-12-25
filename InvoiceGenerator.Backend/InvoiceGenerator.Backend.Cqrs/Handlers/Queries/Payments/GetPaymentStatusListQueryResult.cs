@@ -1,12 +1,11 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class GetPaymentStatusListQueryResult
 {
-    using System.Diagnostics.CodeAnalysis;
+    public int SystemCode { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class GetPaymentStatusListQueryResult
-    {
-        public int SystemCode { get; set; }
-
-        public string PaymentStatus { get; set; }
-    }
+    public string PaymentStatus { get; set; }
 }

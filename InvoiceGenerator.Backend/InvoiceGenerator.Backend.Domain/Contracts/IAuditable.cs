@@ -1,16 +1,14 @@
-﻿namespace InvoiceGenerator.Backend.Domain.Contracts
+﻿namespace InvoiceGenerator.Backend.Domain.Contracts;
+
+using System;
+
+public interface IAuditable
 {
-	using System;
+	Guid CreatedBy { get; set; }
 
-	public interface IAuditable
-	{
-		Guid CreatedBy { get; set; }
+	DateTime CreatedAt { get; set; }
 
-		DateTime CreatedAt { get; set; }
+	Guid? ModifiedBy { get; set; }
 
-		Guid? ModifiedBy { get; set; }
-
-		DateTime? ModifiedAt { get; set; }
-	}
+	DateTime? ModifiedAt { get; set; }
 }
-  
