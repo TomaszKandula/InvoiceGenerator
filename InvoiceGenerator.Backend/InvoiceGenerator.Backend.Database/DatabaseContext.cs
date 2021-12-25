@@ -1,42 +1,41 @@
-﻿namespace InvoiceGenerator.Backend.Database
+﻿namespace InvoiceGenerator.Backend.Database;
+
+using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
+using Domain.Entities;
+
+[ExcludeFromCodeCoverage]
+public class DatabaseContext : DbContext
 {
-    using System.Reflection;
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.EntityFrameworkCore;
-    using Domain.Entities;
+    public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-    [ExcludeFromCodeCoverage]
-    public class DatabaseContext : DbContext
+    public virtual DbSet<Users> Users { get; set; }
+
+    public virtual DbSet<UserCompanies> UserCompanies { get; set; }
+
+    public virtual DbSet<UserBankAccounts> UserBankAccounts { get; set; }
+
+    public virtual DbSet<AllowDomains> AllowDomains { get; set; }
+
+    public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
+
+    public virtual DbSet<IssuedInvoices> IssuedInvoices { get; set; }
+
+    public virtual DbSet<BatchInvoices> BatchInvoices { get; set; }
+
+    public virtual DbSet<BatchInvoiceItems> BatchInvoiceItems { get; set; }
+
+    public virtual DbSet<BatchInvoicesProcessing> BatchInvoicesProcessing { get; set; }
+
+    public virtual DbSet<InvoiceTemplates> InvoiceTemplates { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
-
-        public virtual DbSet<Users> Users { get; set; }
-
-        public virtual DbSet<UserCompanies> UserCompanies { get; set; }
-
-        public virtual DbSet<UserBankAccounts> UserBankAccounts { get; set; }
-
-        public virtual DbSet<AllowDomains> AllowDomains { get; set; }
-
-        public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
-
-        public virtual DbSet<IssuedInvoices> IssuedInvoices { get; set; }
-
-        public virtual DbSet<BatchInvoices> BatchInvoices { get; set; }
-
-        public virtual DbSet<BatchInvoiceItems> BatchInvoiceItems { get; set; }
-
-        public virtual DbSet<BatchInvoicesProcessing> BatchInvoicesProcessing { get; set; }
-
-        public virtual DbSet<InvoiceTemplates> InvoiceTemplates { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            ApplyConfiguration(modelBuilder);
-        }
-
-        private static void ApplyConfiguration(ModelBuilder modelBuilder) 
-            => modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        base.OnModelCreating(modelBuilder);
+        ApplyConfiguration(modelBuilder);
     }
+
+    private static void ApplyConfiguration(ModelBuilder modelBuilder) 
+        => modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 }

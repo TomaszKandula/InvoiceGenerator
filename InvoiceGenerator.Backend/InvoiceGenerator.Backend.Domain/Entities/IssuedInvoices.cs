@@ -1,29 +1,28 @@
-namespace InvoiceGenerator.Backend.Domain.Entities
+namespace InvoiceGenerator.Backend.Domain.Entities;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel.DataAnnotations;
+
+[ExcludeFromCodeCoverage]
+public class IssuedInvoices : Entity<Guid>
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.ComponentModel.DataAnnotations;
+    [Required]
+    public Guid UserId { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class IssuedInvoices : Entity<Guid>
-    {
-        [Required]
-        public Guid UserId { get; set; }
+    [Required]
+    [MaxLength(255)]
+    public string InvoiceNumber { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string InvoiceNumber { get; set; }
+    [Required]
+    public byte[] InvoiceData { get; set; }
 
-        [Required]
-        public byte[] InvoiceData { get; set; }
+    [Required]
+    [MaxLength(100)]
+    public string ContentType { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string ContentType { get; set; }
+    [Required]
+    public DateTime GeneratedAt { get; set; }
 
-        [Required]
-        public DateTime GeneratedAt { get; set; }
-
-        public Users User { get; set; }
-    }
+    public Users User { get; set; }
 }

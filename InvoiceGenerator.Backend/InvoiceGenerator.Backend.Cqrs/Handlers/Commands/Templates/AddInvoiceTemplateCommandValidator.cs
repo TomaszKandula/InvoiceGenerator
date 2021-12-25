@@ -1,38 +1,37 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
+
+using System.Diagnostics.CodeAnalysis;
+using FluentValidation;
+using Shared.Resources;
+
+[ExcludeFromCodeCoverage]
+public class AddInvoiceTemplateCommandValidator : AbstractValidator<AddInvoiceTemplateCommand>
 {
-    using System.Diagnostics.CodeAnalysis;
-    using FluentValidation;
-    using Shared.Resources;
-
-    [ExcludeFromCodeCoverage]
-    public class AddInvoiceTemplateCommandValidator : AbstractValidator<AddInvoiceTemplateCommand>
+    public AddInvoiceTemplateCommandValidator()
     {
-        public AddInvoiceTemplateCommandValidator()
-        {
-            RuleFor(command => command.PrivateKey)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
+        RuleFor(command => command.PrivateKey)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(command => command.Name)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
+        RuleFor(command => command.Name)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(command => command.Data)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
+        RuleFor(command => command.Data)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(command => command.Data)
-                .Must(bytes => bytes.Length <= 4 * 1024 * 1024)
-                .WithErrorCode(nameof(ValidationCodes.INVALID_FILE_SIZE))
-                .WithMessage(ValidationCodes.INVALID_FILE_SIZE);
+        RuleFor(command => command.Data)
+            .Must(bytes => bytes.Length <= 4 * 1024 * 1024)
+            .WithErrorCode(nameof(ValidationCodes.INVALID_FILE_SIZE))
+            .WithMessage(ValidationCodes.INVALID_FILE_SIZE);
 
-            RuleFor(command => command.Description)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        }
+        RuleFor(command => command.Description)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
     }
 }

@@ -1,52 +1,51 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using UserService;
+using TemplateService;
+using Core.Exceptions;
+using Shared.Resources;
+using TemplateService.Models;
+using MediatR;
+
+public class ReplaceInvoiceTemplateCommandHandler : Cqrs.RequestHandler<ReplaceInvoiceTemplateCommand, Unit>
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using UserService;
-    using TemplateService;
-    using Core.Exceptions;
-    using Shared.Resources;
-    using TemplateService.Models;
-    using MediatR;
+    private readonly ITemplateService _templateService;
 
-    public class ReplaceInvoiceTemplateCommandHandler : Cqrs.RequestHandler<ReplaceInvoiceTemplateCommand, Unit>
+    private readonly IUserService _userService;
+
+    public ReplaceInvoiceTemplateCommandHandler(ITemplateService templateService, IUserService userService)
     {
-        private readonly ITemplateService _templateService;
+        _templateService = templateService;
+        _userService = userService;
+    }
 
-        private readonly IUserService _userService;
+    public override async Task<Unit> Handle(ReplaceInvoiceTemplateCommand request, CancellationToken cancellationToken)
+    {
+        var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
+        var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
 
-        public ReplaceInvoiceTemplateCommandHandler(ITemplateService templateService, IUserService userService)
+        VerifyArguments(isKeyValid, userId);
+
+        var newTemplate = new InvoiceTemplateData
         {
-            _templateService = templateService;
-            _userService = userService;
-        }
+            ContentData = request.Data,
+            ContentType = request.DataType,
+            Description = request.Description
+        };
 
-        public override async Task<Unit> Handle(ReplaceInvoiceTemplateCommand request, CancellationToken cancellationToken)
-        {
-            var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
-            var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
+        await _templateService.ReplaceInvoiceTemplate(request.Id, newTemplate, cancellationToken);
+        return Unit.Value;
+    }
 
-            VerifyArguments(isKeyValid, userId);
+    private static void VerifyArguments(bool isKeyValid, Guid? userId)
+    {
+        if (!isKeyValid)
+            throw new AccessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
 
-            var newTemplate = new InvoiceTemplateData
-            {
-                ContentData = request.Data,
-                ContentType = request.DataType,
-                Description = request.Description
-            };
-
-            await _templateService.ReplaceInvoiceTemplate(request.Id, newTemplate, cancellationToken);
-            return Unit.Value;
-        }
-
-        private static void VerifyArguments(bool isKeyValid, Guid? userId)
-        {
-            if (!isKeyValid)
-                throw new AccessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
-
-            if (userId == null || userId == Guid.Empty)
-                throw new BusinessException(nameof(ErrorCodes.INVALID_ASSOCIATED_USER), ErrorCodes.INVALID_ASSOCIATED_USER);
-        }
+        if (userId == null || userId == Guid.Empty)
+            throw new BusinessException(nameof(ErrorCodes.INVALID_ASSOCIATED_USER), ErrorCodes.INVALID_ASSOCIATED_USER);
     }
 }

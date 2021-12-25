@@ -1,44 +1,43 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates;
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using UserService;
+using TemplateService;
+using Core.Exceptions;
+using Shared.Resources;
+using TemplateService.Models;
+
+public class GetInvoiceTemplatesQueryHandler : RequestHandler<GetInvoiceTemplatesQuery, IEnumerable<InvoiceTemplateInfo>>
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
-    using UserService;
-    using TemplateService;
-    using Core.Exceptions;
-    using Shared.Resources;
-    using TemplateService.Models;
+    private readonly ITemplateService _templateService;
+        
+    private readonly IUserService _userService;
 
-    public class GetInvoiceTemplatesQueryHandler : RequestHandler<GetInvoiceTemplatesQuery, IEnumerable<InvoiceTemplateInfo>>
+    public GetInvoiceTemplatesQueryHandler(ITemplateService templateService, IUserService userService)
     {
-        private readonly ITemplateService _templateService;
+        _templateService = templateService;
+        _userService = userService;
+    }
         
-        private readonly IUserService _userService;
+    public override async Task<IEnumerable<InvoiceTemplateInfo>> Handle(GetInvoiceTemplatesQuery request, CancellationToken cancellationToken)
+    {
+        var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
+        var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
 
-        public GetInvoiceTemplatesQueryHandler(ITemplateService templateService, IUserService userService)
-        {
-            _templateService = templateService;
-            _userService = userService;
-        }
-        
-        public override async Task<IEnumerable<InvoiceTemplateInfo>> Handle(GetInvoiceTemplatesQuery request, CancellationToken cancellationToken)
-        {
-            var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
-            var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
+        VerifyArguments(isKeyValid, userId);
 
-            VerifyArguments(isKeyValid, userId);
+        return await _templateService.GetInvoiceTemplates(cancellationToken);
+    }
 
-            return await _templateService.GetInvoiceTemplates(cancellationToken);
-        }
+    private static void VerifyArguments(bool isKeyValid, Guid? userId)
+    {
+        if (!isKeyValid)
+            throw new AccessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
 
-        private static void VerifyArguments(bool isKeyValid, Guid? userId)
-        {
-            if (!isKeyValid)
-                throw new AccessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
-
-            if (userId == null || userId == Guid.Empty)
-                throw new BusinessException(nameof(ErrorCodes.INVALID_ASSOCIATED_USER), ErrorCodes.INVALID_ASSOCIATED_USER);
-        }
+        if (userId == null || userId == Guid.Empty)
+            throw new BusinessException(nameof(ErrorCodes.INVALID_ASSOCIATED_USER), ErrorCodes.INVALID_ASSOCIATED_USER);
     }
 }

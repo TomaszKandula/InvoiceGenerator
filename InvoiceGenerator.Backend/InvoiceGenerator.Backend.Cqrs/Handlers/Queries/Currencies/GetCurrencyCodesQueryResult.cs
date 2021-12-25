@@ -1,8 +1,7 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies
-{
-    using System.Diagnostics.CodeAnalysis;
-    using BatchService.Models;
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies;
 
-    [ExcludeFromCodeCoverage]
-    public class GetCurrencyCodesQueryResult : CurrencyCode { }
-}
+using System.Diagnostics.CodeAnalysis;
+using BatchService.Models;
+
+[ExcludeFromCodeCoverage]
+public class GetCurrencyCodesQueryResult : CurrencyCode { }

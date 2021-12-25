@@ -1,18 +1,17 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
-{
-    using System.Diagnostics.CodeAnalysis;
-    using FluentValidation;
-    using Shared.Resources;
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
 
-    [ExcludeFromCodeCoverage]
-    public class OrderInvoiceBatchCommandValidator : AbstractValidator<OrderInvoiceBatchCommand>
+using System.Diagnostics.CodeAnalysis;
+using FluentValidation;
+using Shared.Resources;
+
+[ExcludeFromCodeCoverage]
+public class OrderInvoiceBatchCommandValidator : AbstractValidator<OrderInvoiceBatchCommand>
+{
+    public OrderInvoiceBatchCommandValidator()
     {
-        public OrderInvoiceBatchCommandValidator()
-        {
-            RuleFor(request => request.PrivateKey)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        }
+        RuleFor(request => request.PrivateKey)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
     }
 }

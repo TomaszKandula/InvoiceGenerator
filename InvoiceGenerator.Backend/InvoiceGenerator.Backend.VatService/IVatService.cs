@@ -1,10 +1,9 @@
-namespace InvoiceGenerator.Backend.VatService
-{
-    using FluentValidation.Results;
-    using Models;
+namespace InvoiceGenerator.Backend.VatService;
 
-    public interface IVatService
-    {
-        ValidationResult ValidateVatNumber(VatValidationRequest request);
-    }
+using FluentValidation.Results;
+using Models;
+
+public interface IVatService
+{
+    ValidationResult ValidateVatNumber(VatValidationRequest request);
 }
