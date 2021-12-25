@@ -1,3 +1,11 @@
+# [1.7.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.6.1...v1.7.0) (2021-12-25)
+
+
+### Features
+
+* remove unused private method ([e9766b3](https://github.com/TomaszKandula/InvoiceGenerator/commit/e9766b36731734d6069488a4c249c3e9f5dfd86b))
+* setup cron expression to 'every 15 minutes' ([7c9f763](https://github.com/TomaszKandula/InvoiceGenerator/commit/7c9f7630c21d8329356cffaf37a3b6949d4c98cc))
+
 ## [1.6.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.6.0...v1.6.1) (2021-12-25)
 
 
