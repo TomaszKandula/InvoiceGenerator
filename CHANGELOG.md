@@ -1,3 +1,11 @@
+## [1.6.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.6.0...v1.6.1) (2021-12-25)
+
+
+### Bug Fixes
+
+* change runtime version to 4.0 ([9e1a00f](https://github.com/TomaszKandula/InvoiceGenerator/commit/9e1a00f35a58f244da5a7323a8a196ad927f6e12))
+* remove zero from version number ([0e43b61](https://github.com/TomaszKandula/InvoiceGenerator/commit/0e43b61463793143ca462561ecde21c24901f5da))
+
 # [1.6.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.5.3...v1.6.0) (2021-12-25)
 
 
