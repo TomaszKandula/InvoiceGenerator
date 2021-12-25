@@ -1,7 +1,6 @@
-﻿namespace InvoiceGenerator.Backend.Domain.Contracts
+﻿namespace InvoiceGenerator.Backend.Domain.Contracts;
+
+public interface IHasSortOrder
 {
-    public interface IHasSortOrder
-    {
-        public int SortOrder { get; set; }
-    }
+    public int SortOrder { get; set; }
 }

@@ -1,6 +1,5 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches
-{
-    using MediatR;
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
 
-    public class OrderBatchProcessingCommand : IRequest<Unit> { }
-}
+using MediatR;
+
+public class OrderBatchProcessingCommand : IRequest<Unit> { }

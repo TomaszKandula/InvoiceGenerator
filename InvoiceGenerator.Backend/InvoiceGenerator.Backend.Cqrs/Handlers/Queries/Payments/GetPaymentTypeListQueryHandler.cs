@@ -1,51 +1,50 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments;
+
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using UserService;
+using Core.Exceptions;
+using Core.Extensions;
+using Shared.Resources;
+using Backend.Domain.Enums;
+
+public class GetPaymentTypeListQueryHandler : RequestHandler<GetPaymentTypeListQuery, IEnumerable<GetPaymentTypeListQueryResult>>
 {
-    using System;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
-    using UserService;
-    using Core.Exceptions;
-    using Core.Extensions;
-    using Shared.Resources;
-    using Backend.Domain.Enums;
+    private readonly IUserService _userService;
 
-    public class GetPaymentTypeListQueryHandler : RequestHandler<GetPaymentTypeListQuery, IEnumerable<GetPaymentTypeListQueryResult>>
-    {
-        private readonly IUserService _userService;
-
-        public GetPaymentTypeListQueryHandler(IUserService userService) => _userService = userService;
+    public GetPaymentTypeListQueryHandler(IUserService userService) => _userService = userService;
         
-        public override async Task<IEnumerable<GetPaymentTypeListQueryResult>> Handle(GetPaymentTypeListQuery request, CancellationToken cancellationToken)
-        {
-            var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
-            var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
+    public override async Task<IEnumerable<GetPaymentTypeListQueryResult>> Handle(GetPaymentTypeListQuery request, CancellationToken cancellationToken)
+    {
+        var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
+        var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
 
-            VerifyArguments(isKeyValid, userId);
+        VerifyArguments(isKeyValid, userId);
             
-            var types = Enum.GetValues<PaymentTypes>();
-            var result = types
-                .Select((paymentTypes, index) => new GetPaymentTypeListQueryResult
-                {
-                    SystemCode = index,
-                    PaymentType = paymentTypes.ToString().ToUpper()
-                })
-                .WhereIf(
-                    !string.IsNullOrEmpty(request.FilterBy), 
-                    response => response.PaymentType == request.FilterBy.ToUpper())
-                .ToList();
+        var types = Enum.GetValues<PaymentTypes>();
+        var result = types
+            .Select((paymentTypes, index) => new GetPaymentTypeListQueryResult
+            {
+                SystemCode = index,
+                PaymentType = paymentTypes.ToString().ToUpper()
+            })
+            .WhereIf(
+                !string.IsNullOrEmpty(request.FilterBy), 
+                response => response.PaymentType == request.FilterBy.ToUpper())
+            .ToList();
 
-            return await Task.FromResult(result);
-        }
+        return await Task.FromResult(result);
+    }
 
-        private static void VerifyArguments(bool isKeyValid, Guid? userId)
-        {
-            if (!isKeyValid)
-                throw new AccessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
+    private static void VerifyArguments(bool isKeyValid, Guid? userId)
+    {
+        if (!isKeyValid)
+            throw new AccessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
 
-            if (userId == null || userId == Guid.Empty)
-                throw new BusinessException(nameof(ErrorCodes.INVALID_ASSOCIATED_USER), ErrorCodes.INVALID_ASSOCIATED_USER);
-        }
+        if (userId == null || userId == Guid.Empty)
+            throw new BusinessException(nameof(ErrorCodes.INVALID_ASSOCIATED_USER), ErrorCodes.INVALID_ASSOCIATED_USER);
     }
 }

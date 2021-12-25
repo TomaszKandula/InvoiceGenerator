@@ -1,23 +1,22 @@
-namespace InvoiceGenerator.Backend.Shared.Dto.Models
+namespace InvoiceGenerator.Backend.Shared.Dto.Models;
+
+using System.Diagnostics.CodeAnalysis;
+using Domain.Enums;
+
+[ExcludeFromCodeCoverage]
+public class InvoiceItemBase
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Domain.Enums;
+    public string ItemText { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class InvoiceItemBase
-    {
-        public string ItemText { get; set; }
+    public int ItemQuantity { get; set; }
 
-        public int ItemQuantity { get; set; }
+    public string ItemQuantityUnit { get; set; }
 
-        public string ItemQuantityUnit { get; set; }
+    public decimal ItemAmount { get; set; }
 
-        public decimal ItemAmount { get; set; }
+    public decimal? ItemDiscountRate { get; set; }
 
-        public decimal? ItemDiscountRate { get; set; }
+    public decimal? VatRate { get; set; }
 
-        public decimal? VatRate { get; set; }
-
-        public CurrencyCodes CurrencyCode { get; set; }
-    }
+    public CurrencyCodes CurrencyCode { get; set; }
 }

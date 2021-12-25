@@ -1,13 +1,12 @@
-namespace InvoiceGenerator.Backend.BatchService.Models
+namespace InvoiceGenerator.Backend.BatchService.Models;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class InvoiceData : FileResult
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
+    public string Number { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class InvoiceData : FileResult
-    {
-        public string Number { get; set; }
-
-        public DateTime GeneratedAt { get; set; }
-    }
+    public DateTime GeneratedAt { get; set; }
 }

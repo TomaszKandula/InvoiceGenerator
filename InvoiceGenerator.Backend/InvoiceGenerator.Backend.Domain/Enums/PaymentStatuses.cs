@@ -1,22 +1,21 @@
-namespace InvoiceGenerator.Backend.Domain.Enums
+namespace InvoiceGenerator.Backend.Domain.Enums;
+
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Core.Converters;
+
+[JsonConverter(typeof(StringToEnumWithDefaultConverter))]
+public enum PaymentStatuses
 {
-    using System.Runtime.Serialization;
-    using Newtonsoft.Json;
-    using Core.Converters;
+    [EnumMember(Value = "unknown")]
+    Unknown,
 
-    [JsonConverter(typeof(StringToEnumWithDefaultConverter))]
-    public enum PaymentStatuses
-    {
-        [EnumMember(Value = "unknown")]
-        Unknown,
+    [EnumMember(Value = "unpaid")]
+    Unpaid,
 
-        [EnumMember(Value = "unpaid")]
-        Unpaid,
+    [EnumMember(Value = "partially paid")]
+    PartiallyPaid,
 
-        [EnumMember(Value = "partially paid")]
-        PartiallyPaid,
-
-        [EnumMember(Value = "paid")]
-        Paid
-    }
+    [EnumMember(Value = "paid")]
+    Paid
 }

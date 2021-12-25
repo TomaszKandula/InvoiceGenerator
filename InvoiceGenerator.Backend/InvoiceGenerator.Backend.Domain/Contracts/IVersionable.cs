@@ -1,8 +1,6 @@
-﻿namespace InvoiceGenerator.Backend.Domain.Contracts
+﻿namespace InvoiceGenerator.Backend.Domain.Contracts;
+
+public interface IVersionable
 {
-	public interface IVersionable
-	{
-		int Version { get; set; }
-	}
+	int Version { get; set; }
 }
-  

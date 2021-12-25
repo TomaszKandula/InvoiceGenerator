@@ -1,15 +1,14 @@
-﻿namespace InvoiceGenerator.Backend.Core.Services.LoggerService
+﻿namespace InvoiceGenerator.Backend.Core.Services.LoggerService;
+
+public interface ILoggerService
 {
-    public interface ILoggerService
-    {
-        void LogDebug(string message);
+    void LogDebug(string message);
 
-        void LogError(string message);
+    void LogError(string message);
 
-        void LogInformation(string message);
+    void LogInformation(string message);
 
-        void LogWarning(string message);
+    void LogWarning(string message);
 
-        void LogCriticalError(string message);
-    }
+    void LogCriticalError(string message);
 }
