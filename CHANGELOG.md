@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.5.1...v1.5.2) (2021-12-25)
+
+
+### Bug Fixes
+
+* correct tags ([901c4c2](https://github.com/TomaszKandula/InvoiceGenerator/commit/901c4c2370e6c3c837e791453f6a065f695c4321))
+
 ## [1.5.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.5.0...v1.5.1) (2021-12-24)
 
 
