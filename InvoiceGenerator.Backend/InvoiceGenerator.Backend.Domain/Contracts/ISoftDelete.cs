@@ -1,7 +1,6 @@
-﻿namespace InvoiceGenerator.Backend.Domain.Contracts
+﻿namespace InvoiceGenerator.Backend.Domain.Contracts;
+
+public interface ISoftDelete
 {
-	public interface ISoftDelete
-	{
-		public bool IsDeleted { get; set; }
-	}
+	public bool IsDeleted { get; set; }
 }

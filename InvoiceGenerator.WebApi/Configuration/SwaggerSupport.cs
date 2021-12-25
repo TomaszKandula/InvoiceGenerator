@@ -1,43 +1,42 @@
-namespace InvoiceGenerator.WebApi.Configuration
+namespace InvoiceGenerator.WebApi.Configuration;
+
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
+[ExcludeFromCodeCoverage]
+public static class SwaggerSupport
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.OpenApi.Models;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.DependencyInjection;
+    private const string ApiVersion = "v1";
 
-    [ExcludeFromCodeCoverage]
-    public static class SwaggerSupport
-    {
-        private const string ApiVersion = "v1";
-
-        private const string ApiName = "Invoice Generator API";
+    private const string ApiName = "Invoice Generator API";
         
-        public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment)
-        {
-            if (environment.IsProduction()) 
-                return;            
+    public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment)
+    {
+        if (environment.IsProduction()) 
+            return;            
             
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc(ApiVersion, new OpenApiInfo
-                {
-                    Title = ApiName, 
-                    Version = ApiVersion
-                });
-            });
-        }
-
-        public static void SetupSwaggerUi(this IApplicationBuilder builder, IHostEnvironment environment)
+        services.AddSwaggerGen(options =>
         {
-            if (environment.IsProduction()) 
-                return;            
-
-            builder.UseSwagger();
-            builder.UseSwaggerUI(options =>
+            options.SwaggerDoc(ApiVersion, new OpenApiInfo
             {
-                options.SwaggerEndpoint($"/swagger/{ApiVersion}/swagger.json", ApiName);
+                Title = ApiName, 
+                Version = ApiVersion
             });
-        }
+        });
+    }
+
+    public static void SetupSwaggerUi(this IApplicationBuilder builder, IHostEnvironment environment)
+    {
+        if (environment.IsProduction()) 
+            return;            
+
+        builder.UseSwagger();
+        builder.UseSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint($"/swagger/{ApiVersion}/swagger.json", ApiName);
+        });
     }
 }

@@ -1,16 +1,15 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+using Backend.Domain.Enums;
+
+[ExcludeFromCodeCoverage]
+public class GetBatchProcessingStatusQueryResult
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using Backend.Domain.Enums;
+    public ProcessingStatuses ProcessingStatus { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class GetBatchProcessingStatusQueryResult
-    {
-        public ProcessingStatuses ProcessingStatus { get; set; }
+    public TimeSpan? BatchProcessingTime { get; set; }
 
-        public TimeSpan? BatchProcessingTime { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-    }
+    public DateTime CreatedAt { get; set; }
 }

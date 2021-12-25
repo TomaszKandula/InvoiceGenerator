@@ -1,48 +1,47 @@
-namespace InvoiceGenerator.Backend.Domain.Entities
+namespace InvoiceGenerator.Backend.Domain.Entities;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Enums;
+
+[ExcludeFromCodeCoverage]
+public class BatchInvoiceItems : Entity<Guid>
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using Enums;
+    public Guid BatchInvoiceId { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class BatchInvoiceItems : Entity<Guid>
-    {
-        public Guid BatchInvoiceId { get; set; }
+    [Required]
+    [MaxLength(255)]
+    public string ItemText { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string ItemText { get; set; }
+    [Required] 
+    public int ItemQuantity { get; set; }
 
-        [Required] 
-        public int ItemQuantity { get; set; }
+    [Required]
+    [MaxLength(10)]
+    public string ItemQuantityUnit { get; set; }
 
-        [Required]
-        [MaxLength(10)]
-        public string ItemQuantityUnit { get; set; }
+    [Required]
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal ItemAmount { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal ItemAmount { get; set; }
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal? ItemDiscountRate { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal? ItemDiscountRate { get; set; }
+    [Required]
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal ValueAmount { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal ValueAmount { get; set; }
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal? VatRate { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal? VatRate { get; set; }
+    [Required]
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal GrossAmount { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal GrossAmount { get; set; }
+    [Required]
+    public CurrencyCodes CurrencyCode { get; set; }
 
-        [Required]
-        public CurrencyCodes CurrencyCode { get; set; }
-
-        public BatchInvoices BatchInvoices { get; set; }
-    }
+    public BatchInvoices BatchInvoices { get; set; }
 }

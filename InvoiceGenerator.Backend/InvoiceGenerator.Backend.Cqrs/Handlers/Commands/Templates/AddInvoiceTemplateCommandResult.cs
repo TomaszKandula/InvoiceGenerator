@@ -1,9 +1,8 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates
-{
-    using System;
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
 
-    public class AddInvoiceTemplateCommandResult
-    {
-        public Guid TemplateId { get; set; }
-    }
+using System;
+
+public class AddInvoiceTemplateCommandResult
+{
+    public Guid TemplateId { get; set; }
 }
