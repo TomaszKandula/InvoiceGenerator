@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -16,6 +17,7 @@ using Newtonsoft.Json;
 /// public EnumType Type { get; set; }
 /// </code>
 /// </example>
+[ExcludeFromCodeCoverage]
 public class StringToEnumWithDefaultConverter : JsonConverter
 {
     private ConcurrentDictionary<Type, ConcurrentDictionary<string, object>> _fromValueMap;
