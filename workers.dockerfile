@@ -7,7 +7,7 @@ RUN dotnet restore
 RUN mkdir -p /home/site/wwwroot 
 RUN dotnet publish --output /home/site/wwwroot
 
-FROM mcr.microsoft.com/azure-functions/dotnet:3.0
+FROM mcr.microsoft.com/azure-functions/dotnet:4
 ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
     AzureFunctionsJobHost__Logging__Console__IsEnabled=true
 
