@@ -154,18 +154,4 @@ public class VatService : IVatService
         return value.Length == 9 && value.All(char.IsDigit)
                || value.Length == 11 && value.StartsWith("PL") && value[2..].All(char.IsDigit);
     }
-
-    /// <summary>
-    /// Remove two characters prefix from given VAT number.
-    /// </summary>
-    /// <param name="vatNumber">Fully qualified VAT number.</param>
-    /// <param name="prefix">Two characters prefix (country code).</param>
-    /// <returns>VAT number without prefix.</returns>
-    private static string RemovePrefix(string vatNumber, string prefix = "PL")
-    {
-        var value = vatNumber.ToUpper();
-        return value.ToUpper().StartsWith(prefix)
-            ? value[2..] 
-            : value;
-    }
 }
