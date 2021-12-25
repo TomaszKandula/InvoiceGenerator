@@ -2,10 +2,12 @@ namespace InvoiceGenerator.Workers;
 
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Backend.BatchService;
 
+[ExcludeFromCodeCoverage]
 public class InvoiceProcessingWorker
 {
     private readonly IBatchService _batchService;
