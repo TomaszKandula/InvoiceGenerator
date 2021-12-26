@@ -191,7 +191,6 @@ public class BatchService : IBatchService
                     .Replace("{{F27}}", invoice.PaymentType.ToString());
 
                 var rowTemplate = Regex.Match(template, @"(?<=<row-template>)((.|\n)*)(?=<\/row-template>)");
-                var invoiceItems = string.Empty;
                 var totalAmount = 0.0m;
 
                 var batchInvoiceItems = invoiceItemsList
@@ -201,10 +200,11 @@ public class BatchService : IBatchService
                 if (!batchInvoiceItems.Any())
                     throw new InvoiceProcessingException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
 
+                var invoiceItems = new StringBuilder();
                 foreach (var item in batchInvoiceItems)
                 {
                     totalAmount += item.GrossAmount;
-                    invoiceItems += rowTemplate.Value
+                    invoiceItems.Append(rowTemplate.Value
                         .Replace("{{F13}}", item.ItemText)
                         .Replace("{{F14}}", item.ItemQuantity.ToString())
                         .Replace("{{F15}}", item.ItemQuantityUnit)
@@ -212,11 +212,11 @@ public class BatchService : IBatchService
                         .Replace("{{F17}}", item.ItemDiscountRate.ToString())
                         .Replace("{{F18}}", item.ValueAmount.ToString(currencyFormat))
                         .Replace("{{F19}}", item.VatRate.ToString())
-                        .Replace("{{F20}}", item.GrossAmount.ToString(currencyFormat));
+                        .Replace("{{F20}}", item.GrossAmount.ToString(currencyFormat)));
                 }
 
                 newInvoice = newInvoice
-                    .Replace(rowTemplate.Value, invoiceItems)
+                    .Replace(rowTemplate.Value, invoiceItems.ToString())
                     .Replace("{{F21}}", totalAmount.ToString(currencyFormat))
                     .Replace("<row-template>", string.Empty)
                     .Replace("</row-template>", string.Empty);
