@@ -92,7 +92,7 @@ public class VatService : IVatService
             .Replace("PL", string.Empty)
             .Replace("-", string.Empty);
 
-        var pollutedVatNumber = prefixedVatNumber.Contains("-") 
+        var pollutedVatNumber = prefixedVatNumber.Contains('-') 
             ? prefixedVatNumber.Replace("PL", string.Empty) 
             : prefixedVatNumber;
 
