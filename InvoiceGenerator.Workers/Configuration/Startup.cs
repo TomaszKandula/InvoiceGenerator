@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,9 +13,10 @@ using Backend.BatchService;
 using Backend.Core.Services.LoggerService;
 using Backend.Core.Services.DateTimeService;
 
+[ExcludeFromCodeCoverage]
 public class Startup : FunctionsStartup
 {
-    private static IConfiguration _configuration;
+    private IConfiguration _configuration;
         
     public override void Configure(IFunctionsHostBuilder builder)
     {
