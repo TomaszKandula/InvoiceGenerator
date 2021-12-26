@@ -27,7 +27,7 @@ public class UserService : IUserService
     /// <param name="domainName">Domain name without scheme, but it may have port.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>True or False.</returns>
-    public async Task<bool> IsDomainAllowed(string domainName, CancellationToken cancellationToken)
+    public async Task<bool> IsDomainAllowed(string domainName, CancellationToken cancellationToken = default)
     {
         var domains = await _databaseContext.AllowDomains
             .AsNoTracking()
@@ -47,7 +47,7 @@ public class UserService : IUserService
     /// <param name="privateKey"></param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>True or False.</returns>
-    public async Task<bool> IsPrivateKeyValid(string privateKey, CancellationToken cancellationToken)
+    public async Task<bool> IsPrivateKeyValid(string privateKey, CancellationToken cancellationToken = default)
     {
         var keys = await _databaseContext.Users
             .AsNoTracking()
@@ -67,7 +67,7 @@ public class UserService : IUserService
     /// <param name="privateKey">Private key (alphanumerical).</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>User ID (Guid).</returns>
-    public async Task<Guid> GetUserByPrivateKey(string privateKey, CancellationToken cancellationToken)
+    public async Task<Guid> GetUserByPrivateKey(string privateKey, CancellationToken cancellationToken = default)
     {
         return await _databaseContext.Users
             .AsNoTracking()
