@@ -70,12 +70,12 @@ public class StringToEnumWithDefaultConverter : JsonConverter
         return Enum.Parse(enumType, unknownName);
     }
 
-    public override void WriteJson(JsonWriter writer, object @object, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        var enumType = @object.GetType();
+        var enumType = value.GetType();
         InitMap(enumType);
-        var value = ToValue(enumType, @object);
-        writer.WriteValue(value);
+        var newValue = ToValue(enumType, value);
+        writer.WriteValue(newValue);
     }
 
     private object GetStringValue(JsonReader reader, Type enumType)
