@@ -11,7 +11,7 @@ using Backend.BatchService;
 public class InvoiceProcessingWorker
 {
     private readonly IBatchService _batchService;
-        
+
     public InvoiceProcessingWorker(IBatchService batchService) => _batchService = batchService;
 
     [FunctionName("ProcessOutstandingInvoices")]
