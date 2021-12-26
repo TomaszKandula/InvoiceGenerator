@@ -16,25 +16,23 @@ using Backend.Core.Services.DateTimeService;
 [ExcludeFromCodeCoverage]
 public class Startup : FunctionsStartup
 {
-    private IConfiguration _configuration;
-        
     public override void Configure(IFunctionsHostBuilder builder)
     {
         builder.Services.AddScoped<IDateTimeService, DateTimeService>();
         builder.Services.AddScoped<IBatchService, BatchService>();
         builder.Services.AddSingleton<ILoggerService, LoggerService>();
-            
+
         var serviceProvider = builder.Services.BuildServiceProvider();
-        _configuration = serviceProvider.GetRequiredService<IConfiguration>();
-            
-        SetupDatabase(builder.Services, _configuration);            
+        var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+
+        SetupDatabase(builder.Services, configuration);
     }
 
     private static void SetupDatabase(IServiceCollection services, IConfiguration configuration) 
     {
         const int maxRetryCount = 10;
         var maxRetryDelay = TimeSpan.FromSeconds(5);
-            
+
         services.AddDbContext<DatabaseContext>(options =>
         {
             options.UseSqlServer(configuration["DbConnect"], addOptions 
