@@ -1,3 +1,16 @@
+## [1.7.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.7.0...v1.7.1) (2021-12-26)
+
+
+### Bug Fixes
+
+* add missing default parameter ([c288dc5](https://github.com/TomaszKandula/InvoiceGenerator/commit/c288dc5a5473a0ba0f13343702acdb3014a3e90c))
+* change argument name to match bass class declaration ([6f6d9c8](https://github.com/TomaszKandula/InvoiceGenerator/commit/6f6d9c83d4dd78dc093431d69d1e1c3b4e2e4ef3))
+* move variable to local method ([182e005](https://github.com/TomaszKandula/InvoiceGenerator/commit/182e0055a25e412c8feec57f60f269021c1300a4))
+* remove static field from non-static class/method ([1c815a9](https://github.com/TomaszKandula/InvoiceGenerator/commit/1c815a916706aee78b9eac5ac73f83140faec9e4))
+* remove whitespace ([2f72dc4](https://github.com/TomaszKandula/InvoiceGenerator/commit/2f72dc4c1080aa61f36cf2fdb7e01518469a384d))
+* use single char instead of string for performance reasons ([7e9486f](https://github.com/TomaszKandula/InvoiceGenerator/commit/7e9486f8a9719cee3baa8f2759d97d23c99ecd4f))
+* use string builder ([042c17e](https://github.com/TomaszKandula/InvoiceGenerator/commit/042c17e0bc1177470f59b27323157fa6de5ebc8f))
+
 # [1.7.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.6.1...v1.7.0) (2021-12-25)
 
 
