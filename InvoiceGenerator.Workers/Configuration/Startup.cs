@@ -16,7 +16,7 @@ using Backend.Core.Services.DateTimeService;
 [ExcludeFromCodeCoverage]
 public class Startup : FunctionsStartup
 {
-    private static IConfiguration _configuration;
+    private IConfiguration _configuration;
         
     public override void Configure(IFunctionsHostBuilder builder)
     {
