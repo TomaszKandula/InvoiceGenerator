@@ -8,11 +8,11 @@ using Core.Converters;
 public enum PaymentTypes
 {
     [EnumMember(Value = "unknown")]
-    Unknown,
+    Unknown = 0,
 
     [EnumMember(Value = "credit card")]
-    CreditCard,
+    CreditCard = 1,
 
     [EnumMember(Value = "wire transfer")]
-    WireTransfer
+    WireTransfer = 2
 }
