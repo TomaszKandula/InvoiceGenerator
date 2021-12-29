@@ -8,17 +8,17 @@ using Core.Converters;
 public enum ProcessingStatuses
 {
     [EnumMember(Value = "unknown")]
-    Unknown,
+    Unknown = 0,
 
     [EnumMember(Value = "new")]
-    New,
+    New = 1,
 
     [EnumMember(Value = "started")]
-    Started,
+    Started = 2,
 
     [EnumMember(Value = "finished")]
-    Finished,
+    Finished = 3,
 
     [EnumMember(Value = "failed")]
-    Failed
+    Failed = 4
 }
