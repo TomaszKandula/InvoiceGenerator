@@ -8,14 +8,14 @@ using Core.Converters;
 public enum PaymentStatuses
 {
     [EnumMember(Value = "unknown")]
-    Unknown,
+    Unknown = 0,
 
     [EnumMember(Value = "unpaid")]
-    Unpaid,
+    Unpaid = 1,
 
     [EnumMember(Value = "partially paid")]
-    PartiallyPaid,
+    PartiallyPaid = 2,
 
     [EnumMember(Value = "paid")]
-    Paid
+    Paid = 3
 }
