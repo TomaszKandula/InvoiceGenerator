@@ -1,4 +1,4 @@
-﻿namespace InvoiceGenerator.Backend.Core.Behaviours;
+﻿namespace InvoiceGenerator.Services.BehaviourService;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,11 +7,11 @@ using FluentValidation;
 using MediatR;
 
 [ExcludeFromCodeCoverage]
-public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {
-    private readonly IValidator<TRequest> _validator;
+    private readonly IValidator<TRequest>? _validator;
 
-    public FluentValidationBehavior(IValidator<TRequest> validator = null) 
+    public FluentValidationBehavior(IValidator<TRequest>? validator = null) 
         => _validator = validator;
 
     public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
@@ -22,7 +22,7 @@ public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<T
         var validationResults = _validator.Validate(validationContext);
 
         if (!validationResults.IsValid)
-            throw new Exceptions.ValidationException(validationResults);
+            throw new InvoiceGenerator.Backend.Core.Exceptions.ValidationException(validationResults);
 
         return next();
     }
