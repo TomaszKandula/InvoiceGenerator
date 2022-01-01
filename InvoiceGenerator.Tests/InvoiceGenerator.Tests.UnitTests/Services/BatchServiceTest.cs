@@ -1,4 +1,4 @@
-namespace InvoiceGenerator.UnitTests.Services;
+namespace InvoiceGenerator.Tests.UnitTests.Services;
 
 using Moq;
 using Xunit;

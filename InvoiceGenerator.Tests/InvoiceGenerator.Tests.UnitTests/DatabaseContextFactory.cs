@@ -1,4 +1,4 @@
-﻿namespace InvoiceGenerator.UnitTests;
+﻿namespace InvoiceGenerator.Tests.UnitTests;
 
 using Microsoft.EntityFrameworkCore;
 using Backend.Database;

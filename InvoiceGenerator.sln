@@ -18,9 +18,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Va
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.BatchService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.BatchService\InvoiceGenerator.Backend.BatchService.csproj", "{8784DABC-F602-4593-9F1F-371F35B6DC5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.UnitTests", "InvoiceGenerator.UnitTests\InvoiceGenerator.UnitTests.csproj", "{468E53D7-7697-4CA4-AA69-C894D3BFC06E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.UnitTests", "InvoiceGenerator.Tests\InvoiceGenerator.Tests.UnitTests\InvoiceGenerator.Tests.UnitTests.csproj", "{468E53D7-7697-4CA4-AA69-C894D3BFC06E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.IntegrationTests", "InvoiceGenerator.IntegrationTests\InvoiceGenerator.IntegrationTests.csproj", "{B68DE45A-3BA7-49A5-B638-630428F49E9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.IntegrationTests", "InvoiceGenerator.Tests\InvoiceGenerator.Tests.IntegrationTests\InvoiceGenerator.Tests.IntegrationTests.csproj", "{B68DE45A-3BA7-49A5-B638-630428F49E9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Shared", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.Shared\InvoiceGenerator.Backend.Shared.csproj", "{9BD18A9B-604A-498B-9B21-B52C3B463E69}"
 EndProject

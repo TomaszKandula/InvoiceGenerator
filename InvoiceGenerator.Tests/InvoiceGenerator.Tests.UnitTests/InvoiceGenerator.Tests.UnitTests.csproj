@@ -25,13 +25,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Core\InvoiceGenerator.Backend.Core.csproj" />
-      <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Database\InvoiceGenerator.Backend.Database.csproj" />
-      <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.BatchService\InvoiceGenerator.Backend.BatchService.csproj" />
-      <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Shared\InvoiceGenerator.Backend.Shared.csproj" />
-      <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.TemplateService\InvoiceGenerator.Backend.TemplateService.csproj" />
-      <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.UserService\InvoiceGenerator.Backend.UserService.csproj" />
-      <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.VatService\InvoiceGenerator.Backend.VatService.csproj" />
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.BatchService\InvoiceGenerator.Backend.BatchService.csproj" />
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Core\InvoiceGenerator.Backend.Core.csproj" />
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Database\InvoiceGenerator.Backend.Database.csproj" />
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Shared\InvoiceGenerator.Backend.Shared.csproj" />
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.TemplateService\InvoiceGenerator.Backend.TemplateService.csproj" />
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.UserService\InvoiceGenerator.Backend.UserService.csproj" />
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.VatService\InvoiceGenerator.Backend.VatService.csproj" />
     </ItemGroup>
 
 </Project>
