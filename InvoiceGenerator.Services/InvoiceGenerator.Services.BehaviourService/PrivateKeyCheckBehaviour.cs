@@ -6,7 +6,6 @@ using System.Diagnostics.CodeAnalysis;
 using UserService;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
-using Microsoft.AspNetCore.Http;
 using Backend.Core.Services.LoggerService;
 using MediatR;
 
@@ -17,18 +16,15 @@ public class PrivateKeyCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<T
 
     private readonly IUserService _userService;
 
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    
-    public PrivateKeyCheckBehaviour(ILoggerService logger, IUserService userService, IHttpContextAccessor httpContextAccessor)
+    public PrivateKeyCheckBehaviour(ILoggerService logger, IUserService userService)
     {
         _logger = logger;
         _userService = userService;
-        _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
     {
-        var privateKeyFromHeader = _httpContextAccessor.HttpContext?.Request.Headers["X-Private-Key"].ToString();
+        var privateKeyFromHeader = _userService.GetPrivateKeyFromHeader();
 
         if (string.IsNullOrEmpty(privateKeyFromHeader))
         {
