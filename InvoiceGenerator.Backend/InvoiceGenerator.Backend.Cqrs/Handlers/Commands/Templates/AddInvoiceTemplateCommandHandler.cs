@@ -2,7 +2,6 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
 
 using System.Threading;
 using System.Threading.Tasks;
-using Services.UserService;
 using Services.TemplateService;
 using Services.TemplateService.Models;
 
@@ -10,12 +9,9 @@ public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplat
 {
     private readonly ITemplateService _templateService;
 
-    private readonly IUserService _userService;
-
-    public AddInvoiceTemplateCommandHandler(ITemplateService templateService, IUserService userService)
+    public AddInvoiceTemplateCommandHandler(ITemplateService templateService)
     {
         _templateService = templateService;
-        _userService = userService;
     }
 
     public override async Task<AddInvoiceTemplateCommandResult> Handle(AddInvoiceTemplateCommand request, CancellationToken cancellationToken)
