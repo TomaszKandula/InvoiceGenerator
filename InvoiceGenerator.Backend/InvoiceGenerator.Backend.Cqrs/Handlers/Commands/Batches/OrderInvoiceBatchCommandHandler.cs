@@ -40,10 +40,7 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
     public override async Task<OrderInvoiceBatchCommandResult> Handle(OrderInvoiceBatchCommand request, CancellationToken cancellationToken)
     {
-        var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
-        var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
-
-        VerifyArguments(isKeyValid, userId);
+        var userId = await _userService.GetUserByPrivateKey("", cancellationToken);// TODO: get header
 
         var vatOptions = new PolishVatNumberOptions(true, true);
         var vatPatterns = await _databaseContext.VatNumberPatterns
@@ -148,14 +145,5 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
         if (voucherDate is not null && valueDate is null)
             throw new BusinessException(nameof(ErrorCodes.DATE_TYPE_MISMATCH), ErrorCodes.DATE_TYPE_MISMATCH);
-    }
-
-    private static void VerifyArguments(bool isKeyValid, Guid? userId)
-    {
-        if (!isKeyValid)
-            throw new AccessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
-
-        if (userId == null || userId == Guid.Empty)
-            throw new BusinessException(nameof(ErrorCodes.INVALID_ASSOCIATED_USER), ErrorCodes.INVALID_ASSOCIATED_USER);
     }
 }
