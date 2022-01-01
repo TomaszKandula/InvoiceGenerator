@@ -5,11 +5,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using UserService;
+using Domain.Enums;
 using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
-using Domain.Enums;
+using Services.UserService;
 
 public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery, IEnumerable<GetCurrencyCodesQueryResult>>
 {

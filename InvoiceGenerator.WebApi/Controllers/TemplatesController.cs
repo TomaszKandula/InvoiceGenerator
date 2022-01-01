@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Backend.Shared.Dto;
 using Backend.Cqrs.Mappers;
-using Backend.TemplateService.Models;
+using Services.TemplateService.Models;
 using Backend.Cqrs.Handlers.Queries.Templates;
 using Backend.Cqrs.Handlers.Commands.Templates;
 using MediatR;

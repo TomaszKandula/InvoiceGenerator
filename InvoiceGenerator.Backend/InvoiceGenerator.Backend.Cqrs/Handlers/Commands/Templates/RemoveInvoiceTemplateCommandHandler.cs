@@ -3,10 +3,10 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using UserService;
-using TemplateService;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
+using Services.TemplateService;
 using MediatR;
 
 public class RemoveInvoiceTemplateCommandHandler : Cqrs.RequestHandler<RemoveInvoiceTemplateCommand, Unit>

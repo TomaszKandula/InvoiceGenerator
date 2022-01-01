@@ -4,11 +4,11 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using UserService;
-using TemplateService;
 using Core.Exceptions;
 using Shared.Resources;
-using TemplateService.Models;
+using Services.UserService;
+using Services.TemplateService;
+using Services.TemplateService.Models;
 
 public class GetInvoiceTemplatesQueryHandler : RequestHandler<GetInvoiceTemplatesQuery, IEnumerable<InvoiceTemplateInfo>>
 {

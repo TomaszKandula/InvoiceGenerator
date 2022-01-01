@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Database;
-using VatService;
-using UserService;
-using BatchService;
 using Core.Exceptions;
 using Shared.Resources;
-using VatService.Models;
-using BatchService.Models;
+using Services.VatService;
+using Services.UserService;
+using Services.BatchService;
+using Services.VatService.Models;
+using Services.BatchService.Models;
 using Core.Services.DateTimeService;
 
 public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchCommand, OrderInvoiceBatchCommandResult>

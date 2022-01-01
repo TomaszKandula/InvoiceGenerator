@@ -8,13 +8,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Domain.Enums;
-using Backend.BatchService;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
-using Backend.BatchService.Models;
 using Backend.Core.Services.LoggerService;
 using Backend.Core.Services.DateTimeService;
+using InvoiceGenerator.Services.BatchService;
+using InvoiceGenerator.Services.BatchService.Models;
 
 public class BatchServiceTest : TestBase
 {

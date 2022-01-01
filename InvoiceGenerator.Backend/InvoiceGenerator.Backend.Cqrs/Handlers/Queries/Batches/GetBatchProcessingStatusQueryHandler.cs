@@ -3,10 +3,10 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using UserService;
-using BatchService;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
+using Services.BatchService;
 
 public class GetBatchProcessingStatusQueryHandler : RequestHandler<GetBatchProcessingStatusQuery, GetBatchProcessingStatusQueryResult>
 {

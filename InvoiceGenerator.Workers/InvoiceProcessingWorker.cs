@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using Backend.BatchService;
+using Services.BatchService;
 
 [ExcludeFromCodeCoverage]
 public class InvoiceProcessingWorker

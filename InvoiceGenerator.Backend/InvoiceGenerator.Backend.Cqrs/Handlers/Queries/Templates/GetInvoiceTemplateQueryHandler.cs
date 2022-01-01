@@ -4,10 +4,10 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using UserService;
-using TemplateService;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
+using Services.TemplateService;
 
 public class GetInvoiceTemplateQueryHandler : RequestHandler<GetInvoiceTemplateQuery, FileContentResult>
 {

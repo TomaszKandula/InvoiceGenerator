@@ -6,9 +6,9 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.UserService;
 using Backend.Domain.Entities;
 using Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Services.UserService;
 
 public class UserServiceTest : TestBase
 {

@@ -14,9 +14,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Database", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.Database\InvoiceGenerator.Backend.Database.csproj", "{B5CA6DDD-7ACB-4BDE-B508-6BB33939A439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.VatService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.VatService\InvoiceGenerator.Backend.VatService.csproj", "{5AA8E950-5998-4120-B79B-D78E62F7B0AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.VatService", "InvoiceGenerator.Services\InvoiceGenerator.Services.VatService\InvoiceGenerator.Services.VatService.csproj", "{5AA8E950-5998-4120-B79B-D78E62F7B0AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.BatchService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.BatchService\InvoiceGenerator.Backend.BatchService.csproj", "{8784DABC-F602-4593-9F1F-371F35B6DC5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.BatchService", "InvoiceGenerator.Services\InvoiceGenerator.Services.BatchService\InvoiceGenerator.Services.BatchService.csproj", "{8784DABC-F602-4593-9F1F-371F35B6DC5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.UnitTests", "InvoiceGenerator.Tests\InvoiceGenerator.Tests.UnitTests\InvoiceGenerator.Tests.UnitTests.csproj", "{468E53D7-7697-4CA4-AA69-C894D3BFC06E}"
 EndProject
@@ -28,9 +28,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Cqrs", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.Cqrs\InvoiceGenerator.Backend.Cqrs.csproj", "{AAFD608A-0530-478E-B64C-1E8B53FF8B33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.UserService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.UserService\InvoiceGenerator.Backend.UserService.csproj", "{D2E41C09-6762-475B-B392-DEA4B0F7B0F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.UserService", "InvoiceGenerator.Services\InvoiceGenerator.Services.UserService\InvoiceGenerator.Services.UserService.csproj", "{D2E41C09-6762-475B-B392-DEA4B0F7B0F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.TemplateService", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.TemplateService\InvoiceGenerator.Backend.TemplateService.csproj", "{F2836F32-924A-4A89-91D7-84292C7C591D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.TemplateService", "InvoiceGenerator.Services\InvoiceGenerator.Services.TemplateService\InvoiceGenerator.Services.TemplateService.csproj", "{F2836F32-924A-4A89-91D7-84292C7C591D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workers", "Workers", "{D476D9B9-E6F2-4175-B9F6-54D0A0ECB618}"
 EndProject

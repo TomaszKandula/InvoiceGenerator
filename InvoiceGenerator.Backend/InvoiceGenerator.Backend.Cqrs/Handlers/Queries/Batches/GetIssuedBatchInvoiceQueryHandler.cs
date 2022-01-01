@@ -4,10 +4,10 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using UserService;
-using BatchService;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
+using Services.BatchService;
 
 public class GetIssuedBatchInvoiceQueryHandler : RequestHandler<GetIssuedBatchInvoiceQuery, FileContentResult>
 {

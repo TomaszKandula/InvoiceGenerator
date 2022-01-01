@@ -7,12 +7,12 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Backend.TemplateService;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
-using Backend.TemplateService.Models;
 using Backend.Core.Services.DateTimeService;
+using InvoiceGenerator.Services.TemplateService;
+using InvoiceGenerator.Services.TemplateService.Models;
 
 public class TemplateServiceTest : TestBase
 {
