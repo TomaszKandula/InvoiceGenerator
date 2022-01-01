@@ -1,3 +1,14 @@
+# [1.8.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.7.1...v1.8.0) (2022-01-01)
+
+
+### Features
+
+* add behaviour service and its implementations ([f2adafe](https://github.com/TomaszKandula/InvoiceGenerator/commit/f2adafe23486c951fadfa9dd66603321f2f9dd0c))
+* add method to extract private key from the request header ([84da8f1](https://github.com/TomaszKandula/InvoiceGenerator/commit/84da8f1fec08f886a58b2c508aea8732afe3a25c))
+* add new service behaviour for checking private key in the request header ([84c5efc](https://github.com/TomaszKandula/InvoiceGenerator/commit/84c5efc546f0d309b11411f4e143ae149418b14b))
+* add private key header for all endpoints ([a87502a](https://github.com/TomaszKandula/InvoiceGenerator/commit/a87502a7093665c70c0e831d714b3c8c097ef585))
+* remove http context accessor, use user service helper method ([bafd1b0](https://github.com/TomaszKandula/InvoiceGenerator/commit/bafd1b0f299ee099b1f15754e2971586d5b4f5e4))
+
 ## [1.7.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.7.0...v1.7.1) (2021-12-26)
 
 
