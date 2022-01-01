@@ -40,7 +40,7 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
     public override async Task<OrderInvoiceBatchCommandResult> Handle(OrderInvoiceBatchCommand request, CancellationToken cancellationToken)
     {
-        var userId = await _userService.GetUserByPrivateKey("", cancellationToken);// TODO: get header
+        var userId = await _userService.GetUserByPrivateKey(_userService.GetPrivateKeyFromHeader(), cancellationToken);
 
         var vatOptions = new PolishVatNumberOptions(true, true);
         var vatPatterns = await _databaseContext.VatNumberPatterns
