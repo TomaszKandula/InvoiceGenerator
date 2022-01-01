@@ -10,7 +10,6 @@ public static class BatchMapper
     public static OrderInvoiceBatchCommand MapToOrderInvoiceBatchCommandRequest(
         OrderInvoiceBatchDto model) => new()
     {
-        PrivateKey = model.PrivateKey,
         UserId = model.UserId,
         UserCompanyId = model.UserCompanyId,
         UserBankAccountId = model.UserBankAccountId,

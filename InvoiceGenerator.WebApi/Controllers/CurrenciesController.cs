@@ -14,11 +14,11 @@ public class CurrenciesController : BaseController
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCodeList([FromQuery] string privateKey) =>
-        await Mediator.Send(new GetCurrencyCodesQuery { PrivateKey = privateKey, FilterBy = string.Empty });
+    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCodeList([FromHeader(Name = HeaderName)] string privateKey) =>
+        await Mediator.Send(new GetCurrencyCodesQuery { FilterBy = string.Empty });
 
     [HttpGet("{currency}")]
     [ProducesResponseType(typeof(IEnumerable<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCode([FromRoute] string currency, [FromQuery] string privateKey) =>
-        await Mediator.Send(new GetCurrencyCodesQuery { PrivateKey = privateKey, FilterBy = currency });
+    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCode([FromRoute] string currency, [FromHeader(Name = HeaderName)] string privateKey) =>
+        await Mediator.Send(new GetCurrencyCodesQuery { FilterBy = currency });
 }

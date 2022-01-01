@@ -14,11 +14,11 @@ public class CountriesController : BaseController
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCodeList([FromQuery] string privateKey) =>
-        await Mediator.Send(new GetCountryCodesQuery { PrivateKey = privateKey, FilterBy = string.Empty });
+    public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCodeList([FromHeader(Name = HeaderName)] string privateKey) =>
+        await Mediator.Send(new GetCountryCodesQuery { FilterBy = string.Empty });
 
     [HttpGet("{country}")]
     [ProducesResponseType(typeof(IEnumerable<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCode([FromRoute] string country, [FromQuery] string privateKey) =>
-        await Mediator.Send(new GetCountryCodesQuery { PrivateKey = privateKey, FilterBy = country });
+    public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCode([FromRoute] string country, [FromHeader(Name = HeaderName)] string privateKey) =>
+        await Mediator.Send(new GetCountryCodesQuery { FilterBy = country });
 }
