@@ -4,10 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Models;
-using Shared.Models;
 
 [ExcludeFromCodeCoverage]
-public class OrderInvoiceBatchDto : RequestProperties
+public class OrderInvoiceBatchDto
 {
     public Guid UserId { get; set; }
 

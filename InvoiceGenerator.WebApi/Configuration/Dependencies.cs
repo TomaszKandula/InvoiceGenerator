@@ -7,13 +7,12 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Backend.Cqrs;
 using Backend.Database;
-using Backend.VatService;
-using Backend.UserService;
-using Backend.BatchService;
-using Backend.TemplateService;
-using Backend.Core.Behaviours;
+using Services.VatService;
+using Services.UserService;
+using Services.BatchService;
+using Services.TemplateService;
+using Services.BehaviourService;
 using Backend.Database.Initializer;
 using Backend.Core.Services.LoggerService;
 using Backend.Core.Services.DateTimeService;
@@ -58,12 +57,12 @@ public static class Dependencies
         services.AddHttpContextAccessor();
 
         services.AddScoped<HttpClient>();
+        services.AddScoped<IDbInitializer, DbInitializer>();
         services.AddScoped<IDateTimeService, DateTimeService>();
         services.AddScoped<IVatService, VatService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IBatchService, BatchService>();
         services.AddScoped<ITemplateService, TemplateService>();
-        services.AddScoped<IDbInitializer, DbInitializer>();
     }
 
     private static void SetupValidators(IServiceCollection services)
@@ -74,6 +73,8 @@ public static class Dependencies
         services.AddMediatR(options => options.AsScoped(), 
             typeof(Backend.Cqrs.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(DomainCheckBehaviour<,>));
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(PrivateKeyCheckBehaviour<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
     }

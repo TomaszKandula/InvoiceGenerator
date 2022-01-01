@@ -20,7 +20,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.BatchService\InvoiceGenerator.Backend.BatchService.csproj" />
+    <ProjectReference Include="..\InvoiceGenerator.Services\InvoiceGenerator.Services.BatchService\InvoiceGenerator.Services.BatchService.csproj" />
   </ItemGroup>
   <ItemGroup>
     <ReferencePathWithRefAssemblies Update="\usr\local\share\dotnet\packs\Microsoft.AspNetCore.App.Ref\6.0.0\ref\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />

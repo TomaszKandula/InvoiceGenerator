@@ -9,9 +9,9 @@ public class GetBatchProcessingStatusListQueryValidator : AbstractValidator<GetB
 {
     public GetBatchProcessingStatusListQueryValidator()
     {
-        RuleFor(request => request.PrivateKey)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
+        // RuleFor(request => request.PrivateKey)
+        //     .NotEmpty()
+        //     .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+        //     .WithMessage(ValidationCodes.REQUIRED);
     }
 }

@@ -9,11 +9,6 @@ public class AddInvoiceTemplateCommandValidator : AbstractValidator<AddInvoiceTe
 {
     public AddInvoiceTemplateCommandValidator()
     {
-        RuleFor(command => command.PrivateKey)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
-
         RuleFor(command => command.Name)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))

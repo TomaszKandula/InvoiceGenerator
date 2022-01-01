@@ -9,7 +9,7 @@ using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 namespace InvoiceGenerator.Workers.Configuration;
 
 using Backend.Database;
-using Backend.BatchService;
+using Services.BatchService;
 using Backend.Core.Services.LoggerService;
 using Backend.Core.Services.DateTimeService;
 
