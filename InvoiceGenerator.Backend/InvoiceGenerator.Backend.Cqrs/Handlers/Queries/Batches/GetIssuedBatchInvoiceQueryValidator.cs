@@ -7,11 +7,6 @@ public class GetIssuedBatchInvoiceQueryValidator : AbstractValidator<GetIssuedBa
 {
     public GetIssuedBatchInvoiceQueryValidator()
     {
-        RuleFor(request => request.PrivateKey)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
-
         RuleFor(request => request.InvoiceNumber)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))

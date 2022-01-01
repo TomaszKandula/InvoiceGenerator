@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Core\InvoiceGenerator.Backend.Core.csproj" />
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Database\InvoiceGenerator.Backend.Database.csproj" />
+      <ProjectReference Include="..\..\InvoiceGenerator.Backend\InvoiceGenerator.Backend.Domain\InvoiceGenerator.Backend.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

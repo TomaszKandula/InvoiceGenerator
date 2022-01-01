@@ -3,7 +3,7 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
 using System.Threading;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using BatchService;
+using Services.BatchService;
 using Core.Services.LoggerService;
 using MediatR;
 

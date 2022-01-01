@@ -13,7 +13,6 @@ public static class TemplatesMapper
     public static ReplaceInvoiceTemplateCommand MapToReplaceInvoiceTemplateCommandRequest(
         ReplaceInvoiceTemplateDto model) => new()
     {
-        PrivateKey = model.PrivateKey,
         Id = model.Id,
         Data = GetFileContent(model.Data),
         DataType = model.Data != null ? model.Data?.ContentType : string.Empty,
@@ -23,7 +22,6 @@ public static class TemplatesMapper
     public static AddInvoiceTemplateCommand MapToAddInvoiceTemplateCommandRequest(
         AddInvoiceTemplateDto model) => new()
     {
-        PrivateKey = model.PrivateKey,
         Name = model.Name,
         Data = GetFileContent(model.Data),
         DataType = model.Data != null ? model.Data?.ContentType : string.Empty,
@@ -33,7 +31,6 @@ public static class TemplatesMapper
     public static RemoveInvoiceTemplateCommand MapToRemoveInvoiceTemplateCommandRequest(
         RemoveInvoiceTemplateDto model) => new()
     {
-        PrivateKey = model.PrivateKey,
         Id = model.Id
     };
 

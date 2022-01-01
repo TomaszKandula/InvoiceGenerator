@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Database;
-using VatService;
-using UserService;
-using BatchService;
 using Core.Exceptions;
 using Shared.Resources;
-using VatService.Models;
-using BatchService.Models;
+using Services.VatService;
+using Services.UserService;
+using Services.BatchService;
+using Services.VatService.Models;
+using Services.BatchService.Models;
 using Core.Services.DateTimeService;
 
 public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchCommand, OrderInvoiceBatchCommandResult>
@@ -40,10 +40,7 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
     public override async Task<OrderInvoiceBatchCommandResult> Handle(OrderInvoiceBatchCommand request, CancellationToken cancellationToken)
     {
-        var isKeyValid = await _userService.IsPrivateKeyValid(request.PrivateKey, cancellationToken);
-        var userId = await _userService.GetUserByPrivateKey(request.PrivateKey, cancellationToken);
-
-        VerifyArguments(isKeyValid, userId);
+        var userId = await _userService.GetUserByPrivateKey(_userService.GetPrivateKeyFromHeader(), cancellationToken);
 
         var vatOptions = new PolishVatNumberOptions(true, true);
         var vatPatterns = await _databaseContext.VatNumberPatterns
@@ -148,14 +145,5 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
         if (voucherDate is not null && valueDate is null)
             throw new BusinessException(nameof(ErrorCodes.DATE_TYPE_MISMATCH), ErrorCodes.DATE_TYPE_MISMATCH);
-    }
-
-    private static void VerifyArguments(bool isKeyValid, Guid? userId)
-    {
-        if (!isKeyValid)
-            throw new AccessException(nameof(ErrorCodes.INVALID_PRIVATE_KEY), ErrorCodes.INVALID_PRIVATE_KEY);
-
-        if (userId == null || userId == Guid.Empty)
-            throw new BusinessException(nameof(ErrorCodes.INVALID_ASSOCIATED_USER), ErrorCodes.INVALID_ASSOCIATED_USER);
     }
 }

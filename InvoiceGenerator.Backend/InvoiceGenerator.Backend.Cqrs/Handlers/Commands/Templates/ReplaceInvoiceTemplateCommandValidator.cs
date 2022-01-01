@@ -7,11 +7,6 @@ public class ReplaceInvoiceTemplateCommandValidator : AbstractValidator<ReplaceI
 {
     public ReplaceInvoiceTemplateCommandValidator()
     {
-        RuleFor(command => command.PrivateKey)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
-
         RuleFor(command => command.Id)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
