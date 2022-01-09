@@ -1,3 +1,11 @@
+## [1.8.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.8.0...v1.8.1) (2022-01-09)
+
+
+### Bug Fixes
+
+* change to correct docker file name ([bc87efa](https://github.com/TomaszKandula/InvoiceGenerator/commit/bc87efab1e680d480b4855acbd65d191268945c0))
+* do not leave empty strings ([8bf3101](https://github.com/TomaszKandula/InvoiceGenerator/commit/8bf3101e1409a6bb043d0fc4f09b38e310db6ab8))
+
 # [1.8.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.7.1...v1.8.0) (2022-01-01)
 
 
