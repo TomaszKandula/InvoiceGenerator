@@ -3,19 +3,24 @@ namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.BatchService;
+using Core.Services.LoggerService;
 
 public class GetBatchProcessingStatusQueryHandler : RequestHandler<GetBatchProcessingStatusQuery, GetBatchProcessingStatusQueryResult>
 {
     private readonly IBatchService _batchService;
 
-    public GetBatchProcessingStatusQueryHandler(IBatchService batchService)
+    private readonly ILoggerService _loggerService;
+
+    public GetBatchProcessingStatusQueryHandler(IBatchService batchService, ILoggerService loggerService)
     {
         _batchService = batchService;
+        _loggerService = loggerService;
     }
         
     public override async Task<GetBatchProcessingStatusQueryResult> Handle(GetBatchProcessingStatusQuery request, CancellationToken cancellationToken)
     {
         var result = await _batchService.GetBatchInvoiceProcessingStatus(request.ProcessBatchKey, cancellationToken);
+        _loggerService.LogInformation($"Returned batch invoice processing status. PBK: {request.ProcessBatchKey}");
         return new GetBatchProcessingStatusQueryResult
         {
             ProcessingStatus = result.Status,

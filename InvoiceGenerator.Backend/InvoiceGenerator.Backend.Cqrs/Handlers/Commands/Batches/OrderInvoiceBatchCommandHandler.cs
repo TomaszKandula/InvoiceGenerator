@@ -13,6 +13,7 @@ using Services.VatService;
 using Services.UserService;
 using Services.BatchService;
 using Services.VatService.Models;
+using Core.Services.LoggerService;
 using Services.BatchService.Models;
 using Core.Services.DateTimeService;
 
@@ -28,30 +29,38 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
     private readonly IDateTimeService _dateTimeService;
 
+    private readonly ILoggerService _loggerService;
+
     public OrderInvoiceBatchCommandHandler(DatabaseContext databaseContext, IBatchService batchService, 
-        IVatService vatService, IUserService userService, IDateTimeService dateTimeService)
+        IVatService vatService, IUserService userService, IDateTimeService dateTimeService, ILoggerService loggerService)
     {
         _databaseContext = databaseContext;
         _batchService = batchService;
         _vatService = vatService;
         _userService = userService;
         _dateTimeService = dateTimeService;
+        _loggerService = loggerService;
     }
 
     public override async Task<OrderInvoiceBatchCommandResult> Handle(OrderInvoiceBatchCommand request, CancellationToken cancellationToken)
     {
         var userId = await _userService.GetUserByPrivateKey(_userService.GetPrivateKeyFromHeader(), cancellationToken);
+        _loggerService.LogInformation($"Request to process {request.OrderDetails.Count()} orders. User ID: {userId}");
 
         var vatOptions = new PolishVatNumberOptions(true, true);
         var vatPatterns = await _databaseContext.VatNumberPatterns
             .AsNoTracking()
             .ToListAsync(cancellationToken);
 
+        _loggerService.LogInformation($"Found {vatPatterns.Count} VAT patterns");
+
         var availableTemplates = await _databaseContext.InvoiceTemplates
             .AsNoTracking()
             .Where(templates => !templates.IsDeleted)
             .ToListAsync(cancellationToken);
             
+        _loggerService.LogInformation($"Found {availableTemplates.Count} invoice patterns");
+
         var order = new List<OrderDetail>();
         foreach (var orderDetails in request.OrderDetails)
         {
@@ -61,6 +70,8 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
             if (!vatCheckResult.IsValid)
                 throw new ValidationException(vatCheckResult, ValidationCodes.INVALID_VAT);
 
+            _loggerService.LogInformation($"VAT has been checked successfully. Begin processing {order.Count} orders");
+            
             var items = new List<InvoiceItem>();
             foreach (var item in orderDetails.InvoiceItems)
             {
@@ -90,6 +101,8 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
             if (!isTemplateExists)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_NAME), ErrorCodes.INVALID_TEMPLATE_NAME);
 
+            _loggerService.LogInformation($"Order has been processed with {items.Count} invoice item(s)");
+            
             order.Add(new OrderDetail
             {
                 UserId = userId,
