@@ -170,5 +170,11 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("MISSING_INVOICE_TEMPLATE", resourceCulture);
             }
         }
+        
+        public static string FILE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("FILE_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }
