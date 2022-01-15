@@ -1,3 +1,15 @@
+# [1.9.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.8.1...v1.9.0) (2022-01-15)
+
+
+### Features
+
+* add controller to get log file information ([ed3a59c](https://github.com/TomaszKandula/InvoiceGenerator/commit/ed3a59c96b50dd5d0f2f99daea1a862ea262c9c5))
+* add cqrs with validators to retrieve log information ([4f5dc79](https://github.com/TomaszKandula/InvoiceGenerator/commit/4f5dc7980e8872c8f89c93b7eba30c65d18d1741))
+* add log information to handlers ([64d179e](https://github.com/TomaszKandula/InvoiceGenerator/commit/64d179e31ccdec4194f3a660424653e640c9d523))
+* add new error/validation codes ([03e8583](https://github.com/TomaszKandula/InvoiceGenerator/commit/03e85830a7ac3a549a6abeb8b98ce90c24e75ae6))
+* add new logger configuration, add log to file ([d6ae23c](https://github.com/TomaszKandula/InvoiceGenerator/commit/d6ae23c5aed80b435ba3687e3e329ad4bb634535))
+* map root path ([4fae19c](https://github.com/TomaszKandula/InvoiceGenerator/commit/4fae19c89313d9262a09b66048195974397d5f85))
+
 ## [1.8.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.8.0...v1.8.1) (2022-01-09)
 
 
