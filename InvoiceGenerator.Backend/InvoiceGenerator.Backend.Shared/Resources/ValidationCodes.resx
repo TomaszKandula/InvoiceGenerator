@@ -27,4 +27,7 @@
     <data name="INVALID_FILE_SIZE" xml:space="preserve">
         <value>File size is too large</value>
     </data>
+    <data name="NAME_TOO_LONG" xml:space="preserve">
+        <value>The name is too long</value>
+    </data>
 </root>

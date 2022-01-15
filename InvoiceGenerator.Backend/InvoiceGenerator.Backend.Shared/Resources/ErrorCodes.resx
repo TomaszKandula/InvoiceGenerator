@@ -81,4 +81,7 @@
     <data name="MISSING_INVOICE_TEMPLATE" xml:space="preserve">
         <value>Missing invoice template</value>
     </data>
+    <data name="FILE_NOT_FOUND" xml:space="preserve">
+        <value>Cannot find the given file</value>
+    </data>
 </root>
