@@ -62,5 +62,11 @@ namespace InvoiceGenerator.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_FILE_SIZE", resourceCulture);
             }
         }
+        
+        public static string NAME_TOO_LONG {
+            get {
+                return ResourceManager.GetString("NAME_TOO_LONG", resourceCulture);
+            }
+        }
     }
 }
