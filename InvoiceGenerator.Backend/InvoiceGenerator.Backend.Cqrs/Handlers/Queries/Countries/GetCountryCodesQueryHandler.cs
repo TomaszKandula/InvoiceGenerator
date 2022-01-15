@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Domain.Enums;
 using Core.Extensions;
+using Core.Services.LoggerService;
 
 public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, IEnumerable<GetCountryCodesQueryResult>>
 {
+    private readonly ILoggerService _loggerService;
+
+    public GetCountryCodesQueryHandler(ILoggerService loggerService) => _loggerService = loggerService;
+
     public override async Task<IEnumerable<GetCountryCodesQueryResult>> Handle(GetCountryCodesQuery request, CancellationToken cancellationToken)
     {
         var codes = Enum.GetValues<CountryCodes>();
@@ -25,6 +30,7 @@ public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, 
                 response => response.Country == request.FilterBy.ToUpper())
             .ToList();
 
+        _loggerService.LogInformation($"Returned {result.Count} country code(s)");
         return await Task.FromResult(result);
     }
 }

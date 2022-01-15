@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Domain.Enums;
 using Core.Extensions;
+using Core.Services.LoggerService;
 
 public class GetPaymentStatusListQueryHandler : RequestHandler<GetPaymentStatusListQuery, IEnumerable<GetPaymentStatusListQueryResult>>
 {
+    private readonly ILoggerService _loggerService;
+
+    public GetPaymentStatusListQueryHandler(ILoggerService loggerService) => _loggerService = loggerService;
+
     public override async Task<IEnumerable<GetPaymentStatusListQueryResult>> Handle(GetPaymentStatusListQuery request, CancellationToken cancellationToken)
     {
         var statuses = Enum.GetValues<PaymentStatuses>();
@@ -24,6 +29,7 @@ public class GetPaymentStatusListQueryHandler : RequestHandler<GetPaymentStatusL
                 response => response.PaymentStatus == request.FilterBy.ToUpper())
             .ToList();
 
+        _loggerService.LogInformation($"Returned {result.Count} payment status(es)");
         return await Task.FromResult(result);
     }
 }
