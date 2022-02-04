@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.9.0...v1.10.0) (2022-02-04)
+
+
+### Features
+
+* remove Sentry ([9b8f4ed](https://github.com/TomaszKandula/InvoiceGenerator/commit/9b8f4ed9cc26c5ab67f09480768216590d885911))
+
 # [1.9.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.8.1...v1.9.0) (2022-01-15)
 
 
