@@ -1,3 +1,11 @@
+# [1.11.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.10.0...v1.11.0) (2022-02-08)
+
+
+### Features
+
+* upgrade libraries ([7fce58e](https://github.com/TomaszKandula/InvoiceGenerator/commit/7fce58e29f8fdb44656bcef46b5be6a9589e29b9))
+* upgrade library ([2b926b7](https://github.com/TomaszKandula/InvoiceGenerator/commit/2b926b7593b67b55027f0dac4ac438037a6d414e))
+
 # [1.10.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.9.0...v1.10.0) (2022-02-04)
 
 
