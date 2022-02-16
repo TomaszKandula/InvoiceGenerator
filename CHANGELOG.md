@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.11.0...v1.12.0) (2022-02-16)
+
+
+### Features
+
+* update environment variable ([885e3ec](https://github.com/TomaszKandula/InvoiceGenerator/commit/885e3ec17733c15e98b25628766abdaa778c9b42))
+
 # [1.11.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.10.0...v1.11.0) (2022-02-08)
 
 
