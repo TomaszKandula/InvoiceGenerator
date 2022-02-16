@@ -14,8 +14,8 @@ using Serilog;
 [ExcludeFromCodeCoverage]
 public static class Program
 {
-    private static readonly string EnvironmentValue 
-        = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    private static readonly string EnvironmentValue
+        = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
 
     private static readonly bool IsDevelopment 
         = EnvironmentValue == Environments.Development;
