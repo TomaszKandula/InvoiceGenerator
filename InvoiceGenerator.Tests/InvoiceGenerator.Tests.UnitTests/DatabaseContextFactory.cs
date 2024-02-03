@@ -1,7 +1,7 @@
-﻿namespace InvoiceGenerator.Tests.UnitTests;
+﻿using Microsoft.EntityFrameworkCore;
+using InvoiceGenerator.Backend.Database;
 
-using Microsoft.EntityFrameworkCore;
-using Backend.Database;
+namespace InvoiceGenerator.Tests.UnitTests;
 
 internal class DatabaseContextFactory
 {

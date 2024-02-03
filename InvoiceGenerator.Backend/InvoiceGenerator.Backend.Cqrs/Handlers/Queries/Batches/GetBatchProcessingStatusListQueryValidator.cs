@@ -1,8 +1,7 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
-
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
-using Shared.Resources;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
 
 [ExcludeFromCodeCoverage]
 public class GetBatchProcessingStatusListQueryValidator : AbstractValidator<GetBatchProcessingStatusListQuery>

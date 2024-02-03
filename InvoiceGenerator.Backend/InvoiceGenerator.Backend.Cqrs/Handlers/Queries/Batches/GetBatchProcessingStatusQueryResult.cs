@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Backend.Domain.Enums;
+using InvoiceGenerator.Backend.Domain.Enums;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
 
 [ExcludeFromCodeCoverage]
 public class GetBatchProcessingStatusQueryResult

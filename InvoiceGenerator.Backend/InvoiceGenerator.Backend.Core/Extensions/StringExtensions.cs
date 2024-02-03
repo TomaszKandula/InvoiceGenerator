@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.Backend.Core.Extensions;
-
 using System;
-using System.Text;
-using System.Globalization;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Text;
+
+namespace InvoiceGenerator.Backend.Core.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class StringExtensions

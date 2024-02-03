@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies;
-
-using MediatR;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using MediatR;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies;
 
 [ExcludeFromCodeCoverage]
 public class GetCurrencyCodesQuery : IRequest<IEnumerable<GetCurrencyCodesQueryResult>>

@@ -1,6 +1,6 @@
-namespace InvoiceGenerator.Backend.Core.Services.DateTimeService;
-
 using System;
+
+namespace InvoiceGenerator.Backend.Core.Services.DateTimeService;
 
 public interface IDateTimeService
 {

@@ -1,6 +1,6 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments;
-
 using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments;
 
 [ExcludeFromCodeCoverage]
 public class GetPaymentTypeListQueryResult

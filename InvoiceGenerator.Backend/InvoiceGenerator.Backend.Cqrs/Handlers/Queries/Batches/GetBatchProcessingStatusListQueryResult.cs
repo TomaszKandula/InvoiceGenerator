@@ -1,6 +1,6 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
-
 using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
 
 [ExcludeFromCodeCoverage]
 public class GetBatchProcessingStatusListQueryResult

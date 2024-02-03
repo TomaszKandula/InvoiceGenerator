@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Backend.Domain;
-
-using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Backend.Domain;
 
 [ExcludeFromCodeCoverage]
 public abstract class Entity<TKey>

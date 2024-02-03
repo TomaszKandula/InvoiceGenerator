@@ -1,21 +1,21 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
-
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using InvoiceGenerator.Backend.Core.Exceptions;
+using InvoiceGenerator.Backend.Core.Services.DateTimeService;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Database;
+using InvoiceGenerator.Backend.Shared.Resources;
+using InvoiceGenerator.Services.BatchService;
+using InvoiceGenerator.Services.BatchService.Models;
+using InvoiceGenerator.Services.UserService;
+using InvoiceGenerator.Services.VatService;
+using InvoiceGenerator.Services.VatService.Models;
 using Microsoft.EntityFrameworkCore;
-using Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Services.VatService;
-using Services.UserService;
-using Services.BatchService;
-using Services.VatService.Models;
-using Core.Services.LoggerService;
-using Services.BatchService.Models;
-using Core.Services.DateTimeService;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
 
 public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchCommand, OrderInvoiceBatchCommandResult>
 {

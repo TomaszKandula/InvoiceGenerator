@@ -4,14 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using InvoiceGenerator.Backend.Database;
+using InvoiceGenerator.Services.BatchService;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Core.Services.DateTimeService;
 
 [assembly: FunctionsStartup(typeof(InvoiceGenerator.Workers.Configuration.Startup))]
 namespace InvoiceGenerator.Workers.Configuration;
-
-using Backend.Database;
-using Services.BatchService;
-using Backend.Core.Services.LoggerService;
-using Backend.Core.Services.DateTimeService;
 
 [ExcludeFromCodeCoverage]
 public class Startup : FunctionsStartup

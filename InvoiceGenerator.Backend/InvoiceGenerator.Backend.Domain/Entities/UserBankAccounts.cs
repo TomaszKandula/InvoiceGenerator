@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.Backend.Domain.Entities;
-
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
-using Enums;
+using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Backend.Domain.Enums;
+
+namespace InvoiceGenerator.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
 public class UserBankAccounts : Entity<Guid>

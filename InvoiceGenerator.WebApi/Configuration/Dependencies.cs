@@ -1,23 +1,23 @@
-﻿namespace InvoiceGenerator.WebApi.Configuration;
-
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Backend.Database;
-using Services.VatService;
-using Services.UserService;
-using Services.BatchService;
-using Services.TemplateService;
-using Services.BehaviourService;
-using Backend.Database.Initializer;
-using Backend.Core.Services.LoggerService;
-using Backend.Core.Services.DateTimeService;
+using InvoiceGenerator.Backend.Database;
+using InvoiceGenerator.Services.VatService;
+using InvoiceGenerator.Services.UserService;
+using InvoiceGenerator.Services.BatchService;
+using InvoiceGenerator.Services.TemplateService;
+using InvoiceGenerator.Services.BehaviourService;
+using InvoiceGenerator.Backend.Database.Initializer;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Core.Services.DateTimeService;
 using MediatR;
 using FluentValidation;
+
+namespace InvoiceGenerator.WebApi.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class Dependencies

@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.Backend.Shared.Dto;
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Models;
+using InvoiceGenerator.Backend.Shared.Dto.Models;
+
+namespace InvoiceGenerator.Backend.Shared.Dto;
 
 [ExcludeFromCodeCoverage]
 public class OrderInvoiceBatchDto

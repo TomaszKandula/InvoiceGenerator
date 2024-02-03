@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.Backend.Domain.Entities;
-
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
-using Contracts;
+using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Backend.Domain.Contracts;
+
+namespace InvoiceGenerator.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
 public class InvoiceTemplates : Entity<Guid>, ISoftDelete

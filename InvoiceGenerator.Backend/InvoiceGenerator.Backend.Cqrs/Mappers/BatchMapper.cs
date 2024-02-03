@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Cqrs.Mappers;
-
 using System.Diagnostics.CodeAnalysis;
-using Shared.Dto;
-using Handlers.Commands.Batches;
+using InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
+using InvoiceGenerator.Backend.Shared.Dto;
+
+namespace InvoiceGenerator.Backend.Cqrs.Mappers;
 
 [ExcludeFromCodeCoverage]
 public static class BatchMapper

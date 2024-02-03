@@ -1,11 +1,11 @@
-namespace InvoiceGenerator.Services.VatService;
-
 using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using FluentValidation.Results;
-using Models;
-using Backend.Shared.Resources;
+using InvoiceGenerator.Services.VatService.Models;
+using InvoiceGenerator.Backend.Shared.Resources;
+
+namespace InvoiceGenerator.Services.VatService;
 
 public class VatService : IVatService
 {

@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.Backend.Core.Extensions;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
-using Models;
+using InvoiceGenerator.Backend.Core.Models;
+
+namespace InvoiceGenerator.Backend.Core.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class DateValidationExtensions

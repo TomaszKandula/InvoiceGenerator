@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.WebApi.Controllers;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using MediatR;
-using Backend.Core.Models;
+using InvoiceGenerator.Backend.Core.Models;
+
+namespace InvoiceGenerator.WebApi.Controllers;
 
 [ApiController]
 [AllowAnonymous]
