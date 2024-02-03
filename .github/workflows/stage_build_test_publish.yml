@@ -18,10 +18,11 @@ jobs:
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: TomaszKandula/variable-substitution@v1.0.1
       with:
-        files: ${{ github.workspace }}/InvoiceGenerator.WebApi/appsettings.Staging.json
+        files: ${{ github.workspace }}/InvoiceGenerator.Configuration/appsettings.Staging.json
       env:
-        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_STAGE }}"
-        ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_TEST }}"
+        DbConnect: "${{ secrets.DBCONNECT_STAGE }}"
+        AZ_Storage_ContainerName: "${{ secrets.STORAGE_CONTAINER_NAME_STAGE }}"
+        AZ_Storage_ConnectionString: "${{ secrets.STORAGE_CONNECTION_STRING_STAGE }}"
 
     - name: Staging | Build Docker (prepare)
       uses: azure/docker-login@v2
