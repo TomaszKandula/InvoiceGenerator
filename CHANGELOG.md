@@ -1,3 +1,24 @@
+# [1.13.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.12.0...v1.13.0) (2024-02-03)
+
+
+### Bug Fixes
+
+* correct scripts ([d2847b1](https://github.com/TomaszKandula/InvoiceGenerator/commit/d2847b1dcd19899177b64d57860be281f352aa22))
+* correct version ([6bc815d](https://github.com/TomaszKandula/InvoiceGenerator/commit/6bc815d8f412ba2b866148f2f86f74b85d56b361))
+* downgrade ([125f86f](https://github.com/TomaszKandula/InvoiceGenerator/commit/125f86fbb3bf75a6e171c8266d4a76e2b3726f21))
+
+
+### Features
+
+* add azure storage for logs ([8ce4fce](https://github.com/TomaszKandula/InvoiceGenerator/commit/8ce4fce8ef696e4cc9359ef95319571efed3505c))
+* relocate settings files ([e7c7de1](https://github.com/TomaszKandula/InvoiceGenerator/commit/e7c7de1e5592bf1b56d5832077d8318a4e509d55))
+* remove unused setting ([5ca2b5a](https://github.com/TomaszKandula/InvoiceGenerator/commit/5ca2b5ae17bc130785e675e2d5b32cb9dc574973))
+* update deployment scripts ([6d5442a](https://github.com/TomaszKandula/InvoiceGenerator/commit/6d5442a7d5a31f4d39e4a9dd6c1f32a3e0f2b6b5))
+* update solution folders for clarity ([4d8236d](https://github.com/TomaszKandula/InvoiceGenerator/commit/4d8236d3535c6df828801f801dfb7cfffb34c6c8))
+* update solution projects ([9d8c544](https://github.com/TomaszKandula/InvoiceGenerator/commit/9d8c544072b4f7e6d790d3ad89d90e9b61a12e7d))
+* update variable ([0a08856](https://github.com/TomaszKandula/InvoiceGenerator/commit/0a08856cd21fc5da32977b3982b0dbe717d7ee9b))
+* upgrade packages ([af2d429](https://github.com/TomaszKandula/InvoiceGenerator/commit/af2d42960f951b6aadc7bb71dc95ad8c06151897))
+
 # [1.12.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.11.0...v1.12.0) (2022-02-16)
 
 
