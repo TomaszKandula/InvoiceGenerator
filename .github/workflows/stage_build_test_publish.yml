@@ -91,7 +91,7 @@ jobs:
     steps:
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         with:
           app-name: invoicegenerator-func-stage
           slot-name: production
