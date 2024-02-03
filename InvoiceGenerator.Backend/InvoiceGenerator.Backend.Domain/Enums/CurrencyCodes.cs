@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Domain.Enums;
-
 using System.Runtime.Serialization;
+using InvoiceGenerator.Backend.Core.Converters;
 using Newtonsoft.Json;
-using Core.Converters;
+
+namespace InvoiceGenerator.Backend.Domain.Enums;
 
 /// <summary>
 /// Country currency codes (ISO 3166 and ISO 4217).

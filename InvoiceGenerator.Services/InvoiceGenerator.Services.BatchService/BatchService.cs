@@ -1,5 +1,3 @@
-namespace InvoiceGenerator.Services.BatchService;
-
 using System;
 using System.Text;
 using System.Linq;
@@ -9,14 +7,16 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
-using Models;
-using Backend.Database;
-using Backend.Domain.Enums;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using Backend.Core.Services.LoggerService;
-using Backend.Core.Services.DateTimeService;
+using InvoiceGenerator.Backend.Database;
+using InvoiceGenerator.Backend.Domain.Enums;
+using InvoiceGenerator.Backend.Domain.Entities;
+using InvoiceGenerator.Backend.Core.Exceptions;
+using InvoiceGenerator.Backend.Shared.Resources;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Core.Services.DateTimeService;
+using InvoiceGenerator.Services.BatchService.Models;
+
+namespace InvoiceGenerator.Services.BatchService;
 
 public class BatchService : IBatchService
 {

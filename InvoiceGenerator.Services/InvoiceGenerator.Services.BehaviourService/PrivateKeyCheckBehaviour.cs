@@ -1,13 +1,11 @@
-namespace InvoiceGenerator.Services.BehaviourService;
-
-using System.Threading;
-using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
-using UserService;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Core.Exceptions;
+using InvoiceGenerator.Backend.Shared.Resources;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Services.UserService;
 using MediatR;
+
+namespace InvoiceGenerator.Services.BehaviourService;
 
 [ExcludeFromCodeCoverage]
 public class PrivateKeyCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>

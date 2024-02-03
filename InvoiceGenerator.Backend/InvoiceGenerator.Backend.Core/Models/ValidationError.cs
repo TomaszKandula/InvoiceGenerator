@@ -1,7 +1,7 @@
-﻿namespace InvoiceGenerator.Backend.Core.Models;
-
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
+
+namespace InvoiceGenerator.Backend.Core.Models;
 
 [ExcludeFromCodeCoverage]
 public sealed class ValidationError

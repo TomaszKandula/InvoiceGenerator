@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates;
-
 using System;
-using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates;
 
 public class GetInvoiceTemplateQuery : IRequest<FileContentResult>
 {

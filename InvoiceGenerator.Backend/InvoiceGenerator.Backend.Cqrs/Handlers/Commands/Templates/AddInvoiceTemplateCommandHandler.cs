@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
-
 using System.Threading;
 using System.Threading.Tasks;
-using Services.TemplateService;
-using Core.Services.LoggerService;
-using Services.TemplateService.Models;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Services.TemplateService;
+using InvoiceGenerator.Services.TemplateService.Models;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
 
 public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplateCommand, AddInvoiceTemplateCommandResult>
 {

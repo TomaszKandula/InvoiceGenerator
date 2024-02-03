@@ -1,12 +1,12 @@
-namespace InvoiceGenerator.Tests.UnitTests.Services;
-
 using Xunit;
 using FluentAssertions;
 using System.Collections.Generic;
-using Backend.Domain.Entities;
-using Backend.Shared.Resources;
+using InvoiceGenerator.Backend.Domain.Entities;
+using InvoiceGenerator.Backend.Shared.Resources;
 using InvoiceGenerator.Services.VatService;
 using InvoiceGenerator.Services.VatService.Models;
+
+namespace InvoiceGenerator.Tests.UnitTests.Services;
 
 public class VatServiceTest : TestBase
 {

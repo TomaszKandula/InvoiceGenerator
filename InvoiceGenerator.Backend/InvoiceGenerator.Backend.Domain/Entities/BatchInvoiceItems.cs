@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.Backend.Domain.Entities;
-
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Enums;
+using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Backend.Domain.Enums;
+
+namespace InvoiceGenerator.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
 public class BatchInvoiceItems : Entity<Guid>

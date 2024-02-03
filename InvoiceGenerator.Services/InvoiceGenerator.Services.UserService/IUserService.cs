@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Services.UserService;
-
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+
+namespace InvoiceGenerator.Services.UserService;
 
 public interface IUserService
 {

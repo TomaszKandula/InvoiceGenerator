@@ -1,11 +1,11 @@
-namespace InvoiceGenerator.WebApi.Controllers;
-
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Backend.Cqrs.Handlers.Queries.Currencies;
+using InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies;
 using MediatR;
+
+namespace InvoiceGenerator.WebApi.Controllers;
 
 [ApiVersion("1.0")]
 public class CurrenciesController : BaseController
@@ -19,6 +19,8 @@ public class CurrenciesController : BaseController
 
     [HttpGet("{currency}")]
     [ProducesResponseType(typeof(IEnumerable<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCode([FromRoute] string currency, [FromHeader(Name = HeaderName)] string privateKey) =>
-        await Mediator.Send(new GetCurrencyCodesQuery { FilterBy = currency });
+    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCode(
+        [FromRoute] string currency, 
+        [FromHeader(Name = HeaderName)] string privateKey) 
+        => await Mediator.Send(new GetCurrencyCodesQuery { FilterBy = currency });
 }

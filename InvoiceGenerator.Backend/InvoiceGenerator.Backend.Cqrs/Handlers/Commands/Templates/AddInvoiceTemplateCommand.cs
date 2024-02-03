@@ -1,6 +1,6 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
-
 using MediatR;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
 
 public class AddInvoiceTemplateCommand : IRequest<AddInvoiceTemplateCommandResult>
 {

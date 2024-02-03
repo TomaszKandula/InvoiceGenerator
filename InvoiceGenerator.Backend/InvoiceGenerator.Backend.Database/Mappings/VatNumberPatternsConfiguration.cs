@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.Backend.Database.Mappings;
-
 using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Backend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Domain.Entities;
+
+namespace InvoiceGenerator.Backend.Database.Mappings;
 
 [ExcludeFromCodeCoverage]
 public class VatNumberPatternsConfiguration : IEntityTypeConfiguration<VatNumberPatterns>

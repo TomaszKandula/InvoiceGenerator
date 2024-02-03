@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Services.BatchService.Models;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Services.BatchService.Models;
 
 [ExcludeFromCodeCoverage]
 public class InvoiceData : FileResult

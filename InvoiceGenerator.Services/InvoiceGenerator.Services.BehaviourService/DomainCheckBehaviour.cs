@@ -1,13 +1,11 @@
-namespace InvoiceGenerator.Services.BehaviourService;
-
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.Diagnostics.CodeAnalysis;
-using UserService;
-using Backend.Shared.Resources;
-using Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Shared.Resources;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Services.UserService;
 using MediatR;
+
+namespace InvoiceGenerator.Services.BehaviourService;
 
 [ExcludeFromCodeCoverage]
 public class DomainCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>

@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
-
 using System;
 using MediatR;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
 
 public class GetBatchProcessingStatusQuery : IRequest<GetBatchProcessingStatusQueryResult>
 {

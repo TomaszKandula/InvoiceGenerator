@@ -1,6 +1,6 @@
-namespace InvoiceGenerator.Services.BatchService.Models;
-
 using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Services.BatchService.Models;
 
 [ExcludeFromCodeCoverage]
 public class CurrencyCode

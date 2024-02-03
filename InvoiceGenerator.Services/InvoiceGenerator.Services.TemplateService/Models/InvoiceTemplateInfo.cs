@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Services.TemplateService.Models;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Services.TemplateService.Models;
 
 [ExcludeFromCodeCoverage]
 public class InvoiceTemplateInfo

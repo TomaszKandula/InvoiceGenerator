@@ -1,6 +1,6 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Countries;
-
 using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Countries;
 
 [ExcludeFromCodeCoverage]
 public class GetCountryCodesQueryResult

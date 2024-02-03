@@ -1,13 +1,13 @@
-namespace InvoiceGenerator.Services.UserService;
-
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Backend.Database;
-using Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Database;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+
+namespace InvoiceGenerator.Services.UserService;
 
 public class UserService : IUserService
 {

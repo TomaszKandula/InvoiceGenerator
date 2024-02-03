@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Services.BatchService.Models;
-
 using System.Diagnostics.CodeAnalysis;
-using Backend.Shared.Dto.Models;
+using InvoiceGenerator.Backend.Shared.Dto.Models;
+
+namespace InvoiceGenerator.Services.BatchService.Models;
 
 [ExcludeFromCodeCoverage]
 public class InvoiceItem : InvoiceItemBase

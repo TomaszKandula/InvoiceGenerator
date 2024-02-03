@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
-
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
-using Shared.Resources;
+using InvoiceGenerator.Backend.Shared.Resources;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
 
 [ExcludeFromCodeCoverage]
 public class OrderInvoiceBatchCommandValidator : AbstractValidator<OrderInvoiceBatchCommand>

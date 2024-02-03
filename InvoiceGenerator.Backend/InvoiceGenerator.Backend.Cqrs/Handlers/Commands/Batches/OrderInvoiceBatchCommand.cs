@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
-
-using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Shared.Dto.Models;
+using InvoiceGenerator.Backend.Shared.Dto.Models;
+using MediatR;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
 
 [ExcludeFromCodeCoverage]
 public class OrderInvoiceBatchCommand : IRequest<OrderInvoiceBatchCommandResult>

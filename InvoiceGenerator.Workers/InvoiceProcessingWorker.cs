@@ -1,11 +1,11 @@
-namespace InvoiceGenerator.Workers;
-
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Services.BatchService;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using Services.BatchService;
+
+namespace InvoiceGenerator.Workers;
 
 [ExcludeFromCodeCoverage]
 public class InvoiceProcessingWorker
