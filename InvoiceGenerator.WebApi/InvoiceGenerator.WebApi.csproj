@@ -30,4 +30,19 @@
       <ProjectReference Include="..\InvoiceGenerator.Services\InvoiceGenerator.Services.VatService\InvoiceGenerator.Services.VatService.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="..\InvoiceGenerator.Configuration\appsettings.Development.json">
+            <Link>appsettings.Testing.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="..\InvoiceGenerator.Configuration\appsettings.Staging.json">
+            <Link>appsettings.Staging.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="..\InvoiceGenerator.Configuration\appsettings.Production.json">
+            <Link>appsettings.Production.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
 </Project>
