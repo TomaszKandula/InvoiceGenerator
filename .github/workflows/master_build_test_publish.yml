@@ -59,7 +59,7 @@ jobs:
       env:
         DbConnect: "${{ secrets.DBCONNECT_PROD }}"
         AZ_Storage_ContainerName: "${{ secrets.STORAGE_CONTAINER_NAME_PROD }}"
-        AZ_Storage_ConnectionString: "${{ secrets.STORAGE_CONNECTION_STRING_PROD }}"
+        AZ_Storage_ConnectionString: "${{ secrets.STORAGE_CONNECTION_STRING }}"
 
     - name: Production | Build Docker (prepare)
       uses: azure/docker-login@v2
