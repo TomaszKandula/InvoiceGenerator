@@ -1,25 +1,6 @@
 ﻿{
-  "iisSettings": 
-  {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": 
-    {
-      "applicationUrl": "http://localhost:15932",
-      "sslPort": 44314
-    }
-  },
   "profiles": 
   {
-    "IIS Express": 
-    {
-      "commandName": "IISExpress",
-      "launchBrowser": false,
-      "environmentVariables": 
-      {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "InvoiceGenerator.WebApi": 
     {
       "commandName": "Project",
