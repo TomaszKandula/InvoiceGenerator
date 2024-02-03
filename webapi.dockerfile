@@ -4,10 +4,10 @@ WORKDIR /app
 
 # Copy csproj and restore as distinct layers
 COPY . ./
-RUN dotnet restore
+RUN dotnet restore --disable-parallel
 
 # Build and run all tests
-RUN dotnet build -c Release --no-restore
+RUN dotnet build -c Release --force
 RUN dotnet test -c Release --no-build --no-restore
 
 # Publish build
@@ -18,5 +18,6 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0
 ENV ASPNETCORE_URLS=http://+:80
 EXPOSE 80
 WORKDIR /app
+COPY --from=build-env /app .
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "InvoiceGenerator.WebApi.dll"]
