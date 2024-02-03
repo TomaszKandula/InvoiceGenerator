@@ -49,7 +49,7 @@ jobs:
     - name: Staging | Deploy to Azure Web App
       uses: azure/webapps-deploy@v3
       with:
-        app-name: invoicegenerator-stage
+        app-name: invoicegenerator-staging
         slot-name: production
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_BACKEND_STAGE }}
         images: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-staging-${{ github.sha }}
@@ -91,9 +91,9 @@ jobs:
     steps:
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: invoicegenerator-func-stage
+          app-name: invoicegenerator-func-staging
           slot-name: production
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FUNC_STAGE }}
           images: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:workers-staging-${{ github.sha }}
