@@ -1,3 +1,11 @@
+## [1.13.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.13.0...v1.13.1) (2024-02-03)
+
+
+### Bug Fixes
+
+* do not use publish func, copy built app ([603baf1](https://github.com/TomaszKandula/InvoiceGenerator/commit/603baf1525f71b328708a9b013dadb67aa3d8bc9))
+* resolve docker issues ([1c11b5c](https://github.com/TomaszKandula/InvoiceGenerator/commit/1c11b5c834be8b6ee29f6ad98ef79eaed248f1fd))
+
 # [1.13.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.12.0...v1.13.0) (2024-02-03)
 
 
