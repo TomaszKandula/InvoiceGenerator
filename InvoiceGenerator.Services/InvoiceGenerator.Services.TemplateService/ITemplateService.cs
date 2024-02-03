@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.Services.TemplateService;
-
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Models;
+using InvoiceGenerator.Services.TemplateService.Models;
+
+namespace InvoiceGenerator.Services.TemplateService;
 
 public interface ITemplateService
 {

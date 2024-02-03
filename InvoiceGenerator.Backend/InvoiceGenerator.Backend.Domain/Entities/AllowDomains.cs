@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Domain.Entities;
-
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
 public class AllowDomains : Entity<Guid>

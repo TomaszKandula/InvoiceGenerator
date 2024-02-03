@@ -1,17 +1,17 @@
-namespace InvoiceGenerator.Services.TemplateService;
-
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Models;
-using Backend.Database;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using Backend.Core.Services.DateTimeService;
+using InvoiceGenerator.Services.TemplateService.Models;
+using InvoiceGenerator.Backend.Database;
+using InvoiceGenerator.Backend.Domain.Entities;
+using InvoiceGenerator.Backend.Core.Exceptions;
+using InvoiceGenerator.Backend.Shared.Resources;
+using InvoiceGenerator.Backend.Core.Services.DateTimeService;
+
+namespace InvoiceGenerator.Services.TemplateService;
 
 public class TemplateService : ITemplateService
 {

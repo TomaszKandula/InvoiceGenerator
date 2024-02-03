@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Services.BatchService.Models;
-
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics;
-using Backend.Domain.Entities;
+using InvoiceGenerator.Backend.Domain.Entities;
+
+namespace InvoiceGenerator.Services.BatchService.Models;
 
 [ExcludeFromCodeCoverage]
 public class ProcessingError

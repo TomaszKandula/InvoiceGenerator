@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
-
 using System.Threading;
 using System.Threading.Tasks;
-using Services.BatchService;
-using Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Services.BatchService;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
 
 public class GetBatchProcessingStatusQueryHandler : RequestHandler<GetBatchProcessingStatusQuery, GetBatchProcessingStatusQueryResult>
 {

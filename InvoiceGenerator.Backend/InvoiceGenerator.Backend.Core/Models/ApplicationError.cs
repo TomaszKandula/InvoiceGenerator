@@ -1,9 +1,9 @@
-﻿namespace InvoiceGenerator.Backend.Core.Models;
-
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using FluentValidation.Results;
+
+namespace InvoiceGenerator.Backend.Core.Models;
 
 [ExcludeFromCodeCoverage]
 public sealed class ApplicationError

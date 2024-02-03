@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates;
-
-using MediatR;
 using System.Collections.Generic;
-using Services.TemplateService.Models;
+using InvoiceGenerator.Services.TemplateService.Models;
+using MediatR;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates;
 
 public class GetInvoiceTemplatesQuery : IRequest<IEnumerable<InvoiceTemplateInfo>> { }

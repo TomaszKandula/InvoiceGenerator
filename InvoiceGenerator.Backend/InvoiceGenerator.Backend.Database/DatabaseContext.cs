@@ -1,9 +1,9 @@
-﻿namespace InvoiceGenerator.Backend.Database;
-
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Backend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Domain.Entities;
+
+namespace InvoiceGenerator.Backend.Database;
 
 [ExcludeFromCodeCoverage]
 public class DatabaseContext : DbContext

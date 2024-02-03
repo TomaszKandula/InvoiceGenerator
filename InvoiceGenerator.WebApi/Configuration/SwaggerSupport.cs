@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.WebApi.Configuration;
-
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+
+namespace InvoiceGenerator.WebApi.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class SwaggerSupport

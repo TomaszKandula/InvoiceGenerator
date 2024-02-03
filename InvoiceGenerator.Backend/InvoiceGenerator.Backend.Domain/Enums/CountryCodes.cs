@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Domain.Enums;
-
 using System.Runtime.Serialization;
+using InvoiceGenerator.Backend.Core.Converters;
 using Newtonsoft.Json;
-using Core.Converters;
+
+namespace InvoiceGenerator.Backend.Domain.Enums;
 
 /// <summary>
 /// Country codes. Numeric values follows UN Code.

@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
-
 using System.Threading;
 using System.Threading.Tasks;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Services.BatchService;
 using Microsoft.AspNetCore.Mvc;
-using Services.BatchService;
-using Core.Services.LoggerService;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Batches;
 
 public class GetIssuedBatchInvoiceQueryHandler : RequestHandler<GetIssuedBatchInvoiceQuery, FileContentResult>
 {

@@ -1,11 +1,11 @@
 #nullable enable
-namespace InvoiceGenerator.Backend.Cqrs.Mappers;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
+using InvoiceGenerator.Backend.Shared.Dto;
 using Microsoft.AspNetCore.Http;
-using Shared.Dto;
-using Handlers.Commands.Templates;
+
+namespace InvoiceGenerator.Backend.Cqrs.Mappers;
 
 [ExcludeFromCodeCoverage]
 public static class TemplatesMapper

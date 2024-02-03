@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Core.Exceptions;
-
 using System;
-using System.Runtime.Serialization;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
+
+namespace InvoiceGenerator.Backend.Core.Exceptions;
 
 [ExcludeFromCodeCoverage]
 [Serializable]

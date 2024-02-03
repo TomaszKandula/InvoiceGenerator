@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
-
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
-using Shared.Resources;
+using InvoiceGenerator.Backend.Shared.Resources;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
 
 [ExcludeFromCodeCoverage]
 public class AddInvoiceTemplateCommandValidator : AbstractValidator<AddInvoiceTemplateCommand>

@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.Services.BatchService;
-
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Models;
+using InvoiceGenerator.Services.BatchService.Models;
+
+namespace InvoiceGenerator.Services.BatchService;
 
 public interface IBatchService
 {

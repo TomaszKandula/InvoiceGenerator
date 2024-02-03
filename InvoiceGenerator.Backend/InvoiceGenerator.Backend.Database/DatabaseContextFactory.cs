@@ -1,10 +1,10 @@
-﻿namespace InvoiceGenerator.Backend.Database;
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+
+namespace InvoiceGenerator.Backend.Database;
 
 /// <summary>
 /// A factory for creating derived DbContext instances when performing
@@ -30,11 +30,10 @@ public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContex
             .AddEnvironmentVariables()
             .Build();
 
-        var connectionString = builder.GetConnectionString("DbConnect");
-
+        var connectionString = builder.GetValue<string>("DbConnect");
         var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
         optionsBuilder.UseSqlServer(connectionString);
-            
+
         return new DatabaseContext(optionsBuilder.Options);
     }
 }

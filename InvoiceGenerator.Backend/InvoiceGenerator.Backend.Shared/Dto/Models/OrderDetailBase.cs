@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.Backend.Shared.Dto.Models;
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Domain.Enums;
+using InvoiceGenerator.Backend.Domain.Enums;
+
+namespace InvoiceGenerator.Backend.Shared.Dto.Models;
 
 [ExcludeFromCodeCoverage]
 public class OrderDetailBase<T>

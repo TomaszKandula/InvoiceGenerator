@@ -1,6 +1,6 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
-
 using System;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
 
 public class AddInvoiceTemplateCommandResult
 {

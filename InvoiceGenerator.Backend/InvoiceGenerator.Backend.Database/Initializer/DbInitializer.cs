@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Backend.Database.Initializer;
-
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+
+namespace InvoiceGenerator.Backend.Database.Initializer;
 
 [ExcludeFromCodeCoverage]
 public class DbInitializer : IDbInitializer

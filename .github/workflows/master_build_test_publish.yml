@@ -17,12 +17,12 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v4
 
     - name: Semantic Release (install node.js)
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
-        node-version: 14
+        node-version: 18
 
     - name: Semantic Release (install dependencies)
       run: |
@@ -30,7 +30,7 @@ jobs:
         yarn install
 
     - name: Semantic Release (process changes)
-      uses: cycjimmy/semantic-release-action@v2
+      uses: cycjimmy/semantic-release-action@v4.0.0
       id: semantic
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
@@ -50,18 +50,19 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v4
     
     - name: Variable substitution appsettings file for Staging (NET Core)
-      uses: microsoft/variable-substitution@v1
+      uses: TomaszKandula/variable-substitution@v1.0.1
       with:
-        files: ${{ github.workspace }}/InvoiceGenerator.WebApi/appsettings.Staging.json
+        files: ${{ github.workspace }}/InvoiceGenerator.Configuration/appsettings.Production.json
       env:
-        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_STAGE }}"
-        ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_TEST }}"
+        DbConnect: "${{ secrets.DBCONNECT_PROD }}"
+        AZ_Storage_ContainerName: "${{ secrets.STORAGE_CONTAINER_NAME_PROD }}"
+        AZ_Storage_ConnectionString: "${{ secrets.STORAGE_CONNECTION_STRING }}"
 
     - name: Production | Build Docker (prepare)
-      uses: azure/docker-login@v1
+      uses: azure/docker-login@v2
       with:
         login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
         username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
@@ -71,7 +72,7 @@ jobs:
       run: docker build -f webapi.dockerfile -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }} .
 
     - name: Production | Push Docker image (prepare)
-      uses: azure/docker-login@v1
+      uses: azure/docker-login@v2
       with:
         login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
         username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
@@ -84,7 +85,7 @@ jobs:
     # Note: due to a budget constraints, we use separate Azure App Service for staging as the separate slots 
     # are unavailable for B1, B2 and B3 pricing tiers
     - name: Production | Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       if: needs.versioning.outputs.outputs2 == 'true'
       with:
         app-name: invoicegenerator-prod
@@ -97,20 +98,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v3
 
       - name: Log in to container registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
           username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
           password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
       - name: Build and push container image to registry
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5.1.0
         with:
           push: true
           tags: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:workers-production-${{ github.sha }}
@@ -129,7 +130,7 @@ jobs:
     steps:
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
           app-name: invoicegenerator-func-prod
           slot-name: production

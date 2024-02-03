@@ -1,5 +1,3 @@
-namespace InvoiceGenerator.Tests.UnitTests.Services;
-
 using Moq;
 using Xunit;
 using FluentAssertions;
@@ -7,9 +5,11 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Backend.Domain.Entities;
-using Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Domain.Entities;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
 using InvoiceGenerator.Services.UserService;
+
+namespace InvoiceGenerator.Tests.UnitTests.Services;
 
 public class UserServiceTest : TestBase
 {

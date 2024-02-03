@@ -1,11 +1,11 @@
-namespace InvoiceGenerator.Backend.Domain.Entities;
-
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
-using Enums;
-using Contracts;
+using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Backend.Domain.Contracts;
+using InvoiceGenerator.Backend.Domain.Enums;
+
+namespace InvoiceGenerator.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
 public class BatchInvoices : Entity<Guid>, IAuditable
