@@ -34,7 +34,8 @@ public class Startup : FunctionsStartup
 
         services.AddDbContext<DatabaseContext>(options =>
         {
-            options.UseSqlServer(configuration["DbConnect"], addOptions 
+            var dbConnect = configuration.GetValue<string>("DbConnect");
+            options.UseSqlServer(dbConnect, addOptions 
                 => addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
         });
     }

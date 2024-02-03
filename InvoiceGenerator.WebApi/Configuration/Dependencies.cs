@@ -47,7 +47,8 @@ public static class Dependencies
             
         services.AddDbContext<DatabaseContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("DbConnect"), addOptions 
+            var dbConnect = configuration.GetValue<string>("DbConnect");
+            options.UseSqlServer(dbConnect, addOptions 
                 => addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
         });
     }
