@@ -32,7 +32,7 @@
 
     <ItemGroup>
         <None Include="..\InvoiceGenerator.Configuration\appsettings.Development.json">
-            <Link>appsettings.Testing.json</Link>
+            <Link>appsettings.Development.json</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Include="..\InvoiceGenerator.Configuration\appsettings.Staging.json">
