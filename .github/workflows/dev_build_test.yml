@@ -18,12 +18,12 @@ jobs:
     steps:
     
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     - name: Variable substitution appsettings file for Staging (NET Core)
-      uses: microsoft/variable-substitution@v1
+      uses: TomaszKandula/variable-substitution@v1.0.1
       with:
         files: ${{ github.workspace }}/InvoiceGenerator.WebApi/appsettings.Staging.json
       env:
@@ -31,7 +31,7 @@ jobs:
         ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_TEST }}"
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '6.0.x'
 
@@ -40,7 +40,7 @@ jobs:
 
     - name: SonarQube begin scan dotnet
       run: |
-        dotnet tool install --global dotnet-sonarscanner
+        dotnet tool install --global dotnet-sonarscanner --version 5.15.0
         dotnet tool update dotnet-reportgenerator-globaltool -g
         dotnet sonarscanner begin \
         /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
