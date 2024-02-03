@@ -1,8 +1,7 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments;
-
 using System.Diagnostics.CodeAnalysis;
-using Shared.Resources;
 using FluentValidation;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Payments;
 
 [ExcludeFromCodeCoverage]
 public class GetPaymentTypeListQueryValidator : AbstractValidator<GetPaymentTypeListQuery>

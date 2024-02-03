@@ -1,6 +1,6 @@
-namespace InvoiceGenerator.Services.VatService.Models;
-
 using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Services.VatService.Models;
 
 [ExcludeFromCodeCoverage]
 public class PolishVatNumberOptions

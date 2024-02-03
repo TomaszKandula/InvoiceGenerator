@@ -8,21 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="..\..\InvoiceGenerator.WebApi\appsettings.Development.json">
+        <None Include="..\..\InvoiceGenerator.Configuration\appsettings.Development.json">
             <Link>appsettings.Development.json</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Include="..\..\InvoiceGenerator.WebApi\appsettings.json">
-            <Link>appsettings.json</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\..\InvoiceGenerator.WebApi\appsettings.Production.json">
-            <Link>appsettings.Production.json</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\..\InvoiceGenerator.WebApi\appsettings.Staging.json">
+        <None Include="..\..\InvoiceGenerator.Configuration\appsettings.Staging.json">
             <Link>appsettings.Staging.json</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="..\..\InvoiceGenerator.Configuration\appsettings.Production.json">
+            <Link>appsettings.Production.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 

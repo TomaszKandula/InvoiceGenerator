@@ -1,5 +1,3 @@
-namespace InvoiceGenerator.Tests.UnitTests.Services;
-
 using Moq;
 using Xunit;
 using FluentAssertions;
@@ -7,14 +5,16 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Backend.Domain.Enums;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using Backend.Core.Services.LoggerService;
-using Backend.Core.Services.DateTimeService;
+using InvoiceGenerator.Backend.Domain.Enums;
+using InvoiceGenerator.Backend.Domain.Entities;
+using InvoiceGenerator.Backend.Core.Exceptions;
+using InvoiceGenerator.Backend.Shared.Resources;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Core.Services.DateTimeService;
 using InvoiceGenerator.Services.BatchService;
 using InvoiceGenerator.Services.BatchService.Models;
+
+namespace InvoiceGenerator.Tests.UnitTests.Services;
 
 public class BatchServiceTest : TestBase
 {

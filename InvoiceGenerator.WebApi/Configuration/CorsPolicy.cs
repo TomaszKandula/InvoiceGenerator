@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.WebApi.Configuration;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Net.Http.Headers;
 using Microsoft.AspNetCore.Builder;
+
+namespace InvoiceGenerator.WebApi.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class CorsPolicy

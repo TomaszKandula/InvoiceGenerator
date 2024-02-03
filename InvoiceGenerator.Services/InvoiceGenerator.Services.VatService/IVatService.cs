@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Services.VatService;
-
 using FluentValidation.Results;
-using Models;
+using InvoiceGenerator.Services.VatService.Models;
+
+namespace InvoiceGenerator.Services.VatService;
 
 public interface IVatService
 {

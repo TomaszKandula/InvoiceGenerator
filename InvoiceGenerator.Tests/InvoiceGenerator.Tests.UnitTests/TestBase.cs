@@ -1,9 +1,9 @@
-﻿namespace InvoiceGenerator.Tests.UnitTests;
+﻿using Microsoft.Extensions.DependencyInjection;
+using InvoiceGenerator.Backend.Database;
+using InvoiceGenerator.Backend.Core.Services.DateTimeService;
+using InvoiceGenerator.Backend.Core.Services.DataUtilityService;
 
-using Microsoft.Extensions.DependencyInjection;
-using Backend.Database;
-using Backend.Core.Services.DateTimeService;
-using Backend.Core.Services.DataUtilityService;
+namespace InvoiceGenerator.Tests.UnitTests;
 
 public class TestBase
 {

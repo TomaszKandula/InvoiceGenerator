@@ -1,10 +1,8 @@
-﻿namespace InvoiceGenerator.Services.BehaviourService;
-
-using System.Threading;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
-using Backend.Core.Services.LoggerService;
+﻿using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
 using MediatR;
+
+namespace InvoiceGenerator.Services.BehaviourService;
 
 [ExcludeFromCodeCoverage]
 public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>

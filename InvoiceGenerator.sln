@@ -2,13 +2,13 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.WebApi", "InvoiceGenerator.WebApi\InvoiceGenerator.WebApi.csproj", "{435EA792-637C-4528-B5C5-9867F3047B58}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3EEFC16D-C302-419C-95F7-F19376F567F3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9. Tests", "9. Tests", "{3EEFC16D-C302-419C-95F7-F19376F567F3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{3463B254-3132-4EAC-8205-E1B56D2E8537}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Backend", "5. Backend", "{3463B254-3132-4EAC-8205-E1B56D2E8537}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{BDC7C31C-9689-4622-9468-3E29647E2D77}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7. WebApi", "7. WebApi", "{BDC7C31C-9689-4622-9468-3E29647E2D77}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0611065F-444A-4844-816C-508A32ABD479}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Services", "6. Services", "{0611065F-444A-4844-816C-508A32ABD479}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Domain", "InvoiceGenerator.Backend\InvoiceGenerator.Backend.Domain\InvoiceGenerator.Backend.Domain.csproj", "{36867587-9AF1-48A0-899C-0B5B9BFB3041}"
 EndProject
@@ -32,11 +32,39 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.Us
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Backend.TemplateService", "InvoiceGenerator.Services\InvoiceGenerator.Services.TemplateService\InvoiceGenerator.Services.TemplateService.csproj", "{F2836F32-924A-4A89-91D7-84292C7C591D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workers", "Workers", "{D476D9B9-E6F2-4175-B9F6-54D0A0ECB618}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8. Workers", "8. Workers", "{D476D9B9-E6F2-4175-B9F6-54D0A0ECB618}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Workers", "InvoiceGenerator.Workers\InvoiceGenerator.Workers.csproj", "{A6C66A31-5A51-49EB-97A5-1342304BA0EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceGenerator.Services.BehaviourService", "InvoiceGenerator.Services\InvoiceGenerator.Services.BehaviourService\InvoiceGenerator.Services.BehaviourService.csproj", "{70C6E735-B917-4FDD-8353-806849213787}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Documentation", "1. Documentation", "{10324E72-6F79-4FEE-BD45-C886C6370CBF}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		CHANGELOG.md = CHANGELOG.md
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Configuration", "2. Configuration", "{EFDBE2DF-0A12-4B3D-A65C-3A740A34FF89}"
+	ProjectSection(SolutionItems) = preProject
+		InvoiceGenerator.Configuration\appsettings.Development.json = InvoiceGenerator.Configuration\appsettings.Development.json
+		InvoiceGenerator.Configuration\appsettings.Staging.json = InvoiceGenerator.Configuration\appsettings.Staging.json
+		InvoiceGenerator.Configuration\appsettings.Production.json = InvoiceGenerator.Configuration\appsettings.Production.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Deployment", "3. Deployment", "{DE6A79CB-7903-4835-A1E8-9D870110D785}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dev_build_test.yml = .github\workflows\dev_build_test.yml
+		.github\workflows\stage_build_test_publish.yml = .github\workflows\stage_build_test_publish.yml
+		.github\workflows\master_build_test_publish.yml = .github\workflows\master_build_test_publish.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{F30080BD-EB09-4DB9-B304-37FD3846B23A}"
+	ProjectSection(SolutionItems) = preProject
+		webapi.dockerfile = webapi.dockerfile
+		workers.dockerfile = workers.dockerfile
+		__testrun.sh = __testrun.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

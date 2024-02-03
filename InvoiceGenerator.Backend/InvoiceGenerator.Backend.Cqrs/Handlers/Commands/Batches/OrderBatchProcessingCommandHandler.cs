@@ -1,11 +1,11 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
-
 using System.Threading;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Services.BatchService;
-using Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Services.BatchService;
 using MediatR;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Batches;
 
 public class OrderBatchProcessingCommandHandler : Cqrs.RequestHandler<OrderBatchProcessingCommand, Unit>
 {

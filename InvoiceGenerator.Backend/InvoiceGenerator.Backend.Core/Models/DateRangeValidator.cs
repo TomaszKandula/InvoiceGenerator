@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Backend.Core.Models;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Backend.Core.Models;
 
 [ExcludeFromCodeCoverage]
 public class DateRangeValidator

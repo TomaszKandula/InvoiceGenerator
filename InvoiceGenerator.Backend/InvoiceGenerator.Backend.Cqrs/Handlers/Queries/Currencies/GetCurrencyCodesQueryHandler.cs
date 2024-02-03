@@ -1,13 +1,13 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies;
-
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Domain.Enums;
-using Core.Extensions;
-using Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Core.Extensions;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Backend.Domain.Enums;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Currencies;
 
 public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery, IEnumerable<GetCurrencyCodesQueryResult>>
 {

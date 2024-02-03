@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates;
-
 using System.Threading;
 using System.Threading.Tasks;
+using InvoiceGenerator.Backend.Core.Services.LoggerService;
+using InvoiceGenerator.Services.TemplateService;
 using Microsoft.AspNetCore.Mvc;
-using Services.TemplateService;
-using Core.Services.LoggerService;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Templates;
 
 public class GetInvoiceTemplateQueryHandler : RequestHandler<GetInvoiceTemplateQuery, FileContentResult>
 {

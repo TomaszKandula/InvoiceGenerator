@@ -1,11 +1,11 @@
-namespace InvoiceGenerator.Backend.Core.Services.DataUtilityService;
-
 using System;
 using System.IO;
 using System.Net;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Diagnostics.CodeAnalysis;
+
+namespace InvoiceGenerator.Backend.Core.Services.DataUtilityService;
 
 [ExcludeFromCodeCoverage]
 public sealed class DataUtilityService : IDataUtilityService

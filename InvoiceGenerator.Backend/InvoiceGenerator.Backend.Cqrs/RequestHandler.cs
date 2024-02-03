@@ -1,9 +1,9 @@
-namespace InvoiceGenerator.Backend.Cqrs;
-
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
 using MediatR;
+
+namespace InvoiceGenerator.Backend.Cqrs;
 
 [ExcludeFromCodeCoverage]
 public abstract class RequestHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>

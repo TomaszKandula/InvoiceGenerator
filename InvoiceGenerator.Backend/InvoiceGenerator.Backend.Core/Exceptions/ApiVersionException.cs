@@ -1,10 +1,10 @@
-namespace InvoiceGenerator.Backend.Core.Exceptions;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using System.Diagnostics.CodeAnalysis;
-using Models;
+using InvoiceGenerator.Backend.Core.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
+
+namespace InvoiceGenerator.Backend.Core.Exceptions;
 
 [ExcludeFromCodeCoverage]
 public class ApiVersionException : IErrorResponseProvider

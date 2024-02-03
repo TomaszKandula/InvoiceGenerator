@@ -1,6 +1,7 @@
-namespace InvoiceGenerator.WebApi;
-
 using System.Diagnostics.CodeAnalysis;
+using InvoiceGenerator.Backend.Core.Exceptions;
+using InvoiceGenerator.WebApi.Configuration;
+using InvoiceGenerator.WebApi.Middleware;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
@@ -9,10 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using Serilog;
-using Middleware;
-using Configuration;
-using Backend.Core.Exceptions;
 using Newtonsoft.Json.Converters;
+
+namespace InvoiceGenerator.WebApi;
 
 [ExcludeFromCodeCoverage]
 public class Startup
@@ -47,14 +47,11 @@ public class Startup
     public void Configure(IApplicationBuilder builder)
     {
         builder.UseSerilogRequestLogging();
-
         builder.UseHttpsRedirection();
         builder.UseForwardedHeaders();
         builder.ApplyCorsPolicy();
-
         builder.UseMiddleware<Exceptions>();
         builder.UseMiddleware<CacheControl>();
-
         builder.UseResponseCompression();
         builder.UseRouting();
         builder.UseEndpoints(endpoints =>

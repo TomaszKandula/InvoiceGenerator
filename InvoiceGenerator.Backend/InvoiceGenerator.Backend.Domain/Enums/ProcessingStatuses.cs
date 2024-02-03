@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Domain.Enums;
-
 using System.Runtime.Serialization;
+using InvoiceGenerator.Backend.Core.Converters;
 using Newtonsoft.Json;
-using Core.Converters;
+
+namespace InvoiceGenerator.Backend.Domain.Enums;
 
 [JsonConverter(typeof(StringToEnumWithDefaultConverter))]
 public enum ProcessingStatuses

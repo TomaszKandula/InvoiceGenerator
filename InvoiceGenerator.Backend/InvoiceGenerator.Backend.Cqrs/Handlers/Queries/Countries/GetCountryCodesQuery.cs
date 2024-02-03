@@ -1,8 +1,8 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Countries;
-
-using MediatR;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using MediatR;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Countries;
 
 [ExcludeFromCodeCoverage]
 public class GetCountryCodesQuery : IRequest<IEnumerable<GetCountryCodesQueryResult>>

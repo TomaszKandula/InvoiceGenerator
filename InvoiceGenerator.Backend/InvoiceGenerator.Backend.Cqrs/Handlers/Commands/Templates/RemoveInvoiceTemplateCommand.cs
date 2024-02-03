@@ -1,7 +1,7 @@
-namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
-
 using System;
 using MediatR;
+
+namespace InvoiceGenerator.Backend.Cqrs.Handlers.Commands.Templates;
 
 public class RemoveInvoiceTemplateCommand : IRequest<Unit>
 {

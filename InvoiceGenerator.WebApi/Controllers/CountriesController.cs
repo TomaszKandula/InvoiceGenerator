@@ -1,11 +1,11 @@
-namespace InvoiceGenerator.WebApi.Controllers;
-
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Backend.Cqrs.Handlers.Queries.Countries;
+using InvoiceGenerator.Backend.Cqrs.Handlers.Queries.Countries;
 using MediatR;
+
+namespace InvoiceGenerator.WebApi.Controllers;
 
 [ApiVersion("1.0")]
 public class CountriesController : BaseController
@@ -19,6 +19,8 @@ public class CountriesController : BaseController
 
     [HttpGet("{country}")]
     [ProducesResponseType(typeof(IEnumerable<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCode([FromRoute] string country, [FromHeader(Name = HeaderName)] string privateKey) =>
-        await Mediator.Send(new GetCountryCodesQuery { FilterBy = country });
+    public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCode(
+        [FromRoute] string country, 
+        [FromHeader(Name = HeaderName)] string privateKey)
+        => await Mediator.Send(new GetCountryCodesQuery { FilterBy = country });
 }
