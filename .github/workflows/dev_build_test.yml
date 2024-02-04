@@ -22,7 +22,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Variable substitution appsettings file for Staging (NET Core)
+    - name: Variable substitution appsettings file for Development (NET Core)
       uses: TomaszKandula/variable-substitution@v1.0.1
       with:
         files: ${{ github.workspace }}/InvoiceGenerator.Configuration/appsettings.Development.json

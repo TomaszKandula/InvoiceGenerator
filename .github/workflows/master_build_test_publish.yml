@@ -51,8 +51,8 @@ jobs:
 
     - name: Checkout repository
       uses: actions/checkout@v4
-    
-    - name: Variable substitution appsettings file for Staging (NET Core)
+
+    - name: Variable substitution appsettings file for Production (NET Core)
       uses: TomaszKandula/variable-substitution@v1.0.1
       with:
         files: ${{ github.workspace }}/InvoiceGenerator.Configuration/appsettings.Production.json
