@@ -59,6 +59,8 @@ public class Startup
             endpoints.MapControllers();
             endpoints.MapGet("/", context 
                 => context.Response.WriteAsync("Invoice Generator API"));
+            endpoints.MapGet("/hc/ready", context 
+                => context.Response.WriteAsync("{\"status\": \"live\"}"));
         });
 
         builder.SetupSwaggerUi(_environment);
