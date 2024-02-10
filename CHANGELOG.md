@@ -1,3 +1,13 @@
+# [1.14.0](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.13.1...v1.14.0) (2024-02-10)
+
+
+### Features
+
+* add HC ready ([da8ca02](https://github.com/TomaszKandula/InvoiceGenerator/commit/da8ca020a6bff5ce730f6346b53c0a88f0924d08))
+* add HC, check SQL and azure storage ([58a536e](https://github.com/TomaszKandula/InvoiceGenerator/commit/58a536ef2d696c727564c5a9d1a4e93c872c7cfc))
+* add HC, check SQL and azure storage ([ee3995d](https://github.com/TomaszKandula/InvoiceGenerator/commit/ee3995dbf0023a68df59a2247a3074382650caba))
+* do not use 'set-output' ([d2f2aaa](https://github.com/TomaszKandula/InvoiceGenerator/commit/d2f2aaa8a1005977d254458d3b8d4a549aaaf5d7))
+
 ## [1.13.1](https://github.com/TomaszKandula/InvoiceGenerator/compare/v1.13.0...v1.13.1) (2024-02-03)
 
 
