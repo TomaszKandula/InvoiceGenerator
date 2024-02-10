@@ -1,14 +1,19 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using InvoiceGenerator.Backend.Core.Exceptions;
 using InvoiceGenerator.WebApi.Configuration;
 using InvoiceGenerator.WebApi.Middleware;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Newtonsoft.Json;
 using Serilog;
 using Newtonsoft.Json.Converters;
 
@@ -42,6 +47,10 @@ public class Startup
         services.RegisterDependencies(_configuration);
         services.SetupSwaggerOptions(_environment);
         services.SetupDockerInternalNetwork();
+        services
+            .AddHealthChecks()
+            .AddSqlServer(_configuration.GetValue<string>("DbConnect"), name: "SQLServer")
+            .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString"), name: "AzureStorage");
     }
 
     public void Configure(IApplicationBuilder builder)
@@ -54,13 +63,30 @@ public class Startup
         builder.UseMiddleware<CacheControl>();
         builder.UseResponseCompression();
         builder.UseRouting();
+        builder.SetupSwaggerUi(_environment);
         builder.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
             endpoints.MapGet("/", context 
                 => context.Response.WriteAsync("Invoice Generator API"));
         });
-
-        builder.SetupSwaggerUi(_environment);
+        builder.UseHealthChecks("/hc", new HealthCheckOptions
+        {
+            ResponseWriter = async (context, report) =>
+            {
+                var result = new
+                {
+                    status = report.Status.ToString(),
+                    errors = report.Entries.Select(pair 
+                        => new
+                        {
+                            key = pair.Key, 
+                            value = Enum.GetName(typeof(HealthStatus), pair.Value.Status)
+                        })
+                };
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
+            }
+        });
     }
 }
